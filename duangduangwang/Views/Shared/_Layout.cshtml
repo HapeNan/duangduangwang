@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    @Styles.Render("~/Content/style")
+    @Scripts.Render("~/bundles/mainjs")
+    @Scripts.Render("~/bundles/mainjs2")
+    <link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css' />
+
+    <style type="text/css">
+        .page_selector {
+            position: absolute;
+            right: 0px;
+            top: 28%;
+        }
+
+            .page_selector a.page_open {
+                display: inline-block;
+                width: 60px;
+                height: 12px;
+                background: #252525;
+                color: #fff;
+                text-align: center;
+                font-size: 14px;
+                padding: 20px 0px;
+                font-weight: bold;
+                text-decoration: none;
+                float: left;
+            }
+
+            .page_selector ul {
+                float: left;
+                background: #f0f0f0;
+                padding: 10px 0px;
+                border-top: solid 2px #000;
+                border-bottom: solid 2px #000;
+                display: none;
+            }
+
+                .page_selector ul li {
+                    padding: 8px 10px;
+                }
+
+                    .page_selector ul li a {
+                        font-weight: bold;
+                        text-decoration: none;
+                        color: #000;
+                        display: block;
+                        padding: 2px 5px;
+                        text-transform: uppercase;
+                        font-size: 11px;
+                    }
+
+        .store_selector {
+            position: absolute;
+            left: 0px;
+            top: 28%;
+        }
+
+            .store_selector .store_open {
+                display: inline-block;
+                width: 128px;
+                height: 55px;
+            }
+
+            .store_selector div {
+                float: left;
+                width: 157px;
+                height: 226px;
+                display: none;
+            }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //SLIDE TOGGLE
+            jQuery(".page_open").toggle(function () {
+                $('.page_selector ul').slideDown(300);
+            }, function () {
+                $('.page_selector ul').slideUp(300);
+            });
+            //SLIDE TOGGLE
+            jQuery(".store_open").toggle(function () {
+                $('.store_selector div').slideDown(300);
+            }, function () {
+                $('.store_selector div').slideUp(300);
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div class="header_container">
+            <!--Header Starts-->
+            <header>
+                <div class="top_bar clear">
+                    <!--Language Switcher Starts-->
+                    <div class="language_switch"> <a class="active" href="#" title="ENGLISH">EN</a> <a href="#" title="FRENCH">FR</a> </div>
+                    <!--Language Switcher Ends-->
+                    <!--Top Links Starts-->
+                    <ul class="top_links">
+                        <li><a href="#">我的账户</a></li>
+                        <li><a href="#">愿望单</a></li>
+                        <li><a href="#">登录</a></li>
+                        <li class="highlight"><a href="#">注册</a></li>
+                    </ul>
+                    <!--Top Links Ends-->
+                </div>
+                <!--Logo Starts-->
+                <h1 class="logo"> <a href="#"><img src="/Images/logo.png" /></a> </h1>
+                <!--Logo Ends-->
+                <!--Responsive NAV-->            <div class="responsive-nav" style="display:none;">
+                    <select onchange="if(this.options[this.selectedIndex].value != ''){window.top.location.href=this.options[this.selectedIndex].value}">
+                        <option selected="" value="" />Navigate...
+                        <option value="leisure_index.html" /> Home
+                        <option value="leisure_listing.html" /> -  Listing Page
+                        <option value="leisure_detail.html" />Product Page
+                        <option value="leisure_cart.html" /> -  Shopping Cart
+                        <option value="leisure_checkout.html" /> -  Checkout
+                        <option value="leisure_contact.php" />Contact
+                    </select>
+                </div>
+                <!--Responsive NAV-->
+                <!--Search Starts-->
+                <form class="header_search" >
+                <div class="form-search">
+                    <input id="search" type="text" name="q" value="" class="input-text" autocomplete="off" placeholder="Search" />
+                    <button type="submit" title="Search"></button>
+                </div>
+               </form>
+                <!--Search Ends-->
+            </header>
+            <!--Header Ends-->
+        </div>
+
+
+        <div class="navigation_container">
+            <!--Navigation Starts-->
+            <nav>
+                <ul class="primary_nav">
+                    <li class="active">
+                        <a href="leisure_listing.html">教育</a>
+                        <!--SUbmenu Starts-->
+                        <ul class="sub_menu">
+                            <li>
+                                <a href="#">教材</a>
+                                <ul>
+                                    <li><a href="#">研究生/本科/专科教材</a></li>
+                                    <li><a href="#">高职高专教材</a></li>
+                                    <li><a href="#">中职教材</a></li>
+                                    <li><a href="#">成人教育教材</a></li>
+                                    <li><a href="#">工学类</a></li>
+                                    <li></li>
+                                    <li><a href="#">文法类</a></li>
+                                    <li><a href="#">医学类</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">考试</a>
+                                <ul>
+                                    <li><a href="#">学历考试</a></li>
+                                    <li><a href="#">公职</a></li>
+                                    <li><a href="#">建筑工程</a></li>
+                                    <li><a href="#">计算机</a></li>
+                                    <li><a href="#">考研</a></li>
+                                    <li><a href="#">四/六级</a></li>
+                                    <li><a href="#">MBA/MPA/MPAcc</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">教辅</a>
+                                <ul>
+                                    <li><a href="#">小学</a></li>
+                                    <li><a href="#">初中</a></li>
+                                    <li><a href="#">高中</a></li>
+                                    <li><a href="#">英语教辅</a></li>
+                                    <li><a href="#">‘</a></li>
+                                    <li><a href="#">教室用书</a></li>
+                                    <li><a href="#">Outerwear & Blazers</a></li>
+                                </ul>
+                            </li>
+                        </ul>r
+                    </li>
+                    <li>
+                        <a href="leisure_listing.html">小说</a>
+                        <!--SUbmenu Starts-->
+                        <ul class="sub_menu">
+                            <li>
+                                <a href="#">Men Summer Collection</a>
+                                <ul>
+                                    <li><a href="#">Premium Pants</a></li>
+                                    <li><a href="#">Khakis</a></li>
+                                    <li><a href="#">Casual Pants</a></li>
+                                    <li><a href="#">Jeans</a></li>
+                                    <li><a href="#">Outerwear & Blazers</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Accessories</a>
+                                <ul>
+                                    <li><a href="#">Sunglasses</a></li>
+                                    <li><a href="#">Scarves</a></li>
+                                    <li><a href="#">Hair Accessories</a></li>
+                                    <li><a href="#">Hats and Gloves</a></li>
+                                    <li><a href="#">Jeans</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!--SUbmenu Ends-->
+                    </li>
+                    <li><a href="leisure_listing.html">Kids</a></li>
+                    <li><a href="leisure_listing.html">Fashion</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+                <div class="minicart">
+                    <a href="#" class="minicart_link"> <span class="item"><b>2</b> ITEM /</span> <span class="price"><b>$69.20</b></span> </a>
+                    <div class="cart_drop">
+                        <span class="darw"></span>
+                        <ul>
+                            <li><img src="/Images/mini_c_item1.png" /><a href="#">Clogs Beach/Garden Clog</a> <span class="price">$49.90</span></li>
+                            <li><img src="/Images/mini_c_item2.png" /><a href="#">Faded chambray shorts</a> <span class="price">$12.90</span></li>
+                            <div class="cart_bottom">
+                                <div class="subtotal_menu"><small>Subtotal:</small><big>$69.20</big></div>
+                                <a href="leisure_cart.html">Checkout</a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!--Navigation Ends-->
+        </div>
+
+
+        <div class="section_container">
+            @RenderBody()
+        </div>
+
+        <div class="footer_container">
+            <!--Footer Starts-->
+            <footer>
+                <ul class="footer_links">
+                    <li>
+                        <span>New Arrivals</span>
+                        <ul>
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Shoes</a></li>
+                            <li><a href="#">Bags</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Zimmermann</a></li>
+                            <li><a href="#">Acne</a></li>
+                            <li><a href="#">Bassike</a></li>
+                            <li><a href="#">Camilla and Marc</a></li>
+                        </ul>
+                    </li>
+                    <li class="seperator">
+                        <span>Brands we sell</span>
+                        <ul>
+                            <li><a href="#">Elle</a></li>
+                            <li><a href="#">Reallxe</a></li>
+                            <li><a href="#">Fabric</a></li>
+                            <li><a href="#">Mayflower</a></li>
+                            <li><a href="#">Levis Strauss</a></li>
+                            <li><a href="#">Anzonica</a></li>
+                            <li><a href="#">Reallxe</a></li>
+                            <li><a href="#">Fabric</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Customer Service</span>
+                        <ul>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">Payment Options</a></li>
+                            <li><a href="#">Order Status & Tracking</a></li>
+                            <li><a href="#">Gift Wrap Options</a></li>
+                            <li><a href="#">International Orderse</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>My Account</span>
+                        <ul>
+                            <li><a href="#">My Account Information</a></li>
+                            <li><a href="#">My Password</a></li>
+                            <li><a href="#">My Order History</a></li>
+                            <li><a href="#">Payment Options</a></li>
+                            <li><a href="#">My Address Book</a></li>
+                            <li><a href="#">My Updates & Alerts</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="footer_customblock">
+                    <div class="shipping_info">
+                        <span>introducing </span><br />
+                        <big>FREE SHIPPING</big><br />
+                        <small>for purchases above $200</small>
+                    </div>
+                    <div class="contact_info"> <big>1.800. (1.800.260.7890)</big> </div>
+                </div>
+                <address>
+                    Copyright (c) 2013 Leisure. All Rights Reserved. <img src="/Images/payment_info.jpg" />
+                </address>
+            </footer>
+            <!--Footer Ends-->
+        </div>
+
+        <!--CUSTOMIZE-->
+        <!--CUSTOMIZE-->
+
+    </div>
+
+
+    <map name="Map">
+        <area shape="rect" alt="1" coords="3,171,159,222" href="../Lingerie_shop/leisure_index.html" />
+        <area shape="rect" alt="2" coords="1,115,157,166" href="../Watch_shop/leisure_index.html" />
+        <area shape="rect" alt="3" coords="0,59,156,110" href="../Gadget_shop/leisure_index.html" />
+        <area shape="rect" alt="4" coords="2,3,158,54" href="leisure_index.html" />
+    </map>
+
+
+
+    <div class="page_selector">
+        <a href="#" class="page_open">PAGES</a>
+        <ul>
+            <li> <a href="leisure_index.html">HOME</a></li>
+            <li> <a href="leisure_listing.html">Product Listing</a></li>
+            <li> <a href="leisure_detail.html">Product Detail</a></li>
+            <li> <a href="leisure_cart.html">Shopping Cart</a></li>
+            <li> <a href="leisure_checkout.html">Checkout</a></li>
+            <li> <a href="leisure_contact.php">Contact</a></li>
+        </ul>
+    </div>
+    <div style="display:none">
+        <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script>
+    </div>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>
