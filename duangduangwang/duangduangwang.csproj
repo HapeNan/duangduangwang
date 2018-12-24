@@ -274,6 +274,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\Home\leisure_checkout.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -289,6 +290,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Views\Shared\ManagerPage.cshtml" />
+    <Content Include="Views\Home\ManageOrder.cshtml" />
+    <Content Include="Views\Home\ManageUser.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

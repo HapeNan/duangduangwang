@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 管理员界面</title>
+    @Styles.Render("~/Content/style")
+    @Scripts.Render("~/bundles/mainjs")
+    @Scripts.Render("~/bundles/mainjs2")
+    <link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css' />
+
+    <style type="text/css">
+        .page_selector {
+            position: absolute;
+            right: 0px;
+            top: 28%;
+        }
+
+            .page_selector a.page_open {
+                display: inline-block;
+                width: 60px;
+                height: 12px;
+                background: #252525;
+                color: #fff;
+                text-align: center;
+                font-size: 14px;
+                padding: 20px 0px;
+                font-weight: bold;
+                text-decoration: none;
+                float: left;
+            }
+
+            .page_selector ul {
+                float: left;
+                background: #f0f0f0;
+                padding: 10px 0px;
+                border-top: solid 2px #000;
+                border-bottom: solid 2px #000;
+                display: none;
+            }
+
+                .page_selector ul li {
+                    padding: 8px 10px;
+                }
+
+                    .page_selector ul li a {
+                        font-weight: bold;
+                        text-decoration: none;
+                        color: #000;
+                        display: block;
+                        padding: 2px 5px;
+                        text-transform: uppercase;
+                        font-size: 11px;
+                    }
+
+        .store_selector {
+            position: absolute;
+            left: 0px;
+            top: 28%;
+        }
+
+            .store_selector .store_open {
+                display: inline-block;
+                width: 128px;
+                height: 55px;
+            }
+
+            .store_selector div {
+                float: left;
+                width: 157px;
+                height: 226px;
+                display: none;
+            }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //SLIDE TOGGLE
+            jQuery(".page_open").toggle(function () {
+                $('.page_selector ul').slideDown(300);
+            }, function () {
+                $('.page_selector ul').slideUp(300);
+            });
+            //SLIDE TOGGLE
+            jQuery(".store_open").toggle(function () {
+                $('.store_selector div').slideDown(300);
+            }, function () {
+                $('.store_selector div').slideUp(300);
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div class="header_container">
+            <!--Header Starts-->
+            <header>
+                <div class="top_bar clear">
+                    <!--Language Switcher Starts-->
+                    <div class="language_switch"> <a class="active" href="#" title="ENGLISH">EN</a> <a href="#" title="FRENCH">FR</a> </div>
+                    <!--Language Switcher Ends-->
+                    <!--Top Links Starts-->
+                    <ul class="top_links">
+                        <li><a href="#">管理员界面</a></li>
+                    </ul>
+                    <!--Top Links Ends-->
+                </div>
+                <!--Logo Starts-->
+                <h1 class="logo"> <a href="#"><img src="/Images/logo.png" /></a> </h1>
+                <!--Logo Ends-->
+
+                <!--Search Starts-->
+                <form class="header_search">
+                    <div class="form-search">
+                        <input id="search" type="text" name="q" value="" class="input-text" autocomplete="off" placeholder="Search" />
+                        <button type="submit" title="Search"></button>
+                    </div>
+                </form>
+                <!--Search Ends-->
+            </header>
+            <!--Header Ends-->
+        </div>
+
+
+        <div class="navigation_container">
+            <!--Navigation Starts-->
+            <nav>
+                <ul class="primary_nav">
+                    <li class="active">
+                        <a href="">订单管理</a>
+                        <ul class="sub_menu">
+                            <li>
+                                <ul>
+                                    <li><a href="#">订单查询</a></li>
+                                </ul>
+                            </li>
+                         </ul>
+                    </li>
+                    <li>
+                        <a href="">用户管理</a>
+                        <ul class="sub_menu">
+                            <li>
+                                <ul>
+                                    <li><a href="#">用户查询</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">图书管理</a>
+                        <ul class="sub_menu">
+                            <li>
+                                <ul>
+                                    <li><a href="#">图书查询</a></li>
+                                    <li><a href="#">新增图书</a></li>
+                                    <li><a href="#">批量修改</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+               
+            </nav>
+            <!--Navigation Ends-->
+        </div>
+
+
+        <div class="section_container">
+            @RenderBody()
+        </div>
+
+       
+
+        <!--CUSTOMIZE-->
+        <!--CUSTOMIZE-->
+
+    </div>
+
+
+    <map name="Map">
+        <area shape="rect" alt="1" coords="3,171,159,222" href="../Lingerie_shop/leisure_index.html" />
+        <area shape="rect" alt="2" coords="1,115,157,166" href="../Watch_shop/leisure_index.html" />
+        <area shape="rect" alt="3" coords="0,59,156,110" href="../Gadget_shop/leisure_index.html" />
+        <area shape="rect" alt="4" coords="2,3,158,54" href="leisure_index.html" />
+    </map>
+
+    <div style="display:none">
+        <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script>
+    </div>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>

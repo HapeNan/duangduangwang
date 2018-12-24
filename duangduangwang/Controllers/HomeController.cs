@@ -15,5 +15,9 @@ namespace duangduangwang.Controllers
             ViewBag.NewBookList = bookMapper.NewBookList();
             return View();
         }
+        public ActionResult ManageOrder()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Shared/ManagerPage.cshtml";
+}
+
+<style type="text/css">
+    table, table tr th, table tr td {
+        text-align: center;
+        border: 1px solid #000000;
+    }
+</style>
+<section>
+    <div class="full_page" style="margin-top:20px;">
+        <!--CHECKOUT STEPS STARTS-->
+        <div class="checkout_steps">
+            <ol id="checkoutSteps">
+                <li class="section allow active" id="opc-login">
+                    <div class="step-title">
+                        <h2>输入查询条件</h2>
+                    </div>
+                    <div id="checkout-step-login">
+                        <form method="post" id="login-form" action="" />
+                        <div class="col2-set">
+                            <div class="col-2" style="float:left;margin-left:80px; margin-right:40px;">
+                                <fieldset>
+                                    <ul class="form-list">
+                                        <li>
+                                            <label class="required" for="login-email"><em>*</em>订单号</label>
+                                            <div class="input-box">
+                                                <input type="text" value="" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-password"><em>*</em>用户ID</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-password"><em>*</em>订单状态</label>
+                                            <div class="input-box">
+                                                <select id="Order_State">
+                                                    <option>已付款</option>
+                                                    <option>未付款</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                </fieldset>
+                            </div>
+                            <div class="col-2" style="float:left; margin-left:20px;">
+
+                                <fieldset>
+                                    <ul class="form-list">
+
+                                        <li>
+                                            <label class="required" for="login-password"><em>*</em>包含图书ID</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-password"><em>*</em>包含图书名称</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-password"><em>*</em>下单日期</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                </fieldset>
+
+                            </div>
+                        </div>
+                        <div class="col2-set">
+                            <div class="col-1" style="margin-left:120px;">
+                                <div class="buttons-set">
+                                    <button class="button brown_btn" type="button">&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;</button>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="buttons-set">
+                                    <button class="button brown_btn" type="button">显示全部</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </li>
+                <li class="section allow active" id="opc-login">
+
+                    <div class="step-title">
+                        <h2>订单列表</h2>
+                    </div>
+                    <div id="checkout-step-login">
+                        <table style="margin-left:40px;" border="1" cellspacing="0" cellpadding="0">
+
+                            <tr>
+                                <td width="100px"> 订单号</td>
+                                <td width="100px"> 用户ID</td>
+                                <td width="100px">订单总价</td>
+                                <td width="100px"> 付款状态</td>
+                                <td width="100px">下单日期</td>
+                                <td width="100px">下单日期</td>
+                            </tr>
+
+
+                            @foreach (var order in ViewBag.OrderList)
+                            {
+                                <tr>
+                                    <td>@order.OrderId</td>
+                                    <td>@order.UserId</td>
+                                    <td>@order.TotalPrice</td>
+                                    <td>@order.Status</td>
+                                    <td>@order.createDate</td>
+                                    <td>
+                                        <input id="Button1" type="button" value="修改" />&nbsp;&nbsp;
+                                        <input id="Button2" type="button" value="删除" />
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </li>
+
+
+
+            </ol>
+        </div>
+        <!--CHECKOUT STEPS ENDS-->
+
+    </div>
+    <!--Newsletter_subscribe Starts-->
+
+    <div class="subscribe_block">
+        <div class="find_us">
+            <h3>联系我们</h3>
+            <a class="twitter" href="#"></a> <a class="facebook" href="#"></a> <a class="rss" href="#"></a>
+        </div>
+        <div class="subscribe_nl">
+            <h3>发送至我们的邮箱</h3>
+            <small>如果您在使用中有任何问题或者建议，请邮箱联系我们</small>
+            <form id="newsletter" method="post" action="#" />
+            <input type="text" class="input-text" value="Enter your email" title="Enter your email" id="newsletter" name="email" />
+            <button class="button" title="" type="submit"></button>
+            </form>
+        </div>
+    </div>
+    <!--Newsletter_subscribe Ends-->
+</section>
+
+
+
