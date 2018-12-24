@@ -12,7 +12,6 @@ namespace duangduangwang.Controllers
         {
             return View();
         }
-
       
     }
 }
