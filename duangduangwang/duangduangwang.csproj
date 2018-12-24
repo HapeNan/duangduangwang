@@ -156,6 +156,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\IMapper\IBookMapper.cs" />
+    <Compile Include="Models\Mapper\BookMapper.cs" />
     <Compile Include="pagepay\pagepay.aspx.cs">
       <DependentUpon>pagepay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -288,10 +290,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\IMapper\" />
-    <Folder Include="Models\Mapper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

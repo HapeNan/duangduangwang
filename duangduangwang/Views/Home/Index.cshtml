@@ -28,77 +28,84 @@
     <!--Product List Starts-->
     <div class="products_list products_slider">
         <h2 class="sub_title">新书上架</h2>
+
+       
+
         <ul id="first-carousel" class="first-and-second-carousel jcarousel-skin-tango">
+            @foreach (var item in ViewBag.NewBookList)
+            {
+        <li>
+            <a href="#" class="product_image"><img width="220" height="242" src="@item.Picture1" /></a>
+            <div class="product_info">
+                <h3><a href="#">@item.BookName</a></h3>
+                <small>@item.BookAbstract</small>
+            </div>
+            <div class="price_info">
+                <a href="#">+ Add to wishlist</a>
+                <button class="price_add" title="" type="button"><span class="pr_price">$@item.BookPrice</span><span class="pr_add">添加到购物车</span></button>
+            </div>
+        </li>
 
-            <li>
-                <a class="product_image"><img src="/Images/pr_l_1.jpg" /></a>
-                <div class="product_info">
-                    <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
-                    <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
-                </div>
-                <div class="price_info">
-                    <a href="#">+ Add to wishlist</a>
-                    <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
-                </div>
-            </li>
+        @*<li>
+            <a class="product_image"><img src="/Images/pr_l_2.jpg" /></a>
+            <div class="product_info">
+                <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+            </div>
+            <div class="price_info">
+                <a href="#">+ Add to wishlist</a>
+                <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
+            </div>
+        </li>
 
-            <li>
-                <a class="product_image"><img src="/Images/pr_l_2.jpg" /></a>
-                <div class="product_info">
-                    <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
-                    <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
-                </div>
-                <div class="price_info">
-                    <a href="#">+ Add to wishlist</a>
-                    <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
-                </div>
-            </li>
+        <li>
+            <a class="product_image"><img src="/Images/pr_l_3.jpg" /></a>
+            <div class="product_info">
+                <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+            </div>
+            <div class="price_info">
+                <a href="#">+ Add to wishlist</a>
+                <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
+            </div>
+        </li>
+        <li>
+            <a class="product_image"><img src="/Images/pr_l_5.jpg" /></a>
+            <div class="product_info">
+                <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+            </div>
+            <div class="price_info">
+                <a href="#">+ Add to wishlist</a>
+                <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
+            </div>
+        </li>
+        <li>
+            <a class="product_image"><img src="/Images/pr_l_1.jpg" /></a>
+            <div class="product_info">
+                <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+            </div>
+            <div class="price_info">
+                <a href="#">+ Add to wishlist</a>
+                <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
+            </div>
+        </li>
+        <li>
+            <a class="product_image"><img src="/Images/pr_l_2.jpg" /></a>
+            <div class="product_info">
+                <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+            </div>
+            <div class="price_info">
+                <a href="#">+ Add to wishlist</a>
+                <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
+            </div>
+        </li>*@
 
-            <li>
-                <a class="product_image"><img src="/Images/pr_l_3.jpg" /></a>
-                <div class="product_info">
-                    <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
-                    <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
-                </div>
-                <div class="price_info">
-                    <a href="#">+ Add to wishlist</a>
-                    <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
-                </div>
-            </li>
-            <li>
-                <a class="product_image"><img src="/Images/pr_l_5.jpg" /></a>
-                <div class="product_info">
-                    <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
-                    <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
-                </div>
-                <div class="price_info">
-                    <a href="#">+ Add to wishlist</a>
-                    <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
-                </div>
-            </li>
-            <li>
-                <a class="product_image"><img src="/Images/pr_l_1.jpg" /></a>
-                <div class="product_info">
-                    <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
-                    <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
-                </div>
-                <div class="price_info">
-                    <a href="#">+ Add to wishlist</a>
-                    <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
-                </div>
-            </li>
-            <li>
-                <a class="product_image"><img src="/Images/pr_l_2.jpg" /></a>
-                <div class="product_info">
-                    <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
-                    <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
-                </div>
-                <div class="price_info">
-                    <a href="#">+ Add to wishlist</a>
-                    <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">添加到购物车</span></button>
-                </div>
-            </li>
+            }
         </ul>
+        
     </div>
     <!--Product List Ends-->
     <!--Product List Starts-->
