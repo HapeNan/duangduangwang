@@ -1,0 +1,259 @@
+﻿
+<script src="http://www.cnblogs.com/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+
+@model IEnumerable<duangduangwang.Models.Book>
+
+@{
+    ViewBag.Title = "Cart";
+}
+<script type="text/javascript">
+    function pl(id) {
+        var i = id.substring(0,id.indexOf('p'));
+        var target = '#' + i + 'qty';
+
+        var txt = $(target);
+        var num = $(target).val();
+
+        txt.val(parseInt(num) + 1);
+    }
+    function subtract(id) {
+        var i = i = id.substring(0, id.indexOf('s'));
+        var target = '#' + i + 'qty';
+        var txt = $(target);
+        var num = $(target).val();
+        if (parseInt(num) > 1) {
+            txt.val(parseInt(num) - 1);
+        }
+    }
+    function upamountpl(id) {
+        var i = id.substr(0, 1);
+        var pri = '#' + i + 'price';
+        var totpri = '#totprice';
+        var totpri2 = '#totprice2';
+        var num1 = $(pri).text();
+        var num2 = $(totpri).text();
+        ($(totpri)).text((parseFloat(num2) + parseFloat(num1)).toFixed(2));
+        ($(totpri2)).text((parseFloat(num2) + parseFloat(num1)).toFixed(2));
+    }
+    function upamountsub(id) {
+        var i = id.substr(0, 1);
+        var pri = '#' + i + 'price';
+        var totpri = '#totprice';
+        var totpri2 = '#totprice2';
+        var num1 = $(pri).text();
+        var num2 = $(totpri).text();
+        ($(totpri)).text((parseFloat(num2) - parseFloat(num1)).toFixed(2));
+        ($(totpri2)).text((parseFloat(num2) - parseFloat(num1)).toFixed(2));
+    }
+    function upamountdel(id) {
+        var i = id.substr(0, 1);
+        var pri = '#' + i + 'price';
+        var qty = '#' + i + 'qty';
+        var totpri = '#totprice';
+        var totpri2 = '#totprice2';
+        var num1 = $(pri).text();
+        var num2 = $(totpri).text();
+        var qty1 = $(qty).val();
+        ($(totpri)).text((parseFloat(num2) - parseInt(qty1) * parseFloat(num1)).toFixed(2));
+        ($(totpri2)).text((parseFloat(num2) - parseInt(qty1) * parseFloat(num1)).toFixed(2));
+    }
+    function delRow(obj) {
+        var tr = this.getRowObj(obj);
+        if (tr != null) {
+            var i = (tr.id).substring(0, tr.id.indexOf('t'));
+            tr.parentNode.removeChild(tr);
+            $.ajax({
+                type: 'post',
+                url: '/Cart/AjaxTest?Id=' + i + '&qty=0',
+                success: function () {
+                },
+                error: function () {
+                }
+            });
+            uptotal()
+        } else {
+            throw new Error("the given object is not contained by the table");
+        }
+    }
+    function getRowObj(obj) {
+        var i = 0;
+        while (obj.tagName.toLowerCase() != "tr") {
+            obj = obj.parentNode;
+            if (obj.tagName.toLowerCase() == "table")
+                return null;
+        }
+        return obj;
+    }
+    function plus(id) {
+        var i = id.substring(0, id.indexOf('p'));
+        var target = '#' + i + 'qty';
+        var txt = $(target);
+        pl(id);
+        uptotal();
+        $.ajax({
+            type: 'post',
+            url: '/Cart/AjaxTest?Id=' + i + '&qty=' + txt.val(),
+            success: function () {
+            },
+            error: function () {
+            }
+        });
+        
+    }
+    function sub(id) {
+        var i = id.substring(0, id.indexOf('s'));
+        var target = '#' + i + 'qty';
+        var txt = $(target);
+        subtract(id);
+        uptotal();
+        $.ajax({
+            type: 'post',
+            url: '/Cart/AjaxTest?Id=' + i + '&qty=' + txt.val(),
+            success: function () {
+            },
+            error: function () {
+            }
+        });
+    }
+    function checkboxclick(id) {
+        var i = id.substring(0, id.indexOf('s'));
+        if ($("#"+i+"select").attr("checked")) {
+            $.ajax({
+                type: 'post',
+                url: '/Cart/Select?Id='+i+'&selected=true',
+                success: function () {
+                },
+                error: function () {
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: 'post',
+                url: '/Cart/Select?Id=' + i + '&selected=false',
+                success: function () {
+                },
+                error: function () {
+                }
+            });
+        }
+        uptotal();
+    }
+    function qtychange(id) {
+        var i = i = id.substring(0, id.indexOf('q'));
+        var target = '#' + i + 'qty';
+        var txt = $(target).val();
+        uptotal();
+        $.ajax({
+            type: 'post',
+            url: '/Cart/AjaxTest?Id=' + i + '&qty=' + txt.val(),
+            success: function () {
+            },
+            error: function () {
+            }
+        });
+        
+    }
+
+</script>
+
+
+<section>
+
+
+
+
+    <div id="shopping_cart" class="full_page">
+
+
+
+        <div class="message success">Notch-collar shirt was added to your shopping cart.</div>
+        <div class="action_buttonbar">
+            <button type="button" title="" class="continue">继续购物</button>
+            <button type="button" onclick="parent.location='leisure_checkout.html'" title="" class="checkout">结算</button>
+        </div>
+        <div class="cart_table" onload="uptotal()">
+            <table class="data-table cart-table" id="shopping-cart-table" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th colspan="2">Products</th>
+                    <th class="align_center" width="6%"></th>
+                    <th class="align_center" width="6%"></th>
+                    <th class="align_center" width="12%">Unit Price</th>
+                    <th class="align_center" width="12%">Qty</th>
+                    <th class="align_center" width="12%">Subtotal</th>
+                    <th class="align_center" width="6%"></th>
+                </tr>
+                @{
+                    foreach (var item in Model)
+                    {
+                        var num = @Html.DisplayFor(modelItem => item.BookId);
+                        var plusnum = num + "plus";
+                        var subnum = num + "sub";
+                        var qtynum = num + "qty";
+                        var pricenum = num + "price";
+                        var trnum = num + "tr";
+                        var txtnum = num + "txt";
+                        var subtot = num + "subtot";
+                        var select = num + "select";
+                        <tr id="@trnum.ToString()">
+                            <td>
+                                <input type="checkbox" name="select" id="@select.ToString()" value="1" checked onclick="checkboxclick(this.id)" />
+                            </td>
+                            <td width="10%">
+                                <img src="images/cart1.jpg" />
+                                <input type="hidden" name="hiddenbook" id="@txtnum.ToString()" value="1">
+                            </td>
+                            <td class="align_left" width="44%"><a class="pr_name" href="#">@Html.DisplayFor(modelItem => item.BookName)</a><span class="pr_info">@Html.DisplayFor(modelItem => item.BookAbstract)</span></td>
+                            <td class="align_center"><a href="#" class="edit"></a></td>
+                            <td class="align_center vline"><span class="price" id="@pricenum.ToString()">@Html.DisplayFor(modelItem => item.BookPrice)</span></td>
+                            <td class="align_center vline">
+                                <input type="button" id="@subnum.ToString()" value="-" onclick="sub(this.id)" />
+                                <input id="@qtynum.ToString()" class="qty_box" type="text" value="1" onchange="qtychange(this.id)" />
+                                <input type="button" id="@plusnum.ToString()" value="+" onclick="plus(this.id)" />
+                            </td>
+                            <td class="align_center vline"><span class="price" id="@subtot.ToString()"></span></td>
+                            <td class="align_center vline"><a href="javascript:void(0);" class="remove" onclick="delRow(this)"></a></td>
+                        </tr>
+                    }
+                }
+            </table>
+            <div class="totals">
+                <table id="totals-table">
+                    <tr>
+                        <td width="60%" colspan="1" class="align_left"><strong>商品价格</strong></td>
+                        <td class="align_right" style=""><strong><span class="price" id="totprice">0.00</span></strong></td>
+                    </tr>
+                    <tr>
+                        <td width="60%" colspan="1" class="align_left">邮递费</td>
+                        <td class="align_right" style=""><span class="price" id="postcost">0.00</span></td>
+                    </tr>
+                    <tr>
+                        <td width="60%" colspan="1" class="align_left total">总花费</td>
+                        <td class="align_right" style=""><span class="total" id="totprice2">0.00</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="action_buttonbar">
+            <button type="button" title="" class="continue">继续购物</button>
+            <button type="button" onclick="parent.location='leisure_checkout.html'" title="" class="checkout">结算</button>
+        </div>
+    </div>
+    <div class="subscribe_block">
+        <div class="find_us">
+            <h3>联系我们</h3>
+            <a class="twitter" href="#"></a> <a class="facebook" href="#"></a> <a class="rss" href="#"></a>
+        </div>
+        <div class="subscribe_nl">
+            <h3>Subscribe to our Newsletter</h3>
+            <small>Instant wardrobe updates, new arrivals, fashion news, don’t miss a beat – sign up to our newsletter now.</small>
+            <form id="newsletter" method="post" action="#" />
+            <input type="text" class="input-text" value="Enter your email" title="Enter your email" id="newsletter" name="email" />
+            <button class="button" title="" type="submit"></button>
+
+        </div>
+    </div>
+</section>
+
+
+
