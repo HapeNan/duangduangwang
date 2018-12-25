@@ -165,87 +165,80 @@
             <nav>
                 <ul class="primary_nav">
                     <li class="active">
-                        @{ 
-                            string[] tags ={"人工智能", "外国小说","世界名著","官场", "中国近现代小说","中国当代小说",
-                                            "情感", "外国小说",
-                                            "教材","本科教材",
-                                            "社会"};
-                            Random rd = new Random();
-
-                        }
-                        <a href="leisure_listing.html">教育</a>
+                  
+                        <a href="#">教育</a>
                         <!--SUbmenu Starts-->
                         <ul class="sub_menu">
                             <li>
                                 <a href="@Url.Action("GetBooksOfTag", "Book", new {tag=Convert.ToString("教材")})">教材</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">研究生/本科/专科教材</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">高职高专教材</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">中职教材</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">成人教育教材</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">工学类</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">文法类</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">医学类</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("本科教材")})">研究生/本科/专科教材</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("高职高专教材")})">高职高专教材</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("中职教材")})">中职教材</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("成人教育教材")})">成人教育教材</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("工学类")})">工学类</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("法学类")})">文法类</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("医学类")})">医学类</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag=Convert.ToString("考试")})">考试</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("考试")})">考试</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">学历考试</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">公职</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">建筑工程</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">计算机</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">考研</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">四/六级</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">MBA/MPA/MPAcc</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("学历考试")})">学历考试</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("公职")})">公职</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("建筑工程")})">建筑工程</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("计算机")})">计算机</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("考研")})">考研</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("四/六级")})">四/六级</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new {tag=Convert.ToString("MBA/MPA/MPAcc")})">MBA/MPA/MPAcc</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">教辅</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("教辅") })">教辅</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">小学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">初中</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">高中</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">英语教辅</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">作文训练</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">教师用书</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("小学") })">小学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("初中")})">初中</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("高中") })">高中</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("英语教辅")})">英语教辅</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("作文训练")})">作文训练</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("教师用书")})">教师用书</a></li>
 
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="leisure_listing.html">小说</a>
+                        <a href="#">小说</a>
                         <!--SUbmenu Starts-->
                         <ul class="sub_menu">
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">区域</a>
+                                <a >区域</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">中国当代小说</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">中国近现代小说</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">中国古典小说</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">外国小说</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">港澳台小说</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("中国当代小说") })">中国当代小说</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("中国近现代小说") })">中国近现代小说</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("中国古典小说")})">中国古典小说</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("外国小说")})">外国小说</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("港澳台小说") })">港澳台小说</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">类型</a>
+                                <a>类型</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">职场</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">社会</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">悬疑</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">都市</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">情感</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("职场") })">职场</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("社会")})">社会</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("悬疑")})">悬疑</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("都市") })">都市</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("情感") })">情感</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">类型</a>
+                                <a>类型</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">武侠</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">科幻</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">军事</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">历史</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">官场</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("武侠") })">武侠</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("科幻") })">科幻</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("军事")})">军事</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("历史") })">历史</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("官场")})">官场</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -255,156 +248,156 @@
                         <a href="leisure_listing.html">童书</a>
                         <ul class="sub_menu">
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">年龄</a>
+                                <a >年龄</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">0-2岁</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">3-6岁</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">7-10岁</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">11-14岁</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("0-2岁")})">0-2岁</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("3-6岁")})">3-6岁</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("7-10岁")})">7-10岁</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("11-14岁") })">11-14岁</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">类型</a>
+                                <a>类型</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">绘本</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">科普/百科</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">婴儿读物</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">幼儿启蒙</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">益智游戏</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">动漫卡通</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("绘本")})">绘本</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("科普/百科")})">科普/百科</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("婴儿读物") })">婴儿读物</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("幼儿启蒙")})">幼儿启蒙</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("益智游戏") })">益智游戏</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("动漫卡通")})">动漫卡通</a></li>
                                 </ul>
                             </li>
 
                         </ul>
                     </li>
                     <li>
-                        <a href="leisure_listing.html">人文社科</a>
+                        <a href="#">人文社科</a>
                         <ul class="sub_menu">
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">历史</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("历史") })">历史</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">中国史</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">世界史</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">地方史志</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">民族史</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("中国史") })">中国史</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("世界史") })">世界史</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("地方史志")})">地方史志</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("民族史") })">民族史</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">文化</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("文化") })">文化</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">传统文化</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">各国文化</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">文化评述</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">文化随笔</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("传统文化") })">传统文化</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("各国文化")})">各国文化</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("文化评述") })">文化评述</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("文化随笔") })">文化随笔</a></li>
 
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">哲学/宗教</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("哲学/宗教") })">哲学/宗教</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">古代哲学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">近现代哲学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">哲学知识读物</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">宗教知识读物</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">佛教</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">基督教</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("古代哲学") })">古代哲学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("近现代哲学") })">近现代哲学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("哲学知识读物")})">哲学知识读物</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("宗教知识读物") })">宗教知识读物</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("佛教") })">佛教</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("基督教") })">基督教</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">政治/军事</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("政治/军事") })">政治/军事</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">中国政治</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">党政读物</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">政治理论</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">世界政治</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">领袖著作</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">军事理论</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">战争纪实</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("中国政治") })">中国政治</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("党政读物") })">党政读物</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag =Convert.ToString("政治理论") })">政治理论</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("世界政治") })">世界政治</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("领袖著作")})">领袖著作</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("军事理论") })">军事理论</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("战争纪实") })">战争纪实</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">生活</a>
+                        <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("生活") })">生活</a>
                         <ul class="sub_menu">
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">亲子/家教</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("亲子")})">亲子/家教</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">家教理论</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">素质教育</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">亲子关系</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">心理疏导</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("家教理论") })">家教理论</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag =Convert.ToString("素质教育") })">素质教育</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("亲子关系")})">亲子关系</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("心理疏导") })">心理疏导</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">保健/养生</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("保健") })">保健/养生</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">中医养生</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">饮食健康</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">运动健身</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">心理健康</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("中医养生") })">中医养生</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("饮食健康") })">饮食健康</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("运动健身") })">运动健身</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag =Convert.ToString("心理健康")})">心理健康</a></li>
 
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">烹饪/美食</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("美食") })">烹饪/美食</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">家常菜谱</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">烘培甜品</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">西餐料理</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">茶酒饮料</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">地方美食</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">饮食文化</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("家常菜谱") })">家常菜谱</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("烘培甜品") })">烘培甜品</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("西餐料理")})">西餐料理</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag =Convert.ToString("茶酒饮料") })">茶酒饮料</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("地方美食") })">地方美食</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("饮食文化") })">饮食文化</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">旅游/地图</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("旅游") })">旅游/地图</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">国内自助游</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">国外自助游</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">城市自助游</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">户外探险</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">旅游随笔</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">旅游攻略</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("国内自助游") })">国内自助游</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("国外自助游") })">国外自助游</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("城市自助游") })">城市自助游</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("户外探险") })">户外探险</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("旅游随笔")})">旅游随笔</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("旅游攻略")})">旅游攻略</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="leisure_listing.html">科技</a>
+                        <a href="#">科技</a>
                         <ul class="sub_menu">
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">计算机/网络</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("计算机")})">计算机/网络</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">计算机理论</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">外部设备</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">操作系统</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">系统开发</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">数据库程序设计</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("计算机理论")})">计算机理论</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("外部设备") })">外部设备</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("操纵系统")})">操作系统</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("系统开发") })">系统开发</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("数据库程序设计")})">数据库程序设计</a></li>
 
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">医学</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("医学")})">医学</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">预防医学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">卫生学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">临床医学理论</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">内科学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">外科学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">妇产科学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">儿科学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("预防医学") })">预防医学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("卫生学") })">卫生学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("临床医学理论") })">临床医学理论</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("内科学") })">内科学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("外科学") })">外科学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("妇产科学")})">妇产科学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("儿科学")})">儿科学</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">建筑</a>
+                                <a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("建筑") })">建筑</a>
                                 <ul>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">建筑史与建筑文化</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">建筑科学</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">建筑外观设计</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">室内设计</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">装潢装修</a></li>
-                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = tags[rd.Next(0, 11)] })">建筑施工与监理</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("建筑史与建筑文化") })">建筑史与建筑文化</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag =Convert.ToString("建筑科学")})">建筑科学</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("建筑外观设计") })">建筑外观设计</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("室内设计")})">室内设计</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag =Convert.ToString("装潢装修") })">装潢装修</a></li>
+                                    <li><a href="@Url.Action("GetBooksOfTag", "Book",new { tag = Convert.ToString("建筑施工与监理")  })">建筑施工与监理</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -438,66 +431,56 @@
             <footer>
                 <ul class="footer_links">
                     <li>
-                        <span>New Arrivals</span>
+                        <span>购物指南</span>
                         <ul>
-                            <li><a href="#">Clothing</a></li>
-                            <li><a href="#">Shoes</a></li>
-                            <li><a href="#">Bags</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Zimmermann</a></li>
-                            <li><a href="#">Acne</a></li>
-                            <li><a href="#">Bassike</a></li>
-                            <li><a href="#">Camilla and Marc</a></li>
+                            <li><a href="http://help.dangdang.com/details/page2">购物流程</a></li>
+                            <li><a href="http://help.dangdang.com/details/page6">发票制度</a></li>
+                            <li><a href="#">账户管理</a></li>
+                            <li><a href="http://help.dangdang.com/details/page8">会员优惠</a></li>
+                          
                         </ul>
                     </li>
                     <li class="seperator">
-                        <span>Brands we sell</span>
+                        <span>支付方式</span>
                         <ul>
-                            <li><a href="#">Elle</a></li>
-                            <li><a href="#">Reallxe</a></li>
-                            <li><a href="#">Fabric</a></li>
-                            <li><a href="#">Mayflower</a></li>
-                            <li><a href="#">Levis Strauss</a></li>
-                            <li><a href="#">Anzonica</a></li>
-                            <li><a href="#">Reallxe</a></li>
-                            <li><a href="#">Fabric</a></li>
+                            <li><a href="http://help.dangdang.com/details/page237">货到付款</a></li>
+                            <li><a href="http://help.dangdang.com/details/page22">网上支付</a></li>
+                            <li><a href="http://help.dangdang.com/details/page24">礼品卡支付</a></li>
+                            <li><a href="http://help.dangdang.com/details/page23">银行转账</a></li>
+                           
                         </ul>
                     </li>
                     <li>
-                        <span>Customer Service</span>
+                        <span>订单服务</span>
                         <ul>
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Returns & Exchanges</a></li>
-                            <li><a href="#">Payment Options</a></li>
-                            <li><a href="#">Order Status & Tracking</a></li>
-                            <li><a href="#">Gift Wrap Options</a></li>
-                            <li><a href="#">International Orderse</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="http://help.dangdang.com/details/page400">订单状态说明</a></li>
+                            <li><a href="#">自助取消订单</a></li>
+                            <li><a href="#">配送服务查询</a></li>
+                            <li><a href="#">自助修改订单</a></li>
+                           
                         </ul>
                     </li>
                     <li>
-                        <span>My Account</span>
+                        <span>退换货</span>
                         <ul>
-                            <li><a href="#">My Account Information</a></li>
-                            <li><a href="#">My Password</a></li>
-                            <li><a href="#">My Order History</a></li>
-                            <li><a href="#">Payment Options</a></li>
-                            <li><a href="#">My Address Book</a></li>
-                            <li><a href="#">My Updates & Alerts</a></li>
+                            <li><a href="#">退换货服务查询</a></li>
+                            <li><a href="#">自助申请退换货</a></li>
+                            <li><a href="#">退换货进度查询</a></li>
+                            <li><a href="#">退款方式和时间</a></li>
+                       
                         </ul>
                     </li>
                 </ul>
                 <div class="footer_customblock">
                     <div class="shipping_info">
-                        <span>introducing </span><br />
-                        <big>FREE SHIPPING</big><br />
-                        <small>for purchases above $200</small>
+                        <span>公司地址</span><br />
+                       <br>
+                        <big>海洋楼1115</big>
                     </div>
-                    <div class="contact_info"> <big>1.800. (1.800.260.7890)</big> </div>
+                    <div class="contact_info"> <big>客服电话:<br><br>10086</big> </div>
                 </div>
                 <address>
-                    Copyright (c) 2013 Leisure. All Rights Reserved. <img src="/Images/payment_info.jpg" />
+                    Copyright (c) 2018 duangduang All Rights Reserved. <img src="/Images/payment_info.jpg" />
                 </address>
             </footer>
             <!--Footer Ends-->
