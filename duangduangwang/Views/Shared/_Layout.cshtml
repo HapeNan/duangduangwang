@@ -74,15 +74,15 @@
                 display: none;
             }
     </style>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //SLIDE TOGGLE
-            jQuery(".page_open").toggle(function () {
-                $('.page_selector ul').slideDown(300);
-            }, function () {
-                $('.page_selector ul').slideUp(300);
-            });
+    <script type="text/javascript" src="/jquery/jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //SLIDE TOGGLE
+                jQuery(".page_open").toggle(function () {
+                    $('.page_selector ul').slideDown(300);
+                }, function () {
+                    $('.page_selector ul').slideUp(300);
+                });
             //SLIDE TOGGLE
             jQuery(".store_open").toggle(function () {
                 $('.store_selector div').slideDown(300);
@@ -90,27 +90,27 @@
                 $('.store_selector div').slideUp(300);
             });
         });
-        function uptotal() {
-            var sum = 0;
+            function uptotal() {
+                var sum = 0;
             var num = 0;
             $("#shopping-cart-table input[name=hiddenbook]").each(
-                function () {
-                    var id = $(this).attr("id");
-                    var i = id.substring(0, id.indexOf('t'));
-                    var price = parseFloat($("#" + i + "price").text())
-                    var qty = parseInt($("#" + i + "qty").val())
-                    var total = parseFloat(price * qty)
-                    $("#" + i + "subtot").html(total.toFixed(2));
-                    if ($("#" + i + "select").attr("checked")) {
-                        num = num + 1;
-                        sum = sum + total;
-                    }
-
-                });
-            $("#totprice").html(sum.toFixed(2));
-            $("#postcost").html((num * 5).toFixed(2));
-            $("#totprice2").html((sum + num * 5).toFixed(2));
+                    function () {
+                        var id = $(this).attr("id");
+            var i = id.substring(0, id.indexOf('t'));
+            var price = parseFloat($("#" + i + "price").text())
+            var qty = parseInt($("#" + i + "qty").val())
+            var total = parseFloat(price * qty)
+            $("#" + i + "subtot").html(total.toFixed(2));
+                        if ($("#" + i + "select").attr("checked")) {
+                num = num + 1;
+            sum = sum + total;
         }
+
+});
+$("#totprice").html(sum.toFixed(2));
+$("#postcost").html((num * 5).toFixed(2));
+$("#totprice2").html((sum + num * 5).toFixed(2));
+}
     </script>
 
 </head>
