@@ -1,9 +1,11 @@
-﻿
+﻿@using duangduangwang.Models;
 @{
-    ViewBag.Title = "ManageUser";
+
+    ViewBag.Title = "用户管理";
+    if (ViewBag.UserList == null)
+    { ViewBag.UserList = new List<Customer>(); }
     Layout = "~/Views/Shared/ManagerPage.cshtml";
 }
-
 <style type="text/css">
     table, table tr th, table tr td {
         text-align: center;
@@ -11,38 +13,34 @@
     }
 </style>
 <section>
-    <div class="full_page" style="margin-top:20px;">
+    <div class="full_page" style="margin-top:20px; ">
         <!--CHECKOUT STEPS STARTS-->
-        <div class="checkout_steps">
+        <div class="checkout_steps" style="width:990px;">
             <ol id="checkoutSteps">
                 <li class="section allow active" id="opc-login">
-                    <div class="step-title">
+                    <div class="step-title" style="width:950px">
                         <h2>输入查询条件</h2>
                     </div>
                     <div id="checkout-step-login">
                         <form method="post" id="login-form" action="" />
                         <div class="col2-set">
-                            <div class="col-2" style="float:left;margin-left:80px; margin-right:40px;">
+                            <div class="col-2" style="float:left;margin-left:130px; margin-right:40px;">
                                 <fieldset>
                                     <ul class="form-list">
                                         <li>
-                                            <label class="required" for="login-email"><em>*</em>订单号</label>
+                                            <label class="required" for="login-email">用户ID</label>
                                             <div class="input-box">
                                                 <input type="text" value="" class="input-text" />
                                             </div>
                                         </li>
+                                        
                                         <li>
-                                            <label class="required" for="login-password"><em>*</em>用户ID</label>
-                                            <div class="input-box">
-                                                <input type="text" class="input-text" />
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <label class="required" for="login-password"><em>*</em>订单状态</label>
+                                            <label class="required" for="login-password"><em>*</em>会员</label>
                                             <div class="input-box">
                                                 <select id="Order_State">
-                                                    <option>已付款</option>
-                                                    <option>未付款</option>
+                                                    <option>全部</option>
+                                                    <option>是</option>
+                                                    <option>否</option>
                                                 </select>
                                             </div>
                                         </li>
@@ -50,29 +48,24 @@
                                     <br>
                                 </fieldset>
                             </div>
-                            <div class="col-2" style="float:left; margin-left:20px;">
+                            <div class="col-2" style="float:left; margin-left:150px;">
 
                                 <fieldset>
                                     <ul class="form-list">
 
                                         <li>
-                                            <label class="required" for="login-password"><em>*</em>包含图书ID</label>
+                                            <label class="required" for="login-password">用户名</label>
                                             <div class="input-box">
                                                 <input type="text" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
-                                            <label class="required" for="login-password"><em>*</em>包含图书名称</label>
+                                            <label class="required" for="login-password">手机号</label>
                                             <div class="input-box">
                                                 <input type="text" class="input-text" />
                                             </div>
                                         </li>
-                                        <li>
-                                            <label class="required" for="login-password"><em>*</em>下单日期</label>
-                                            <div class="input-box">
-                                                <input type="text" class="input-text" />
-                                            </div>
-                                        </li>
+                                       
                                     </ul>
                                     <br>
                                 </fieldset>
@@ -80,7 +73,7 @@
                             </div>
                         </div>
                         <div class="col2-set">
-                            <div class="col-1" style="margin-left:120px;">
+                            <div class="col-1" style="margin-left:190px;">
                                 <div class="buttons-set">
                                     <button class="button brown_btn" type="button">&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;</button>
                                 </div>
@@ -96,37 +89,41 @@
                 </li>
                 <li class="section allow active" id="opc-login">
 
-                    <div class="step-title">
-                        <h2>订单列表</h2>
+                    <div class="step-title" style="width:950px">
+                        <h2>用户列表</h2>
                     </div>
                     <div id="checkout-step-login">
-                        <table style="margin-left:40px;" border="1" cellspacing="0" cellpadding="0">
+                        <table style="margin-left:150px;" border="1" cellspacing="0" cellpadding="0">
 
                             <tr>
-                                <td width="100px"> 订单号</td>
-                                <td width="100px"> 用户ID</td>
-                                <td width="100px">订单总价</td>
-                                <td width="100px"> 付款状态</td>
-                                <td width="100px">下单日期</td>
-                                <td width="100px">下单日期</td>
+                                <td width="100px">用户名</td>
+                                <td width="100px">用户ID</td>
+                                <td width="100px">会员状态</td>
+                                <td width="100px">收货地址</td>
+                                <td width="100px">手机号</td>
+                                <td width="100px">收货人姓名</td>
                             </tr>
-
-
-                            @foreach (var order in ViewBag.OrderList)
+                            @if (ViewBag.UserList.Count == 0)
                             {
                                 <tr>
-                                    <td>@order.OrderId</td>
-                                    <td>@order.UserId</td>
-                                    <td>@order.TotalPrice</td>
-                                    <td>@order.Status</td>
-                                    <td>@order.createDate</td>
-                                    <td>
-                                        <input id="Button1" type="button" value="修改" />&nbsp;&nbsp;
-                                        <input id="Button2" type="button" value="删除" />
-                                    </td>
+                                    <td colspan="6">查询结果为空</td>
                                 </tr>
                             }
 
+                            else
+                            {
+                                foreach (var user in ViewBag.UserList)
+                                {
+                                <tr><td>@user.UserName</td>
+                                    <td>@user.UserId</td>
+                                    <td>@user.Member</td>
+                                    <td>@user.Address</td>
+                                    <td>@user.PhoneNumber</td>
+                                    <td>@user.Receiver</td>
+                                 
+                                </tr>
+                                }
+                            }
                         </table>
                     </div>
                 </li>
@@ -156,6 +153,4 @@
     </div>
     <!--Newsletter_subscribe Ends-->
 </section>
-
-
 
