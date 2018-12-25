@@ -17,16 +17,9 @@ namespace duangduangwang.Controllers
         // GET: Cart
         DataClasses1DataContext db = new DataClasses1DataContext();
         BookMapper bookmapper = new BookMapper();
-        public ActionResult Cart(int Id,int qty)
+        public ActionResult Cart(int Id, int qty)
         {
-            if(Session["num"]==null)
-            {
-                Session["num"] = 1;
-            }
-            else
-            {
-                Session["num"] = (int)Session["num"]+1;
-            }
+
             var resList = bookmapper.GetBookById(Id);
             var res = resList[0];
             var BookId = res.BookId.ToString();
@@ -41,10 +34,26 @@ namespace duangduangwang.Controllers
                 }
                 BookList.Add(res);
                 Session["Cart"] = BookList;
+                if (Session["num"] == null)
+                {
+                    Session["num"] = 1;
+                }
+                else
+                {
+                    Session["num"] = (int)Session["num"] + 1;
+                }
                 return View(BookList);
             }
             else
             {
+                if (Session["num"] == null)
+                {
+                    Session["num"] = 1;
+                }
+                else
+                {
+                    Session["num"] = (int)Session["num"] + 1;
+                }
                 List<Book> BookList = new List<Book>();
                 Session[BookId] = qty;
                 BookList.Add(res);
@@ -52,14 +61,12 @@ namespace duangduangwang.Controllers
                 return View(BookList);
             }
         }
-        
-        public ActionResult AjaxTest(int Id,int qty)
+
+        public ActionResult AjaxTest(int Id, int qty)
         {
-            
-            if(qty!=0)
+            if (qty != 0)
             {
                 Session[Id.ToString()] = qty;
-                
             }
             else
             {
@@ -74,14 +81,27 @@ namespace duangduangwang.Controllers
                         break;
                     }
                 }
-                
+
             }
             return new EmptyResult();
         }
+        public ActionResult Changetot(int tot)
+        {
+            if (Session["sum"] == null)
+            {
+                Session["sum"] = tot;
+            }
+            else
+            {
+                Session["sum"] = tot;
+            }
+            return new EmptyResult();
+        }
+
         public ActionResult Select(int Id, String selected)
         {
 
-            if(selected=="true")
+            if (selected == "true")
             {
                 Session[Id.ToString() + "select"] = true;
             }
@@ -90,6 +110,10 @@ namespace duangduangwang.Controllers
                 Session[Id.ToString() + "select"] = false;
             }
             return new EmptyResult();
+        }
+        public ActionResult ConfirmOrder()
+        {
+            return Redirect("~/Pay/ConfirmOrder");
         }
     }
 }

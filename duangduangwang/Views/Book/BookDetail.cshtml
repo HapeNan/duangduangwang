@@ -34,64 +34,74 @@
                     <p class="short_dc" /> @(book.BookAbstract)
                     <div class="pr_price"> <big>￥ @book.BookPrice</big> <small>￥ @(book.BookPrice * 1.8)</small> </div>
 
-                <div class="size_info">
-                    <div class="size_sel">
-                        <label> 配送至:</label>
-                        <select>
-                            <option />北京
-                            <option />上海
-                            <option />深圳
-                        </select>
-                    </div>
-                    <div class="color_sel">
-                        <label>促销信息 :
-                        @if (book.Coupon == 1) { <span>@(book.CouponDetail)折开售</span>   }
-                        else { string[] info = Convert.ToString(book.CouponDetail).Split(',');
-                            <span>满@(info[0]) 减 @info[1]</span>
-                        }</label>
-                        
-                    </div>
-                </div>
-                <div class="qty_info">
-                    <div class="quantity">
-                        <label>数量 :</label>
-                        <select name="qty   ">
-                            <option />1
-                            <option />2
-                            <option />3
-                            <option />4
-                        </select>
-                    </div>
-                </div>
-                <div class="add_to_buttons">
-                    <button class="add_cart">加入购物车</button>
-                    <script>
-                      $("button").click(function () {
-                      var qty = $("select[name='qty']")[0];
-                      $.ajax({
-                      data: { "qty": qty ,"Id":@ViewBag.book.BookId},
-                      url: '@Url.Action("Cart","Cart")',
-                      type: "POST",//OR "GET"
-                       success: function (returndata) {
-                            alert("加入购物车成功!")
-                        }
-                    });
-                     }
-                    </script>
-                    <span>or</span>
-                    <ul>
-                        <li><a href="#">加入愿望单</a></li>
-                    </ul>
-                </div>
-                <div class="product_overview">
-                    <h4>为您推荐</h4>
-                    <ul>
-                        @foreach (var t in ViewBag.tags)
-                        {
-                        <li><a href="@Url.Action("GetBooksOfTag", "Book", new { tag = t })">@t</a></li>
+                    <div class="size_info">
+                        <div class="size_sel">
+                            <label> 配送至:</label>
+                            <select>
+                                <option />北京
+                                <option />上海
+                                <option />深圳
+                            </select>
+                        </div>
+                        <div class="color_sel">
+                            <label>
+                                促销信息 :
+                                @if (book.Coupon == 1)
+                                {<span>@(book.CouponDetail)折开售</span> }
+                            else
+                            {
+                                string[] info = Convert.ToString(book.CouponDetail).Split(',');
+                                <span>满@(info[0]) 减 @info[1]</span>
                             }
-                    </ul>
-                </div>
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <div class="qty_info">
+                        <div class="quantity">
+                            <label>数量 :</label>
+                            <select name="qty" id="qty">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="add_to_buttons">
+                        <button class="add_cart" onclick="AddToCart()">加入购物车</button>
+                        <script type="text/javascript">
+                        /*(document).ready(function () {*/
+                            //$("button").click(function () {
+                            function AddToCart() {
+                                //var quantity = $("select[name='qty']")[0];
+                                var quantity = $('#qty option:selected').val();
+                                $.ajax({
+                                    data: { "qty": quantity, "Id":@book.BookId},
+                                    url: '@Url.Action("Cart","Cart")',
+                                    type: "POST",//OR "GET"
+                                    success: function (returndata) {
+                                        alert("加入购物车成功!")
+                                    },
+                                    fail: function (returndata) { alert("加入购物车失败!") }
+                                });
+                            }
+                        </script>
+                        <span>or</span>
+                        <ul>
+                            <li><a href="#">加入愿望单</a></li>
+                        </ul>
+                    </div>
+                    <div class="product_overview">
+                        <h4>为您推荐</h4>
+                        <ul>
+                            @foreach (var t in ViewBag.tags)
+                            {
+                                <li><a href="@Url.Action("GetBooksOfTag", "Book", new { tag = t })">@t</a></li>
+                            }
+                        </ul>
+                    </div>
                 }
             </div>
             <!--Product Right Ends-->
