@@ -200,7 +200,7 @@
                                 <input type="checkbox" name="select" id="@select.ToString()" value="1" checked onclick="checkboxclick(this.id)" />
                             </td>
                             <td width="10%">
-                                <img src="images/cart1.jpg" />
+                                <img src="@Html.DisplayFor(modelItem => item.Picture1)" />
                                 <input type="hidden" name="hiddenbook" id="@txtnum.ToString()" value="1">
                             </td>
                             <td class="align_left" width="44%"><a class="pr_name" href="#">@Html.DisplayFor(modelItem => item.BookName)</a><span class="pr_info">@Html.DisplayFor(modelItem => item.BookAbstract)</span></td>
@@ -221,15 +221,15 @@
                 <table id="totals-table">
                     <tr>
                         <td width="60%" colspan="1" class="align_left"><strong>商品价格</strong></td>
-                        <td class="align_right" style=""><strong><span class="price" id="totprice">0.00</span></strong></td>
+                        <td class="align_right" style=""><strong><span class="price" id="totprice">¥0.00</span></strong></td>
                     </tr>
                     <tr>
                         <td width="60%" colspan="1" class="align_left">邮递费</td>
-                        <td class="align_right" style=""><span class="price" id="postcost">0.00</span></td>
+                        <td class="align_right" style=""><span class="price" id="postcost">¥0.00</span></td>
                     </tr>
                     <tr>
                         <td width="60%" colspan="1" class="align_left total">总花费</td>
-                        <td class="align_right" style=""><span class="total" id="totprice2">0.00</span></td>
+                        <td class="align_right" style=""><span class="total" id="totprice2">¥0.00</span></td>
                     </tr>
                 </table>
             </div>

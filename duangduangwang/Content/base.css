@@ -144,8 +144,8 @@ footer .footer_links>li:first-child{ padding-left:0px;}
 footer .footer_links li span{color:#34312f; font-weight:bold; display:block; padding-bottom:12px;}
 footer .footer_links li a{ color:#515151; display:block; padding:4px 0px; line-height:100%; text-decoration:none;}
 footer .footer_links li.seperator{border-right:solid 1px #d6d6d6;}
-footer .footer_customblock{ border-left:solid 1px #d6d6d6; float:right; width:272px; min-height:205px;}
-footer .footer_customblock>div{padding:20px;}
+footer .footer_customblock{ border-left:solid 1px #d6d6d6; float:right; width:272px; min-height:150px;}
+footer .footer_customblock>div{padding-left:30px; padding-top:12px; margin-left:5px;}
 footer .footer_customblock .shipping_info{ line-height:22px; font-size:14px; color:#000;  border-bottom:solid 1px #d6d6d6; background:url(../images/shipping.png) no-repeat right center;}
 footer .footer_customblock .shipping_info big{ text-transform:uppercase; font-size:16px; font-weight:bold;}
 footer .footer_customblock .contact_info big{font-size:16px; font-weight:bold; color:#000;}
