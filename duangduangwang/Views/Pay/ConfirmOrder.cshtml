@@ -1,0 +1,447 @@
+﻿@using duangduangwang.Models;
+@{
+    ViewBag.Title = "ConfirmOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Start content-->
+<section class="Psection MT20" id="Cflow">
+    <!--如果用户未添加收货地址，则显示如下-->
+    <div class="confirm_addr_f">
+        <span class="flow_title">收货地址：</span>
+        <!--如果未添加地址，则显示此表单-->
+        <form class="add_address" action="#" style="display:none;">
+            <p><i>收件人姓名：</i><input type="text" name="" required></p>
+            <p>
+                <i>选择所在地：</i>
+                <select name="">
+                    <option>陕西省</option>
+                </select>
+                <select name="">
+                    <option>西安市</option>
+                </select>
+                <select name="">
+                    <option>莲湖区</option>
+                </select>
+            </p>
+            <p><i>街道地址：</i><input type="text" required size="50"></p>
+            <p><i>手机号码：</i><input type="text" name="" required pattern="[0-9]{11}"></p>
+            <p><i></i><input name="" type="submit" value="确定"></p>
+        </form>
+        <!--已保存的地址列表-->
+        <form action="#">
+            <ul class="address">
+                <li id="style1"><input type="radio" value="" id="1" name="rdColor" onclick="changeColor(1)" /><label for="1"> 北京北京市海淀区学院路中国地质大学（黄先生收）<span class="fontcolor">183092***73</span></label></li>
+                @*<li><a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><img src="images/newaddress.png" /></a></li>*@
+            </ul>
+        </form>
+        <!--add new address-->
+        @*<form action="#">
+                <div id="light" class="O-L-content">
+                    <ul>
+                        <li><span><label for="">选择所在地：</label></span><p><em>*</em><select name=""><option>北京</option></select> <select name=""><option>北京市</option></select> <select name=""><option>海淀区</option></select></p></li>
+                        <li><span><label for="">街道地址：</label></span><p><em>*</em><textarea name="" cols="80" rows="5"></textarea></p></li>
+                        <li><span><label for="">收件人姓名：</label></span><p><em>*</em><input name="" type="text"></p></li>
+                        <li><span><label for="">手机号码：</label></span><p><em>*</em><input name="" type="text" pattern="[0-9]{11}" required></p></li>
+                        <div class="button-a"><input type="button" value="确 定" class="C-button" /><a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><span><input name="" type="button" value="取 消" class="Cancel-b" /></a></div>
+                        <div class="close-botton"><a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></a></div>
+                </div>
+                <div id="fade" class="overlay"></div>
+                </ul>
+            </form>*@
+        <!--End add new address-->
+    </div>
+    <!--配送方式及支付，则显示如下-->
+    <!--check order or add other information-->
+    <div class="pay_delivery">
+        <span class="flow_title">配送方式：</span>
+        <table>
+            @*<th width="30%">配送方式</th>
+                <th width="30%">运费</th>
+                <th width="40%">说明</th>*@
+            <tr>
+                <td>配送方式</td>
+                <td>运费</td>
+                <td>配送说明</td>
+            </tr>
+            <tr>
+                <td>送货上门</td>
+                <td>￥0.00</td>
+                <td>北京地区包邮</td>
+            </tr>
+        </table>
+        <span class="flow_title">在线支付方式：</span>
+        <form action="#">
+            <ul>
+                <li><input type="radio" name="pay" id="alipay" value="alipay" /><label for="alipay">支付宝<i class="alipay"></i></label></li>
+            </ul>
+        </form>
+    </div>
+    <form action="SubmitOrder" method="post">
+        <div class="inforlist">
+            <span class="flow_title">商品清单</span>
+            @{
+            <table>
+                <th>名称</th>
+                <th>数量</th>
+                <th>价格</th>
+                <th>小计</th>
+                @{
+
+                    var sum = 0.0;
+                    List<Book> BookList = new List<Book>();
+                    if (Session["Cart"] != null)
+                    {
+                        BookList = (List<Book>)Session["Cart"];
+                    }
+
+                    foreach (var item in BookList)
+                    {
+                        bool fg = bool.Parse(Session[item.BookId.ToString() + "select"].ToString());
+                        if (fg == true)
+                        {
+                            var name = item.BookName;//@Html.DisplayFor(modelItem => item.BookName);
+                            var price = item.BookPrice;// @Html.DisplayFor(modelItem => item.BookPrice);
+                            var num = (int)Session[item.BookId.ToString()];// @Html.DisplayFor(modelItem => item.BookId);
+                            var itemPrice = Convert.ToDouble(price) * Convert.ToDouble(num);
+                            sum += Convert.ToDouble(itemPrice);
+                            <tr>
+                                <td>@name</td>
+                                <td>@num</td>
+                                <td>￥@price</td>
+                                <td>￥@itemPrice</td>
+                            </tr>
+                        }
+                    }
+
+                }
+            </table>
+
+                <div class="Sum_infor">
+                    <p class="p1">配送费用：￥0.00+商品费用：￥@ViewBag.totalPrice-优惠：￥<label id="discountPrice">@ViewBag.discountPrice</label></p>
+                    <p class="p2">合计：<span>￥<label id="finalTotalPrice2">@sum</label></span></p>
+                    @*<input type="hidden" name="totalPrice" id="totalPrice" value="@ViewBag.totalPrice">*@
+                    <input type="hidden" name="finalTotalPrice" id="finalTotalPrice" value="@sum">
+                    <input type="submit" value="提交订单" class="p3button">
+                </div>
+            }
+        </div>
+    </form>
+</section>
+    @*@Scripts.Render("~/bundles/mainjs2")*@
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jqpublic.js"></script>
+
+    <style type="text/css">
+        /*if Not defined Address*/
+        .confirm_addr_f {
+            width: 1000px;
+            height: auto;
+            overflow: hidden;
+            padding: 8px 0;
+        }
+
+        .flow_title {
+            font-size: 16px;
+            /*border-top: 2px #cccccc solid;*/
+            background: #544f4b;
+            display: block;
+            font-weight: bold;
+            height: 35px;
+            line-height: 35px;
+            padding-left: 8px;
+            color:#fff;
+        }
+
+        .confirm_addr_f .add_address {
+            margin: 0 auto;
+            width: 510px;
+            overflow: hidden;
+            box-shadow: 0 0 20px 5px #f1f1f1;
+            margin-top: 10px;
+            padding: 8px;
+        }
+
+            .confirm_addr_f .add_address p {
+                line-height: 35px;
+            }
+
+                .confirm_addr_f .add_address p i {
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 14px;
+                    text-align: right;
+                    margin-right: 10px;
+                    width: 100px;
+                    display: inline-block;
+                }
+
+        .confirm_addr_f input {
+            border: 1px #c1c1c1 solid;
+            padding: 5px;
+        }
+
+        .confirm_addr_f textarea {
+            width: 585px;
+            height: 85px;
+            padding: 5px;
+            border: 1px #c1c1c1 solid;
+        }
+
+        .confirm_addr_f .address {
+            width: 1000px;
+            height: auto;
+            overflow: hidden;
+            padding: 8px 0;
+            margin: 0 auto;
+        }
+
+            .confirm_addr_f .address li {
+                height: 20px;
+                line-height: 20px;
+                padding: 10px;
+                font-size: 14px;
+            }
+
+                .confirm_addr_f .address li span {
+                    color: #666;
+                }
+
+        .confirm_addr_f .overlay {
+            display: none;
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 8888;
+            -moz-opacity: 0.7;
+            opacity: .70;
+            filter: alpha(opacity=77);
+        }
+
+        .confirm_addr_f .O-L-content {
+            display: none;
+            position: fixed;
+            top: 25%;
+            left: 15%;
+            width: 950px;
+            height: 264px;
+            padding: 20px;
+            border: 2px solid #dddddd;
+            background-color: white;
+            z-index: 9999;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+            .confirm_addr_f .O-L-content li {
+                height: 35px;
+                line-height: 35px;
+                vertical-align: middle;
+            }
+
+                .confirm_addr_f .O-L-content li span {
+                    float: left;
+                    text-align: right;
+                    width: 108px;
+                }
+
+                .confirm_addr_f .O-L-content li p {
+                    float: left;
+                    width: 800px;
+                    text-align: left;
+                }
+
+                    .confirm_addr_f .O-L-content li p em {
+                        padding: 0px 8px;
+                        font-style: normal;
+                    }
+
+                    .confirm_addr_f .O-L-content li p .Q_z {
+                        width: 50px;
+                    }
+
+                    .confirm_addr_f .O-L-content li p .Y_N {
+                        width: 100px;
+                    }
+
+            .confirm_addr_f .O-L-content .button-a {
+                padding: 0px 0px 0px 138px;
+            }
+
+                .confirm_addr_f .O-L-content .button-a .C-button {
+                    background: #0066ff;
+                    border: none;
+                    margin-right: 10px;
+                    padding: 5px 20px;
+                    border-radius: 2px;
+                    color: #ffffff;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
+                .confirm_addr_f .O-L-content .button-a .Cancel-b {
+                    background: #dedede;
+                    border: none;
+                    padding: 5px 20px;
+                    border-radius: 2px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
+            .confirm_addr_f .O-L-content .close-botton {
+                position: relative;
+                right: 0px;
+                float: right;
+                top: -370px;
+            }
+        /*pay&delivery*/
+        .pay_delivery {
+            width: 1000px;
+            height: auto;
+            overflow: hidden;
+            padding: 8px 0;
+        }
+
+            .pay_delivery table {
+                width: 1000px;
+                margin: 0 auto;
+            }
+
+                .pay_delivery table th {
+                    line-height: 35px;
+                    font-weight: bold;
+                    border-bottom: 1px #dddddd dotted;
+                    font-size: 14px;
+                }
+
+                .pay_delivery table tr {
+                    line-height: 35px;
+                }
+
+            .pay_delivery ul {
+                overflow: hidden;
+                margin-top: 15px;
+            }
+
+            .pay_delivery li {
+                width: 142px;
+                height: 35px;
+                float: left;
+                line-height: 35px;
+            }
+
+                .pay_delivery li .alipay {
+                    background: url(../images/bank.png) no-repeat;
+                    width: 90px;
+                    height: 25px;
+                    display: inline-block;
+                    border: 1px #dddddd solid;
+                }
+
+                .pay_delivery li input {
+                    vertical-align: super;
+                    margin: 0 10px;
+                }
+        /*order information foodslist*/
+        .inforlist {
+            width: 1000px;
+            height: auto;
+            overflow: hidden;
+            padding: 8px 0;
+        }
+
+            .inforlist table {
+                width: 1000px;
+                border-bottom: 1px #dddddd solid;
+            }
+
+                .inforlist table th {
+                    line-height: 35px;
+                    font-weight: bold;
+                    border-bottom: 1px #dddddd dotted;
+                    font-size: 14px;
+                    padding: 0 8px;
+                    background: #f7f7f7;
+                }
+
+                .inforlist table tr {
+                    line-height: 35px;
+                    border-bottom: 1px #dddddd solid;
+                }
+
+                .inforlist table td {
+                    padding: 0 8px;
+                }
+
+                .inforlist table tr:hover {
+                    line-height: 35px;
+                    border-bottom: 1px #dddddd solid;
+                    background: #f1f1f1;
+                }
+
+            .inforlist .Sum_infor {
+                float: right;
+                margin-top: 15px;
+            }
+
+                .inforlist .Sum_infor .p1 {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
+                .inforlist .Sum_infor .p2 {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
+                    .inforlist .Sum_infor .p2 span {
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #F00;
+                    }
+
+                .inforlist .Sum_infor .p3button {
+                    font-size: 14px;
+                    font-weight: bold;
+                    width: 120px;
+                    height: 45px;
+                    line-height: 45px;
+                    background: #f38256;
+                    display: block;
+                    text-align: center;
+                    color: #fff;
+                    /*border-radius: 5px;*/
+                    margin-top: 15px;
+                    float: right;
+                }
+        /*order message*/
+        .Order_M {
+            float: left;
+            margin-top: 15px;
+            height: auto;
+            overflow: hidden;
+        }
+
+            .Order_M p {
+                line-height: 35px;
+                text-align: right;
+            }
+
+                .Order_M p em {
+                    font-weight: bold;
+                    width: 120px;
+                    text-align: right;
+                    margin-right: 10px;
+                }
+
+                .Order_M p input {
+                    width: 600px;
+                    border: 1px #dddddd solid;
+                    padding: 5px 8px;
+                }
+    </style>

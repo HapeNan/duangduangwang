@@ -1,0 +1,186 @@
+﻿@using Aop.Api.Util;
+@using System;
+@using System.Collections.Generic;
+@using System.Collections.Specialized;
+@using duangduangwang.Models;
+@using duangduangwang.Models.Mapper;
+
+@{
+    ViewBag.Title = "ReturnUrl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="Psection MT20" id="Cflow">
+    <form>
+        <div class="inforlist">
+            <span class="flow_title">商品清单</span>
+            @{
+                /* 实际验证过程建议商户添加以下校验。
+                1、商户需要验证该通知数据中的out_trade_no是否为商户系统中创建的订单号，
+                2、判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额），
+                3、校验通知中的seller_id（或者seller_email) 是否为out_trade_no这笔单据的对应的操作方（有的时候，一个商户可能有多个seller_id/seller_email）
+                4、验证app_id是否为该商户本身。
+                */
+
+                int i = 0;
+                Dictionary<string, string> sArray = new Dictionary<string, string>();
+                NameValueCollection coll;
+                //coll = Request.Form;
+                coll = Request.QueryString;
+                String[] requestItem = coll.AllKeys;
+                for (i = 0; i < requestItem.Length; i++)
+                {
+                    sArray.Add(requestItem[i], Request.QueryString[requestItem[i]]);
+                }
+                string orderId = "";
+                string finalTotalPrice = "";
+                if (sArray.Count != 0)
+                {
+                    bool flag = AlipaySignature.RSACheckV1(sArray, config.alipay_public_key, config.charset, config.sign_type, false);
+                    if (flag)
+                    {
+                        //Response.Write("同步验证通过");
+                        sArray.TryGetValue("out_trade_no", out orderId);
+                        sArray.TryGetValue("total_amount", out finalTotalPrice);
+                    }
+                    else
+                    {
+                        Response.Write("同步验证失败");
+                    }
+                }
+                //OrderMapper orderMapper = new OrderMapper();
+                //orderMapper.setOrderStatus(int.Parse(orderId));
+
+
+            <table>
+                <th>名称</th>
+                <th>数量</th>
+                <th>价格</th>
+                <th>小计</th>
+                @{
+
+                    List<Book> BookList = new List<Book>();
+                    if (Session["cartItemList"] != null)
+                    {
+                        BookList = (List<Book>)Session["cartItemList"];
+                    }
+
+                    foreach (var item in BookList)
+                    {
+                        bool fg = bool.Parse(Session[item.BookId.ToString() + "select"].ToString());
+                        if (fg == true)
+                        {
+                            var name = item.BookName;//@Html.DisplayFor(modelItem => item.BookName);
+                            var price = item.BookPrice;// @Html.DisplayFor(modelItem => item.BookPrice);
+                            var num = (int)Session[item.BookId.ToString()];// @Html.DisplayFor(modelItem => item.BookId);
+                            var itemPrice = Convert.ToDouble(price) * Convert.ToDouble(num);
+                            <tr>
+                                <td>@name</td>
+                                <td>@num</td>
+                                <td>￥@price</td>
+                                <td>￥@itemPrice</td>
+                            </tr>
+                        }
+                    }
+
+                }
+            </table>
+
+                <div class="Sum_infor">
+                    <p class="p2">订单号：<span><label id="lblOrderId">@orderId</label></span></p>
+                    <p class="p2">合计：<span>￥<label id="lblFinalTotalPrice">@finalTotalPrice</label></span></p>
+                    <a href="ReturnOrder" class="p3button">确 认</a>
+                </div>
+            }
+
+
+
+
+        </div>
+    </form>
+    <style type="text/css">
+        .flow_title {
+            font-size: 16px;
+            /*border-top: 2px #cccccc solid;*/
+            background: #544f4b;
+            display: block;
+            font-weight: bold;
+            height: 35px;
+            line-height: 35px;
+            padding-left: 8px;
+            color: #fff;
+        }
+        /*order information foodslist*/
+        .inforlist {
+            width: 1000px;
+            height: auto;
+            overflow: hidden;
+            padding: 8px 0;
+        }
+
+            .inforlist table {
+                width: 1000px;
+                border-bottom: 1px #dddddd solid;
+            }
+
+                .inforlist table th {
+                    line-height: 35px;
+                    font-weight: bold;
+                    border-bottom: 1px #dddddd dotted;
+                    font-size: 14px;
+                    padding: 0 8px;
+                    background: #f7f7f7;
+                }
+
+                .inforlist table tr {
+                    line-height: 35px;
+                    border-bottom: 1px #dddddd solid;
+                }
+
+                .inforlist table td {
+                    padding: 0 8px;
+                }
+
+                .inforlist table tr:hover {
+                    line-height: 35px;
+                    border-bottom: 1px #dddddd solid;
+                    background: #f1f1f1;
+                }
+
+            .inforlist .Sum_infor {
+                float: right;
+                margin-top: 15px;
+            }
+
+                .inforlist .Sum_infor .p1 {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
+                .inforlist .Sum_infor .p2 {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
+                    .inforlist .Sum_infor .p2 span {
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #F00;
+                    }
+
+                .inforlist .Sum_infor .p3button {
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: bold;
+                    width: 120px;
+                    height: 45px;
+                    line-height: 45px;
+                    background: #f38256;
+                    display: block;
+                    text-align: center;
+                    color: #fff;
+                    /*border-radius: 5px;*/
+                    margin-top: 15px;
+                    float: right;
+                }
+    </style>
