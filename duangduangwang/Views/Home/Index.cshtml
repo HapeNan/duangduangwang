@@ -59,7 +59,7 @@
             {
                 var price = Convert.ToDouble(item.BookPrice) * Convert.ToDouble(item.CouponDetail)/10;
         <li>
-            <a href="#" class="product_image"><img width="220" height="242" src="@item.Picture1" /></a>
+            <a href="#" class="product_image"><img width="220" height="242" src="@(item.Picture1)" /></a>
             <div class="product_info">
                 <h3><a href="#">@item.BookName</a></h3>
                 <div style="height:40px;"><small title="@item.BookAbstract" style="overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;">@item.BookAbstract</small></div>
