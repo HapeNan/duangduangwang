@@ -1,0 +1,156 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="section_container">
+    <!--Mid Section Starts-->
+    <section>
+        <ul class="breadcrumb">
+            <li><a href="~/Home">Home</a></li>
+            <li><a href="#">book</a></li>
+        </ul>
+        <!--PRODUCT DETAIL STARTS-->
+        <div id="product_detail">
+            <!--Product Left Starts-->
+            <div class="product_leftcol">
+                @foreach (var book in ViewBag.book)
+                {
+                    <img src="@(book.Picture1)" /> <span class="pr_info">@book.BookName</span>
+                    <ul class="pr_gallery">
+                        <li><a href="#"><img src="@(book.Picture1)" style="height:85px;width:85px" /></a></li>
+                        <li><a href="#"><img src="@(book.Picture2)" style="height:85px;width:85px" /></a></li>
+                        <li><a href="#"><img src="@(book.Picture3)" style="height:85px;width:85px" /></a></li>
+                    </ul>
+                }
+            </div>
+            <!--Product Left Ends-->
+            <!--Product Right Starts-->
+            <div class="product_rightcol">
+                @foreach (var book in ViewBag.book)
+                {
+                    <small class="pr_type">@(book.BookType)</small>
+                <h1>@book.BookName</h1>
+                <p class="short_dc" /> @(book.BookAbstract)
+
+                <div class="pr_price"> <big>￥ @book.BookPrice</big> <small>￥ @(book.BookPrice * 1.8)</small> </div>
+                }
+                <div class="size_info">
+                    <div class="size_sel">
+                        <label>Available Size :</label>
+                        <select>
+                            <option />SELECT
+                            <option />32
+                        </select>
+                    </div>
+                    <div class="color_sel">
+                        <label>Color :</label>
+                        <select>
+                            <option />BEIGE
+                            <option />CORAL
+                        </select>
+                    </div>
+                </div>
+                <div class="qty_info">
+                    <div class="quantity">
+                        <label>Quantity :</label>
+                        <select>
+                            <option />1
+                            <option />2
+                        </select>
+                    </div>
+                </div>
+                <div class="add_to_buttons">
+                    <button onclick="parent.location='leisure_cart.html'" class="add_cart">Add to Cart</button>
+                    <span>or</span>
+                    <ul>
+                        <li><a href="#">Add to Wishlist</a></li>
+                    </ul>
+                </div>
+                <div class="product_overview">
+                    <h4>Quick Overview</h4>
+                    <ul>
+                        <li>Long sleeves with single button cuffs.</li>
+                        <li>Cuffs can be rolled up and secured with button-tabs.</li>
+                        <li>Standing collar with notched detailing.</li>
+                        <li>Front button placket.</li>
+                        <li>Hem is longer in back.</li>
+                    </ul>
+                </div>
+            </div>
+            <!--Product Right Ends-->
+        </div>
+        <!--PRODUCT DETAIL ENDS-->
+        <!--Product List Starts-->
+        @*<div class="products_list products_slider">
+            <h2 class="sub_title">You might also like</h2>
+            <ul id="first-carousel" class="first-and-second-carousel jcarousel-skin-tango">
+                <li>
+                    <a class="product_image"><img src="images/pr_l_1.jpg" /></a>
+                    <div class="product_info">
+                        <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                        <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+                    </div>
+                    <div class="price_info">
+                        <a href="#">+ Add to wishlist</a>
+                        <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">Add to Cart</span></button>
+                    </div>
+                </li>
+                <li>
+                    <a class="product_image"><img src="images/pr_l_2.jpg" /></a>
+                    <div class="product_info">
+                        <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                        <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+                    </div>
+                    <div class="price_info">
+                        <a href="#">+ Add to wishlist</a>
+                        <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">Add to Cart</span></button>
+                    </div>
+                </li>
+                <li>
+                    <a class="product_image"><img src="images/pr_l_3.jpg" /></a>
+                    <div class="product_info">
+                        <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                        <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+                    </div>
+                    <div class="price_info">
+                        <a href="#">+ Add to wishlist</a>
+                        <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">Add to Cart</span></button>
+                    </div>
+                </li>
+                <li>
+                    <a class="product_image"><img src="images/pr_l_5.jpg" /></a>
+                    <div class="product_info">
+                        <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                        <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+                    </div>
+                    <div class="price_info">
+                        <a href="#">+ Add to wishlist</a>
+                        <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">Add to Cart</span></button>
+                    </div>
+                </li>
+                <li>
+                    <a class="product_image"><img src="images/pr_l_1.jpg" /></a>
+                    <div class="product_info">
+                        <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                        <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+                    </div>
+                    <div class="price_info">
+                        <a href="#">+ Add to wishlist</a>
+                        <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">Add to Cart</span></button>
+                    </div>
+                </li>
+                <li>
+                    <a class="product_image"><img src="images/pr_l_2.jpg" /></a>
+                    <div class="product_info">
+                        <h3><a href="leisure_detail.html">CN Clogs Beach/Garden Clog</a></h3>
+                        <small>Comfortable and fun to wear these clogs are the latest trend in fash</small>
+                    </div>
+                    <div class="price_info">
+                        <a href="#">+ Add to wishlist</a>
+                        <button class="price_add" title="" type="button"><span class="pr_price">$76.00</span><span class="pr_add">Add to Cart</span></button>
+                    </div>
+                </li>
+            </ul>
+        </div>*@
+    </section>
+  </div>

@@ -1,0 +1,129 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "搜索结果";
+}
+@*@model PagedList.IPagedList<duangduangwang.Models.Book>*@
+<div class="section_container">
+    <!--Mid Section Starts-->
+    <section>
+        <!--SIDE NAV STARTS-->
+        <div id="side_nav">
+            <div class="sideNavCategories">
+                <h1>相关推荐</h1>
+                <ul class="category departments">
+                    <li class="header">书籍分类标签</li>
+                    @foreach (var tag in ViewBag.tags)
+                    {
+
+                        <li><a href="#">@tag</a></li>
+                    }
+                </ul>
+
+                <ul class="category price">
+                    <li class="header">价格筛选</li>
+                    <li><a href="#">￥50 to ￥100</a></li>
+                    <li><a href="#">￥100 to ￥200</a></li>
+                    <li><a href="#">￥200 to ￥500</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--SIDE NAV ENDS-->
+        <!--MAIN CONTENT STARTS-->
+        <div id="main_content">
+            @*<div class="category_banner"> <img src="~/Images/activity3.png"/> </div>*@
+            <ul class="breadcrumb">
+                <li><a href="~/Home">Home</a></li>
+                <li><a href="#">Book</a></li>
+                <li class="active"><a href="#">Tags</a></li>
+            </ul>
+            <!--Toolbar-->
+            <div class="toolbar">
+                <div class="sortby">
+                    <label>Sort by :</label>
+                    <select>
+                        <option />PRICE
+                        <option />NAME
+                    </select>
+                </div>
+                <div class="viewby">
+                    <label>View as :</label>
+                    <a class="list" href="#"></a> <a class="grid" href="#"></a>
+                </div>
+                <div class="show_no">
+                    <label>Show :</label>
+                    <select>
+                        <option />12 ITEMS
+                        <option />24 ITEMS
+                    </select>
+                </div>
+            </div>
+            <!--Toolbar-->
+            <!--Product List Starts-->
+            <div class="products_list products_slider">
+                <ul>
+                    @foreach (var book in ViewBag.books)
+                    {
+                        <li>
+                            <a class="product_image"><img src="@(book.Picture1)" width="224px" height="246px"/></a>
+                            <div class="product_info">
+                                <h3><a href="@Url.Action("Details", "Book",new { id=book.BookId})"> @book.BookName</a></h3>
+                                @*<small>@book.BookAbstract</small>*@
+                                <div style="height:40px;">
+                                    <small title="@book.BookAbstract" style="overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;">@book.BookAbstract</small>
+                                </div>
+                            </div>
+                            <div class="price_info">
+                                <a href="#">+ Add to wishlist</a>
+                                <button class="price_add" title="" type="button"><span class="pr_price">￥ @book.BookPrice</span><span class="pr_add">Add to Cart</span></button>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { LinkToFirstPageFormat = "首页", LinkToNextPageFormat = "下一页", LinkToPreviousPageFormat = "上一页", LinkToLastPageFormat = "末页", DisplayItemSliceAndTotal = false, MaximumPageNumbersToDisplay = 3 })*@
+            </div>
+            <!--Product List Ends-->
+            <!--Toolbar-->
+            <div class="toolbar">
+                <div class="sortby">
+                    <label>Sort by :</label>
+                    <select>
+                        <option />PRICE
+                        <option />NAME
+                    </select>
+                </div>
+                <div class="viewby">
+                    <label>View as :</label>
+                    <a class="list" href="#"></a> <a class="grid" href="#"></a>
+                </div>
+                <div class="show_no">
+                    <label>Show :</label>
+                    <select>
+                        <option />12 ITEMS
+                        <option />24 ITEMS
+                    </select>
+                </div>
+            </div>
+            <!--Toolbar-->
+        </div>
+        <!--MAIN CONTENT ENDS-->
+        <!--Newsletter_subscribe Starts-->
+        <div class="subscribe_block">
+            <div class="find_us">
+                <h3>Find us on</h3>
+                <a class="twitter" href="#"></a> <a class="facebook" href="#"></a> <a class="rss" href="#"></a>
+            </div>
+            <div class="subscribe_nl">
+                <h3>Subscribe to our Newsletter</h3>
+                <small>Instant wardrobe updates, new arrivals, fashion news, don’t miss a beat – sign up to our newsletter now.</small>
+                <form id="newsletter" method="post" action="#" />
+                <input type="text" class="input-text" value="Enter your email" title="Enter your email" id="newsletter" name="email" />
+                <button class="button" title="" type="submit"></button>
+                </form>
+            </div>
+        </div>
+        <!--Newsletter_subscribe Ends-->
+    </section>
+    <!--Mid Section Ends-->
+</div>
+
+

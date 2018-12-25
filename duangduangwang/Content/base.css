@@ -73,7 +73,7 @@ ul.sub_menu > li > ul{border-top: solid 1px #5f5a56; margin-top:10px;}
 .products_list li{width:221px; margin-left:31px; float:left; padding-bottom:15px;}
 .products_list li:first-child{ margin-left:0px;}
 .products_list a.product_image{display:block;}
-.products_list a.product_image img{ border:solid 2px #fff;}
+.products_list a.product_image img{ border:solid 2px #fff;width:224px;height:246px;}
 .products_list li:hover img{-moz-transition:all 0.3s ease-out 0s; -webkit-transition: all 0.3s ease-out;}
 .products_list .product_info{ margin-bottom:10px; padding-bottom:12px; border-bottom:solid 1px;}
 .products_list .product_info h3{ font-size:14px; font-weight:normal; padding:12px 0px;}
