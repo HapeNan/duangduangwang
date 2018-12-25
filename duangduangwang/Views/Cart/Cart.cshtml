@@ -169,32 +169,34 @@
 
         <div class="message success">Notch-collar shirt was added to your shopping cart.</div>
         <div class="action_buttonbar">
-            <button type="button" title="" class="continue">继续购物</button>
+            <button type="button" title="" class="continue" onclick="window.location='/Home/Index'">继续购物</button>
             <button type="button" onclick="parent.location='ConfirmOrder'" title="" class="checkout">结算</button>
         </div>
         <div class="cart_table" onload="uptotal()">
             <table class="data-table cart-table" id="shopping-cart-table" cellpadding="0" cellspacing="0">
                 <tr>
-                    <th colspan="2">Products</th>
+                    <th colspan="2">图书</th>
                     <th class="align_center" width="6%"></th>
                     <th class="align_center" width="6%"></th>
-                    <th class="align_center" width="12%">Unit Price</th>
-                    <th class="align_center" width="12%">Qty</th>
-                    <th class="align_center" width="12%">Subtotal</th>
+                    <th class="align_center" width="12%">图书单价</th>
+                    <th class="align_center" width="12%">图书数量</th>
+                    <th class="align_center" width="12%">单项总价</th>
                     <th class="align_center" width="6%"></th>
                 </tr>
                 @{
-                    foreach (var item in Model)
+                    if (Model != null)
                     {
-                        var num = @Html.DisplayFor(modelItem => item.BookId);
-                        var plusnum = num + "plus";
-                        var subnum = num + "sub";
-                        var qtynum = num + "qty";
-                        var pricenum = num + "price";
-                        var trnum = num + "tr";
-                        var txtnum = num + "txt";
-                        var subtot = num + "subtot";
-                        var select = num + "select";
+                        foreach (var item in Model)
+                        {
+                            var num = @Html.DisplayFor(modelItem => item.BookId);
+                            var plusnum = num + "plus";
+                            var subnum = num + "sub";
+                            var qtynum = num + "qty";
+                            var pricenum = num + "price";
+                            var trnum = num + "tr";
+                            var txtnum = num + "txt";
+                            var subtot = num + "subtot";
+                            var select = num + "select";
                         <tr id="@trnum.ToString()">
                             <td>
                                 <input type="checkbox" name="select" id="@select.ToString()" value="1" checked onclick="checkboxclick(this.id)" />
@@ -208,14 +210,15 @@
                             <td class="align_center vline"><span class="price" id="@pricenum.ToString()">@Html.DisplayFor(modelItem => item.BookPrice)</span></td>
                             <td class="align_center vline">
                                 <input type="button" id="@subnum.ToString()" value="-" onclick="sub(this.id)" />
-                                <input id="@qtynum.ToString()" class="qty_box" type="text" value="1" onchange="qtychange(this.id)" />
+                                <input id="@qtynum.ToString()" class="qty_box" type="text" value="@Session[num.ToString()]" onchange="qtychange(this.id)" />
                                 <input type="button" id="@plusnum.ToString()" value="+" onclick="plus(this.id)" />
                             </td>
                             <td class="align_center vline"><span class="price" id="@subtot.ToString()"></span></td>
                             <td class="align_center vline"><a href="javascript:void(0);" class="remove" onclick="delRow(this)"></a></td>
                         </tr>
+                            }
+                        }
                     }
-                }
             </table>
             <div class="totals">
                 <table id="totals-table">
@@ -235,8 +238,8 @@
             </div>
         </div>
         <div class="action_buttonbar">
-            <button type="button" title="" class="continue">继续购物</button>
-            <button type="button" onclick="parent.location='leisure_checkout.html'" title="" class="checkout">结算</button>
+            <button type="button" title="" class="continue" onclick="window.location='/Home/Index'">继续购物</button>
+            <button type="button" onclick="parent.location='ConfirmOrder'" title="" class="checkout">结算</button>
         </div>
     </div>
     <div class="subscribe_block">

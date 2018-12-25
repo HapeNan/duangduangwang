@@ -14,6 +14,11 @@ namespace duangduangwang.Controllers
         {
             return View();
         }
+        public ActionResult ToCart()
+        {
+            List<Book> BookList = (List<Book>)Session["Cart"];
+            return View("Cart",BookList);
+        }
         // GET: Cart
         DataClasses1DataContext db = new DataClasses1DataContext();
         BookMapper bookmapper = new BookMapper();
