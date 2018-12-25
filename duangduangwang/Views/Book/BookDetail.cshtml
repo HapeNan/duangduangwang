@@ -55,28 +55,32 @@
                 <div class="qty_info">
                     <div class="quantity">
                         <label>数量 :</label>
-                        <select name="qty   ">
-                            <option />1
-                            <option />2
-                            <option />3
-                            <option />4
+                        <select name="qty" id="qty">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
                         </select>
                     </div>
                 </div>
                 <div class="add_to_buttons">
-                    <button class="add_cart">加入购物车</button>
-                    <script>
-                      $("button").click(function () {
-                      var qty = $("select[name='qty']")[0];
-                      $.ajax({
-                      data: { "qty": qty ,"Id":@ViewBag.book.BookId},
-                      url: '@Url.Action("Cart","Cart")',
-                      type: "POST",//OR "GET"
-                       success: function (returndata) {
-                            alert("加入购物车成功!")
-                        }
-                    });
-                     }
+                    <button class="add_cart" onclick="AddToCart()">加入购物车</button>
+                    <script type="text/javascript">
+                        /*(document).ready(function () {*/
+                            //$("button").click(function () {
+                            function AddToCart() {
+                                //var quantity = $("select[name='qty']")[0];
+                                var quantity = $('#qty option:selected').val();
+                                $.ajax({
+                                    data: { "qty": quantity, "Id":@book.BookId},
+                                    url: '@Url.Action("Cart","Cart")',
+                                    type: "POST",//OR "GET"
+                                    success: function (returndata) {
+                                        alert("加入购物车成功!")
+                                    },
+                                    fail: function (returndata) { alert("加入购物车失败!") }
+                                });
+                            }
                     </script>
                     <span>or</span>
                     <ul>
