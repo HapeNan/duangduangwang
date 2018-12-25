@@ -12,10 +12,11 @@
                 <h1>相关推荐</h1>
                 <ul class="category departments">
                     <li class="header">书籍分类标签</li>
-                    @foreach (var tag in ViewBag.tags)
+
+                    @foreach (var t in ViewBag.tags)
                     {
 
-                        <li><a href="#">@tag</a></li>
+                        <li><a href="@Url.Action("GetBooksOfTag", "Book", new {tag=t})">@t</a></li>
                     }
                 </ul>
 

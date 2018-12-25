@@ -10,5 +10,8 @@ namespace duangduangwang.Models.IMapper
     {
         IList<Book> NewBookList();
         IList<Book> OfferBookList();
+        IList<Book> Search(string book_name);
+        IList<Book> Details(int id);
+        IList<Book> GetBooksOfTag(string tag);
     }
 }
