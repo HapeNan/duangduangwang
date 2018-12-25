@@ -91,5 +91,10 @@ namespace duangduangwang.Controllers
             }
             return new EmptyResult();
         }
+        public ActionResult ConfirmOrder()
+        {
+
+            return Redirect("~/Pay/ConfirmOrder");
+        }
     }
 }
