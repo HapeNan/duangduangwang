@@ -38,8 +38,10 @@
                <div style="height:40px;"><small title="@item.BookAbstract" style="overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;">@item.BookAbstract</small></div>
             </div>
             <div class="price_info">
-                <a href="#">+ 添加至愿望单</a>
-                <button class="price_add" title="" type="button"><span class="pr_price">$@item.BookPrice</span><span class="pr_add">添加到购物车</span></button>
+                <form action="@Url.Action("Details", "Book",new { id=item.BookId})">
+                    <a href="#">+ 添加至愿望单</a>
+                    <button class="price_add" title="" type="submit"><span class="pr_price">￥ @item.BookPrice</span><span class="pr_add">添加到购物车</span></button>
+                </form>
             </div>
         </li>
             }
@@ -61,8 +63,10 @@
                 <div style="height:40px;"><small title="@item.BookAbstract" style="overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;">@item.BookAbstract</small></div>
             </div>
             <div class="price_info">
-                <a href="#">+ 添加至愿望单</a>
-                <button class="price_add" title="" type="button"><span class="pr_price">$<span style="text-decoration:line-through;">@item.BookPrice</span><span style="color:#f65c5c;">&nbsp;@price.ToString("F2")</span></span><span class="pr_add">添加到购物车</span></button>
+                <form action="@Url.Action("Details", "Book",new { id=item.BookId})">
+                    <a href="#">+ 添加至愿望单</a>
+                    <button class="price_add" title="" type="submit"><span class="pr_price">￥ @item.BookPrice</span><span class="pr_add">添加到购物车</span></button>
+                </form>
             </div>
         </li>
 

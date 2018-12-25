@@ -65,7 +65,7 @@
                     @foreach (var book in ViewBag.books)
                     {
                         <li>
-                            <a class="product_image"><img src="@(book.Picture1)" width="224px" height="246px"/></a>
+                            <a class="product_image" href="@Url.Action("Details", "Book",new { id=book.BookId})"><img src="@(book.Picture1)" width="224px" height="246px"/></a>
                             <div class="product_info">
                                 <h3><a href="@Url.Action("Details", "Book",new { id=book.BookId})"> @book.BookName</a></h3>
                                 @*<small>@book.BookAbstract</small>*@
@@ -74,8 +74,10 @@
                                 </div>
                             </div>
                             <div class="price_info">
-                                <a href="#">+ Add to wishlist</a>
-                                <button class="price_add" title="" type="button"><span class="pr_price">￥ @book.BookPrice</span><span class="pr_add">Add to Cart</span></button>
+                                <form action="@Url.Action("Details", "Book",new { id=book.BookId})">
+                                    <a href="#">+ 添加至愿望单</a>
+                                    <button class="price_add" title="" type="submit"><span class="pr_price">￥ @book.BookPrice</span><span class="pr_add">添加到购物车</span></button>
+                                </form>
                             </div>
                         </li>
                     }

@@ -9,7 +9,14 @@ namespace duangduangwang.Models.Mapper
     public class BookMapper : IBookMapper
     {
         private DataClasses1DataContext _db = new DataClasses1DataContext();
+        public List<Book> GetBookById(int Id)
+        {
 
+            var result = from r in _db.Book
+                         where r.BookId == Id
+                         select r;
+            return result.ToList();
+        }
         //book search
         public IList<Book> Search(string book_name)
         {

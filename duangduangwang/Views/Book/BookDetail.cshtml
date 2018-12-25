@@ -18,9 +18,9 @@
                 {
                     <img src="@(book.Picture1)" /> <span class="pr_info">@book.BookName</span>
                     <ul class="pr_gallery">
-                        <li><a href="#"><img src="@(book.Picture1)" style="height:85px;width:85px" /></a></li>
-                        <li><a href="#"><img src="@(book.Picture2)" style="height:85px;width:85px" /></a></li>
-                        <li><a href="#"><img src="@(book.Picture3)" style="height:85px;width:85px" /></a></li>
+                        <li><a ><img src="@(book.Picture1)" style="height:85px;width:85px" /></a></li>
+                        <li><a ><img src="@(book.Picture2)" style="height:85px;width:85px" /></a></li>
+                        <li><a ><img src="@(book.Picture3)" style="height:85px;width:85px" /></a></li>
                     </ul>
                 }
             </div>
@@ -30,31 +30,32 @@
                 @foreach (var book in ViewBag.book)
                 {
                     <small class="pr_type">@(book.BookType)</small>
-                <h1>@book.BookName</h1>
-                <p class="short_dc" /> @(book.BookAbstract)
+                    <h1>@book.BookName</h1>
+                    <p class="short_dc" /> @(book.BookAbstract)
+                    <div class="pr_price"> <big>￥ @book.BookPrice</big> <small>￥ @(book.BookPrice * 1.8)</small> </div>
 
-                <div class="pr_price"> <big>￥ @book.BookPrice</big> <small>￥ @(book.BookPrice * 1.8)</small> </div>
-                }
                 <div class="size_info">
                     <div class="size_sel">
-                        <label> 尺寸:</label>
+                        <label> 配送至:</label>
                         <select>
-                            <option />SELECT
-                            <option />32
+                            <option />北京
+                            <option />上海
+                            <option />深圳
                         </select>
                     </div>
                     <div class="color_sel">
-                        <label>颜色 :</label>
-                        <select>
-                            <option />BEIGE
-                            <option />CORAL
-                        </select>
+                        <label>促销信息 :
+                        @if (book.Coupon == 1) { <span>@(book.CouponDetail)折开售</span>   }
+                        else { string[] info = Convert.ToString(book.CouponDetail).Split(',');
+                            <span>满@(info[0]) 减 @info[1]</span>
+                        }</label>
+                        
                     </div>
                 </div>
                 <div class="qty_info">
                     <div class="quantity">
                         <label>数量 :</label>
-                        <select>
+                        <select name="qty   ">
                             <option />1
                             <option />2
                             <option />3
@@ -63,7 +64,20 @@
                     </div>
                 </div>
                 <div class="add_to_buttons">
-                    <button onclick="parent.location='leisure_cart.html'" class="add_cart">加入购物车</button>
+                    <button class="add_cart">加入购物车</button>
+                    <script>
+                      $("button").click(function () {
+                      var qty = $("select[name='qty']")[0];
+                      $.ajax({
+                      data: { "qty": qty ,"Id":@ViewBag.book.BookId},
+                      url: '@Url.Action("Cart","Cart")',
+                      type: "POST",//OR "GET"
+                       success: function (returndata) {
+                            alert("加入购物车成功!")
+                        }
+                    });
+                     }
+                    </script>
                     <span>or</span>
                     <ul>
                         <li><a href="#">加入愿望单</a></li>
@@ -73,11 +87,12 @@
                     <h4>为您推荐</h4>
                     <ul>
                         @foreach (var t in ViewBag.tags)
-                        { 
-                        <li><a href="@Url.Action("GetBooksOfTag", "Book", new {tag=t})">@t</a></li>
-                        }
+                        {
+                        <li><a href="@Url.Action("GetBooksOfTag", "Book", new { tag = t })">@t</a></li>
+                            }
                     </ul>
                 </div>
+                }
             </div>
             <!--Product Right Ends-->
         </div>
