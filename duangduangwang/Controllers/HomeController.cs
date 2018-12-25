@@ -15,6 +15,10 @@ namespace duangduangwang.Controllers
             ViewBag.NewBookList = bookMapper.NewBookList();
             return View();
         }
+        public ActionResult Manager()
+        {
+            return View("ManageOrder");
+        }
         public ActionResult ManageOrder()
         {
             return View();
@@ -28,6 +32,10 @@ namespace duangduangwang.Controllers
             return View();
         }
         public ActionResult ManageAddBook()
+        {
+            return View();
+        }
+        public ActionResult ManageBulkEditing()
         {
             return View();
         }
