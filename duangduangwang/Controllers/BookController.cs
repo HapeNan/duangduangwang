@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using duangduangwang.Models;
+using duangduangwang.Models.Mapper;
 
 namespace duangduangwang.Controllers
 {
@@ -11,25 +12,45 @@ namespace duangduangwang.Controllers
     {
 
         DataClasses1DataContext db = new DataClasses1DataContext();
+        private BookMapper mapper= new BookMapper();
 
+        //book search
         public ActionResult Search(string book_name,int page=1)
         {
-      
-            var books = from b in db.Book
-                        select b;
-            
-            if(!string.IsNullOrEmpty(book_name))
-            {
-                books = books.Where(s => s.BookName.Contains(book_name));
-            }
-            
-            //分页
-            //int pageCount = (int)book.LongCount();
-            //var books = book.ToPagedList(page, pageCount);
-            //分页
 
+            IList<Book> books = mapper.Search(book_name);
+
+            //HashSet<string> tags = new HashSet<string>();
+            //foreach(Book bk in books)
+            //{
+            //    string[] tagOfBook = bk.Tag.Split(',');
+            //    foreach (var t in tagOfBook)
+            //    {
+            //        tags.Add(t);
+            //    }
+            //}
+            HashSet<string> tags = mapper.GetTagsOfBook(books);
+            ViewBag.books = books;
+            ViewBag.tags = tags;
+            return View("SearchResult");
+        }
+
+        // book details
+        public ActionResult Details(int id)
+        {
+
+            IList<Book> books = mapper.Details(id);
+            HashSet<string> tags = mapper.GetTagsOfBook(books);
+            ViewBag.book = books;
+            ViewBag.tags = tags;
+            return View("BookDetail");
+        }
+        //books of tag
+        public ActionResult GetBooksOfTag(string tag)
+        {
+            IList<Book> books = mapper.GetBooksOfTag(tag);
             HashSet<string> tags = new HashSet<string>();
-           foreach(Book bk in books)
+            foreach (Book bk in books)
             {
                 string[] tagOfBook = bk.Tag.Split(',');
                 foreach (var t in tagOfBook)
@@ -47,17 +68,7 @@ namespace duangduangwang.Controllers
         {
             return View();
         }
-
-        // GET: Book/Details/5
-        public ActionResult Details(int id)
-        {
-            var book = from b in db.Book
-                       where b.BookId == id
-                       select b;
-            ViewBag.book = book;
-            return View("BookDetail");
-        }
-
+        
         // GET: Book/Create
         public ActionResult Create()
         {
