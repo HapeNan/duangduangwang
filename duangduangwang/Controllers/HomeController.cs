@@ -19,5 +19,17 @@ namespace duangduangwang.Controllers
         {
             return View();
         }
+        public ActionResult ManageUser()
+        {
+            return View();
+        }
+        public ActionResult ManageBook()
+        {
+            return View();
+        }
+        public ActionResult ManageAddBook()
+        {
+            return View();
+        }
     }
 }

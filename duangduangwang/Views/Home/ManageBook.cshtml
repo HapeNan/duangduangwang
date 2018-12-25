@@ -1,15 +1,16 @@
 ﻿@using duangduangwang.Models;
 @{
 
-    ViewBag.Title = "订单管理";
-    if (ViewBag.OrderList == null)
-    { ViewBag.OrderList = new List<BookOrder>(); }
-    if (ViewBag.OrderItemList == null)
-    { ViewBag.OrderItemList = new List<OrderItem>(); }
+    ViewBag.Title = "图书管理";
+    if (ViewBag.BookList == null)
+    { ViewBag.BookList = new List<Book>(); }
     Layout = "~/Views/Shared/ManagerPage.cshtml";
 }
 <style type="text/css">
-    table, table tr th, table tr td {text-align:center; border: 1px solid #000000; }
+    table, table tr th, table tr td {
+        text-align: center;
+        border: 1px solid #000000;
+    }
 </style>
 <section>
     <div class="full_page" style="margin-top:20px; ">
@@ -27,25 +28,27 @@
                                 <fieldset>
                                     <ul class="form-list">
                                         <li>
-                                            <label class="required" for="login-email">订单号</label>
+                                            <label class="required" for="login-email">图书编号</label>
                                             <div class="input-box">
                                                 <input type="text" value="" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
-                                            <label class="required" for="login-password">用户ID</label>
+                                            <label class="required" for="login-password">图书名称</label>
                                             <div class="input-box">
                                                 <input type="text" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
-                                            <label class="required" for="login-password">订单状态</label>
+                                            <label class="required" for="login-password">出版社</label>
                                             <div class="input-box">
-                                                <select id="Order_State">
-                                                    <option>全部</option>
-                                                    <option>已付款</option>
-                                                    <option>未付款</option>
-                                                </select>
+                                                <input type="text" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-password">图书类型</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text" />
                                             </div>
                                         </li>
                                     </ul>
@@ -58,21 +61,27 @@
                                     <ul class="form-list">
 
                                         <li>
-                                            <label class="required" for="login-password">包含图书ID</label>
+                                            <label class="required" for="login-password">作者姓名</label>
                                             <div class="input-box">
                                                 <input type="text" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
-                                            <label class="required" for="login-password">包含图书名称</label>
-                                            <div class="input-box">
-                                                <input type="text" class="input-text" />
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <label class="required" for="login-password">下单日期</label>
+                                            <label class="required" for="login-password">出版时间</label>
                                             <div class="input-box">
                                                 <input type="date" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-password">优惠类型</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-password">图书标签</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text" />
                                             </div>
                                         </li>
                                     </ul>
@@ -99,45 +108,53 @@
                 <li class="section allow active" id="opc-login">
 
                     <div class="step-title" style="width:950px">
-                        <h2>订单列表</h2>
+                        <h2>图书列表</h2>
                     </div>
                     <div id="checkout-step-login">
-                        <table style="margin-left:110px;" border="1" cellspacing="0" cellpadding="0">
+                        <table style="margin-left:10px;" border="1" cellspacing="0" cellpadding="0">
 
                             <tr>
-                                <td width="100px"> 订单号</td>
-                                <td width="100px"> 用户ID</td>
-                                <td width="100px">订单总价</td>
-                                <td width="100px"> 付款状态</td>
-                                <td width="100px">下单日期</td>
-                                <td width="100px">下单日期</td>
+                                <td width="100px"> 图书编号</td>
+                                <td width="100px">图书名称</td>
+                                <td width="100px">出版社</td>
+                                <td width="100px">图书类型</td>
+                                <td width="100px">图书标签</td>
+                                <td width="100px">作者</td>
+                                <td width="100px">出版时间</td>
+                                <td width="100px">优惠类型</td>
                                 <td width="100px"></td>
                             </tr>
 
-                            @if (ViewBag.OrderList.Count == 0)
+                            @if (ViewBag.BookList.Count == 0)
                             {
                                 <tr>
-                                    <td colspan="7">查询结果为空</td>
+                                    <td colspan="9">
+                                        查询结果为空
+
+                                    </td>
+
                                 </tr>
                             }
                             else
                             {
-                                foreach (var order in ViewBag.OrderList)
+                                foreach (var book in ViewBag.BookList)
                                 {
-                        <tr>
-                        <td>@order.OrderId</td>
-                        <td>@order.UserId</td>
-                        <td>@order.TotalPrice</td>
-                        <td>@order.Status</td>
-                        <td>@order.createDate</td>
+                    <tr>
+                        <td><a href="#">@book.BookId</a></td>
+                        <td>@book.BookName</td>
+                        <td>@book.Publisher</td>
+                        <td>@book.BookType</td>
+                        <td>@book.Tag</td>
+                        <td>@book.BookWriter</td>
+                        <td>@book.PublishTime</td>
+                        <td>@book.Coupon</td>
                         <td>
                             <input id="Button1" type="button" value="修改" />&nbsp;&nbsp;
                             <input id="Button2" type="button" value="删除" />
                         </td>
-                        </tr>
-                                 }
+                    </tr>
+                                }
                             }
-
                         </table>
                     </div>
                 </li>
@@ -145,46 +162,53 @@
 
                 <li class="section allow active" id="opc-login">
                     <div class="step-title" style="width:950px">
-                        <h2>订单详情</h2>
+                        <h2>图书详情</h2>
                     </div>
-                    <div id="checkout-step-login">
+                    <div id="checkout-step-login" style="height:500px;">
                         <form method="post" id="login-form" action="" />
-                        <div class="col2-set">
+                        <div class="col2-set" style="height:470px;">
                             <div class="col-2" style="float:left;margin-left:120px; margin-right:40px;">
                                 <fieldset>
                                     <ul class="form-list">
                                         <li>
-                                            <label class="required" for="login-email">订单号</label>
+                                            <label class="required" for="login-email">图书编号</label>
                                             <div class="input-box">
-                                                <input type="text" value="" class="input-text"  readonly="readonly"/>
+                                                <input type="text" value="" class="input-text" readonly="readonly" />
                                             </div>
                                         </li>
                                         <li>
-                                            <label class="required" for="login-password">用户ID</label>
+                                            <label class="required" for="login-password">图书名称</label>
                                             <div class="input-box">
-                                                <input type="text" class="input-text"  readonly="readonly"/>
+                                                <input type="text" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
-                                            <label class="required" for="login-password">订单状态</label>
+                                            <label class="required" for="login-password">图书简介</label>
 
                                             <div class="input-box">
-                                                <input type="text" class="input-text" readonly="readonly"/>
+                                                <textarea  class="input-text"  rows="7" cols="34"></textarea>
                                             </div>
                                         </li>
                                         <li>
-                                            <label class="required" for="login-password">付款金额</label>
+                                            <label class="required" for="login-password">作者</label>
                                             <div class="input-box">
-                                                <input type="text" class="input-text" readonly="readonly"/>
+                                                <input type="text" class="input-text" />
                                             </div>
                                         </li>
-                                     
+
                                         <li>
-                                            <label class="required" for="login-password">下单日期</label>
+                                            <label class="required" for="login-password">出版时间</label>
                                             <div class="input-box">
-                                                <input type="date" class="input-text" readonly="readonly"/>
+                                                <input type="date" class="input-text" />
                                             </div>
                                         </li>
+                                        <li>
+                                            <label class="required" for="login-email">价格</label>
+                                            <div class="input-box">
+                                                <input type="text" value="" class="input-text" />
+                                            </div>
+                                        </li>
+                                      
                                     </ul>
                                     <br>
                                 </fieldset>
@@ -193,37 +217,54 @@
 
                                 <fieldset>
                                     <ul class="form-list">
+                                        <li>
+                                            <label class="required" for="login-email">图片1</label>
+                                            <div class="input-box">
+                                                <input type="file" value="" class="input-text" />
+                                            </div>
+                                        </li>
 
                                         <li>
-                                            <table style="margin-left:-70px; margin-top:8px" border="1" cellspacing="0" cellpadding="0">
-                                                <tr>
-                                                    <td width="100px">图书编号</td>
-                                                    <td width="100px">图书名称</td>
-                                                    <td width="100px">购买数量</td>
-                                                    <td width="100px">单项总价</td>
-                                                </tr>
-                                                @if (ViewBag.OrderItemList.Count == 0)
-                                                {
-                                            <tr>
-                                                <td colspan="4">订单为空</td>
-                                            </tr>
-                                                }
-                                                else
-                                                {
-                                                foreach (var orderItem in ViewBag.OrderItemList)
-                                                {
-                                                <tr>
-                                                <td>@orderItem.BookId</td>
-                                                <td>1</td>
-                                                <td>@orderItem.quantity</td>
-                                                <td>1</td>
-                                                 </tr>
-                                                 }
-                                                }
-                                            </table>
+                                            <label class="required" for="login-email">图片2</label>
+                                            <div class="input-box">
+                                                <input type="file" value="" class="input-text" />
+                                            </div>
                                         </li>
-                                     
-                                      
+                                        <li>
+                                            <label class="required" for="login-email">图片3</label>
+                                            <div class="input-box">
+                                                <input type="file" value="" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-email">图书类型</label>
+                                            <div class="input-box">
+                                                <input type="text" value="" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-email">Tags</label>
+                                            <div class="input-box">
+                                                <input type="text" value="" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-email">优惠详情</label>
+                                            <div class="input-box">
+                                                <input type="text" value="" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label class="required" for="login-password">优惠状态</label>
+                                            <div class="input-box">
+                                                <select id="Order_State">
+                                                    <option>0</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                </select>
+                                            </div>
+                                        </li>
+
                                     </ul>
                                     <br>
                                 </fieldset>
@@ -246,11 +287,10 @@
                     </div>
                 </li>
 
-
             </ol>
         </div>
         <!--CHECKOUT STEPS ENDS-->
-        
+
     </div>
     <!--Newsletter_subscribe Starts-->
 
