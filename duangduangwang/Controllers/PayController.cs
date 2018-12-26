@@ -35,7 +35,7 @@ namespace duangduangwang.Controllers
             bookOrder.UserId = (int)Session["UserId"];
             bookOrder.TotalPrice = Double.Parse(finalTotalPrice);
             bookOrder.Status = 0;
-            //bookOrder.createDate =System.DateTime.Now();
+            bookOrder.createDate =System.DateTime.Now;
             int orderId=orderMapper.addBookOrder(bookOrder);
              if (Session["Cart"] != null)
             {

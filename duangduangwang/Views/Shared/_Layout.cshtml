@@ -1,4 +1,5 @@
 ﻿@using System;
+@using duangduangwang.Models;
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,6 +94,7 @@
         function uptotal() {
             var sum = 0;
             var num = 0;
+            var sum2 = 0;
             $("#shopping-cart-table input[name=hiddenbook]").each(
                 function () {
                     var id = $(this).attr("id");
@@ -107,9 +109,21 @@
                     }
 
                 });
-            $("#totprice").html(sum.toFixed(2));
-            $("#postcost").html((num * 5).toFixed(2));
-            $("#totprice2").html((sum + num * 5).toFixed(2));
+            $("#totprice").html('¥' + sum.toFixed(2));
+            $("#postcost").html('¥' + (num * 5).toFixed(2));
+            $("#totprice2").html('¥' + (sum + num * 5).toFixed(2));
+            $("#ttotprice").html((sum + num * 5).toFixed(2));
+            sum2 = (sum + num * 5).toFixed(2);
+
+            $.ajax({
+                type: 'post',
+                url: '/Cart/Changetot?tot=' + sum2,
+                success: function () {
+                },
+                error: function () {
+                }
+
+            });
         }
     </script>
 
@@ -245,7 +259,7 @@
                         <!--SUbmenu Ends-->
                     </li>
                     <li>
-                        <a href="leisure_listing.html">童书</a>
+                        <a href="#">童书</a>
                         <ul class="sub_menu">
                             <li>
                                 <a>年龄</a>
@@ -404,16 +418,29 @@
                     </li>
                 </ul>
                 <div class="minicart">
-                    <a href="#" class="minicart_link"> <span class="item"><b>0</b> 件 /</span> <span class="price"><b>$ 0.0</b></span> </a>
+                    <a href="#" class="minicart_link"> <span class="item"><b>@Session["num"]</b> 件 / ¥ </span> <span class="price" id="ttotprice"><b></b></span> </a>
                     <div class="cart_drop">
                         <span class="darw"></span>
                         <ul>
-                            <li><img src="/Images/mini_c_item1.png" /><a href="#">Clogs Beach/Garden Clog</a> <span class="price">$49.90</span></li>
-                            <li><img src="/Images/mini_c_item2.png" /><a href="#">Faded chambray shorts</a> <span class="price">$12.90</span></li>
-                            <div class="cart_bottom">
-                                <div class="subtotal_menu"><small>Subtotal:</small><big>$69.20</big></div>
-                                <a href="leisure_cart.html">Checkout</a>
-                            </div>
+                            @{
+                                if (Session["Cart"] != null)
+                                {
+                                    List<Book> BookList = (List<Book>)Session["Cart"];
+                                    double sumpri = 0;
+                                    foreach (Book item in BookList)
+                                    {
+                                        var img1 = item.Picture1;
+                                        var bookname = item.BookName;
+                                        var simpri = item.BookPrice;
+                                        sumpri = (double)((double)sumpri + simpri);
+                                        <li><img src="@img1" height="60px" /><a href="#"></a> @bookname<br /><br /><br /><span class="price">¥ @simpri</span></li>
+                                    }
+                                    <div class="cart_bottom">
+                                        <div class="subtotal_menu"><small>商品价格:</small><big>¥ @sumpri</big></div>
+                                        <a href="leisure_cart.html">结算</a>
+                                    </div>
+                                }
+                            }
                         </ul>
                     </div>
                 </div>

@@ -37,6 +37,7 @@ namespace duangduangwang.Controllers
                     if (item.BookId == Id)
                         return View(BookList);
                 }
+                Session[Id.ToString() + "select"] = "true";
                 BookList.Add(res);
                 Session["Cart"] = BookList;
                 if (Session["num"] == null)
@@ -62,6 +63,7 @@ namespace duangduangwang.Controllers
                 List<Book> BookList = new List<Book>();
                 Session[BookId] = qty;
                 BookList.Add(res);
+                Session[Id.ToString() + "select"] = "true";
                 Session["Cart"] = BookList;
                 return View(BookList);
             }
