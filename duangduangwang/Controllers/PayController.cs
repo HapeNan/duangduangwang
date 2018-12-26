@@ -20,14 +20,13 @@ namespace duangduangwang.Controllers
         {
             
             Session["UserId"]=1;
-            //Session["5"] = 3;
             ////
             ViewBag.totalPrice = 100;
             ViewBag.discountPrice = 20;
             ViewBag.finalTotalPrice = "80.0";
             return View();
         }
-        //.css  coupon 
+        // coupon orderId(流水账号?)
         public void SubmitOrder()
         {
             string finalTotalPrice= (string)Request.Form["finalTotalPrice"];
@@ -40,7 +39,8 @@ namespace duangduangwang.Controllers
              if (Session["Cart"] != null)
             {
                 List<Book> BookList = (List<Book>)Session["Cart"];
-                List<Book>cartItemList = new List<Book>();//CartSelected
+                List<Book> newBookList = new List<Book>();//CartRemain
+                List<Book> cartItemList = new List<Book>();//CartSelected
                 foreach (Book item in BookList)
                 {
                     string fg = Session[item.BookId.ToString() + "select"].ToString();
@@ -51,20 +51,24 @@ namespace duangduangwang.Controllers
                         orderItem.BookId = item.BookId;
                         orderItem.quantity = (int)Session[orderItem.BookId.ToString()];
                         orderMapper.addOrderItem(orderItem);
-                        //deleteFromCart 
                         Session[item.BookId.ToString() + "select"] = null;
                         cartItemList.Add(item);
-                        BookList.Remove(item);
+                    }
+                    else
+                    {
+                        newBookList.Add(item);
                     }
                 }
-                Session["cartItemList"] = BookList;
-                Session["Cart"] = BookList;
+                Session["cartItemList"] = cartItemList;
+                Session["Cart"] = newBookList;
             }
+
+
 
 
             DefaultAopClient client = new DefaultAopClient(config.gatewayUrl, config.app_id, config.private_key, "json", "1.0", config.sign_type, config.alipay_public_key, config.charset, false);
         
-            // 外部订单号，商户网站订单系统中唯一的订单号
+            // 外部订单号，商户网站订单系统中唯一的订单号!!!!不能重复
             string out_trade_no = orderId.ToString();
             // 订单名称
             string subject = "DuangDuangBook";
@@ -94,7 +98,7 @@ namespace duangduangwang.Controllers
             try
             {
                 response = client.pageExecute(request, null, "post");
-                //Response.Write(response.Body);
+                Response.Write(response.Body);
             }
             catch (Exception exp)
             {
