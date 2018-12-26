@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using duangduangwang.Models;
-
+using duangduangwang.Models.IMapper;
 namespace duangduangwang.Models.Mapper
 {
-    public class OrderMapper
+    public class OrderMapper:IOrderMapper
     {
+       private DataClasses1DataContext db = new DataClasses1DataContext();
+        public IList<BookOrder> SearchOrders()
+        {
+            var results = from r in db.BookOrder
+                          select r;
+            return results.ToList<BookOrder>();
+        }
+
         public int addBookOrder(BookOrder bookOrder)
         {
-            DataClasses1DataContext db = new DataClasses1DataContext();
+            
             db.BookOrder.InsertOnSubmit(bookOrder);
             db.SubmitChanges();
             var results =from r in db.BookOrder
@@ -27,13 +35,13 @@ namespace duangduangwang.Models.Mapper
         }
         public void addOrderItem(OrderItem orderItem)
         {
-            DataClasses1DataContext db = new DataClasses1DataContext();
+           
             db.OrderItem.InsertOnSubmit(orderItem);
             db.SubmitChanges();
         }
         public void setOrderStatus(int orderId)
         {
-            DataClasses1DataContext db = new DataClasses1DataContext();
+          
             var results = from r in db.BookOrder
                           where r.OrderId == orderId
                           select r;
@@ -43,6 +51,29 @@ namespace duangduangwang.Models.Mapper
                 r.Status = 1;
             }
             db.SubmitChanges();
+        }
+        //返回所有订单
+        public IList<BookOrder> ListAllOrders()
+        {
+            var results = from r in db.BookOrder
+                          select r;
+            return results.ToList<BookOrder>();
+        }
+       // 返回所有订单项
+        public IList<OrderItem> ListAllOrderItems(int OrderId)
+        {
+            var results = from r in db.OrderItem
+                          where r.OrderId == OrderId
+                          select r;
+            return results.ToList<OrderItem>();
+        }
+        //返回某个订单详情
+        public IList<BookOrder> getOrderDetail(int OrderId)
+        {
+            var results = from r in db.BookOrder
+                          where r.OrderId == OrderId
+                          select r;
+            return results.ToList<BookOrder>();
         }
     }
 }
