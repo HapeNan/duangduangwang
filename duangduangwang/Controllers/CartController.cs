@@ -35,7 +35,10 @@ namespace duangduangwang.Controllers
                 foreach (Book item in BookList)
                 {
                     if (item.BookId == Id)
+                    {
+                        Session[BookId] = (int)Session[BookId] + 1;
                         return View(BookList);
+                    }
                 }
                 Session[Id.ToString() + "select"] = "true";
                 BookList.Add(res);
