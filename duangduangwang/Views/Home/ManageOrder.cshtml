@@ -39,22 +39,22 @@
                                         <li>
                                             <label class="required" for="login-email">订单号</label>
                                             <div class="input-box">
-                                                <input type="text" value="" class="input-text" />
+                                                <input type="text" value="" name="orderId" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
                                             <label class="required" for="login-password">用户ID</label>
                                             <div class="input-box">
-                                                <input type="text" class="input-text" />
+                                                <input type="text" name="userId" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
                                             <label class="required" for="login-password">订单状态</label>
                                             <div class="input-box">
-                                                <select id="Order_State">
-                                                    <option>全部</option>
-                                                    <option>已付款</option>
-                                                    <option>未付款</option>
+                                                <select id="Order_State" name="status">
+                                                    <option value="全部">全部</option>
+                                                    <option value="1">已付款</option>
+                                                    <option value="0">未付款</option>
                                                 </select>
                                             </div>
                                         </li>
@@ -70,19 +70,19 @@
                                         <li>
                                             <label class="required" for="login-password">包含图书ID</label>
                                             <div class="input-box">
-                                                <input type="text" class="input-text" />
+                                                <input type="text" name="orderItemBookId" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
                                             <label class="required" for="login-password">包含图书名称</label>
                                             <div class="input-box">
-                                                <input type="text" class="input-text" />
+                                                <input type="text" name="orderItemBookName"  class="input-text" />
                                             </div>
                                         </li>
                                         <li>
                                             <label class="required" for="login-password">下单日期</label>
                                             <div class="input-box">
-                                                <input type="date" class="input-text" />
+                                                <input type="date" name="createDate" class="input-text" />
                                             </div>
                                         </li>
                                     </ul>
