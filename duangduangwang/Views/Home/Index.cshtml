@@ -32,13 +32,13 @@
             @foreach (var item in ViewBag.NewBookList)
             {
             <li>
-                <a href="@Url.Action(" Details", "Book" ,new { id=item.BookId})" class="product_image"><img width="220" height="242" src="@item.Picture1" /></a>
+                <a href="@Url.Action("Details", "Book" ,new { id=item.BookId})" class="product_image"><img width="220" height="242" src="@item.Picture1" /></a>
                 <div class="product_info">
-                    <h3><a href="@Url.Action(" Details", "Book" ,new { id=item.BookId})">@item.BookName</a></h3>
+                    <h3><a href="@Url.Action("Details", "Book" ,new { id=item.BookId})">@item.BookName</a></h3>
                     <div style="height:40px;"><small title="@item.BookAbstract" style="overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;">@item.BookAbstract</small></div>
                 </div>
                 <div class="price_info">
-                    <form action="@Url.Action(" Details", "Book" ,new { id=item.BookId})">
+                    <form action="@Url.Action("Details", "Book" ,new { id=item.BookId})">
                         <a href="#">+ 添加至愿望单</a>
                         <button class="price_add" title="" type="submit"><span class="pr_price">￥ @item.BookPrice</span><span class="pr_add">添加到购物车</span></button>
                     </form>
@@ -57,13 +57,13 @@
             {
             var price = Convert.ToDouble(item.BookPrice) * Convert.ToDouble(item.CouponDetail)/10;
             <li>
-                <a href="@Url.Action(" Details", "Book" ,new { id=item.BookId})" class="product_image"><img width="220" height="242" src="@(item.Picture1)" /></a>
+                <a href="@Url.Action("Details", "Book" ,new { id=item.BookId})" class="product_image"><img width="220" height="242" src="@(item.Picture1)" /></a>
                 <div class="product_info">
-                    <h3><a href="@Url.Action(" Details", "Book" ,new { id=item.BookId})">@item.BookName</a></h3>
+                    <h3><a href="@Url.Action("Details", "Book" ,new { id=item.BookId})">@item.BookName</a></h3>
                     <div style="height:40px;"><small title="@item.BookAbstract" style="overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;">@item.BookAbstract</small></div>
                 </div>
                 <div class="price_info">
-                    <form action="@Url.Action(" Details", "Book" ,new { id=item.BookId})">
+                    <form action="@Url.Action("Details", "Book" ,new { id=item.BookId})">
                         <a href="#">+ 添加至愿望单</a>
                         <button class="price_add" title="" type="submit"><span class="pr_price">￥ @item.BookPrice</span><span class="pr_add">添加到购物车</span></button>
                     </form>

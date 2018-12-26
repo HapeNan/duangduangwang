@@ -108,11 +108,11 @@ namespace duangduangwang.Controllers
 
             if (selected == "true")
             {
-                Session[Id.ToString() + "select"] = true;
+                Session[Id.ToString() + "select"] = "true";
             }
             else
             {
-                Session[Id.ToString() + "select"] = false;
+                Session[Id.ToString() + "select"] = "false";
             }
             return new EmptyResult();
         }
