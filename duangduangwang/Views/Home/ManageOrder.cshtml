@@ -12,7 +12,7 @@
     //订单详情
     BookOrder orderDetail;
     if (ViewBag.Order != null && ViewBag.Order.Count>0)
-    { orderDetail = (BookOrder) ViewBag.Order.get(0); }
+    { orderDetail = (BookOrder) ViewBag.Order.ElementAt(0); }
     else
     {
         orderDetail = null;
@@ -31,7 +31,7 @@
                         <h2>输入查询条件</h2>
                     </div>
                     <div id="checkout-step-login">
-                        <form method="post" id="login-form" action="" >
+                        <form method="post" id="login-form" action="/Home/SearchOrders" >
                         <div class="col2-set">
                             <div class="col-2" style="float:left;margin-left:130px; margin-right:40px;">
                                 <fieldset>

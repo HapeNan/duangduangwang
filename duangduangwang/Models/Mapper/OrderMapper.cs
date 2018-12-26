@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using duangduangwang.Models;
-
+using duangduangwang.Models.IMapper;
 namespace duangduangwang.Models.Mapper
 {
-    public class OrderMapper
+    public class OrderMapper:IOrderMapper
     {
        private DataClasses1DataContext db = new DataClasses1DataContext();
+        public IList<BookOrder> SearchOrders()
+        {
+            var results = from r in db.BookOrder
+                          select r;
+            return results.ToList<BookOrder>();
+        }
+
         public int addBookOrder(BookOrder bookOrder)
         {
             

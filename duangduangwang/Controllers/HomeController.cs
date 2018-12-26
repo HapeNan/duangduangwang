@@ -34,9 +34,10 @@ namespace duangduangwang.Controllers
         }
 
         //查询订单
-        public ActionResult QueryOrder()
+        public ActionResult SearchOrders()
         {
-
+            ViewBag.OrderList = orderMapper.SearchOrders();
+      
             return View("ManageOrder");
         }
 
@@ -45,10 +46,7 @@ namespace duangduangwang.Controllers
         {
             ViewBag.OrderItemList = orderMapper.ListAllOrderItems(OrderId);
             ViewBag.Order = orderMapper.getOrderDetail(OrderId);
-            BookOrder orderDetail=new BookOrder();
-            if (ViewBag.Order.Count!=0)
-            orderDetail = orderMapper.getOrderDetail(OrderId).ElementAt(0);
-            DateTime date =(DateTime) orderDetail.createDate;
+           
             return View("ManageOrder");
         }
 
