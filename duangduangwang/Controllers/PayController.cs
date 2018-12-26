@@ -39,23 +39,25 @@ namespace duangduangwang.Controllers
             int orderId=orderMapper.addBookOrder(bookOrder);
              if (Session["Cart"] != null)
             {
-                List<Book> BookList = (List<Book>)Session["Cart"];//CartSelected
-                Session["cartItemList"] = BookList;
+                List<Book> BookList = (List<Book>)Session["Cart"];
+                List<Book>cartItemList = new List<Book>();//CartSelected
                 foreach (Book item in BookList)
                 {
-                    bool fg = bool.Parse(Session[item.BookId.ToString() + "select"].ToString());
-                    if (fg == true)
+                    string fg = Session[item.BookId.ToString() + "select"].ToString();
+                    if (fg == "true")
                     {
                         Models.OrderItem orderItem = new Models.OrderItem();
                         orderItem.OrderId = orderId;
-                        orderItem.Book = item;
+                        orderItem.BookId = item.BookId;
                         orderItem.quantity = (int)Session[orderItem.BookId.ToString()];
                         orderMapper.addOrderItem(orderItem);
                         //deleteFromCart 
-                        BookList.Remove(item);
                         Session[item.BookId.ToString() + "select"] = null;
+                        cartItemList.Add(item);
+                        BookList.Remove(item);
                     }
                 }
+                Session["cartItemList"] = BookList;
                 Session["Cart"] = BookList;
             }
 

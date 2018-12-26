@@ -97,8 +97,8 @@
 
                     foreach (var item in BookList)
                     {
-                        bool fg = bool.Parse(Session[item.BookId.ToString() + "select"].ToString());
-                        if (fg == true)
+                        string fg = Session[item.BookId.ToString() + "select"].ToString();
+                        if (fg == "true")
                         {
                             var name = item.BookName;//@Html.DisplayFor(modelItem => item.BookName);
                             var price = item.BookPrice;// @Html.DisplayFor(modelItem => item.BookPrice);
