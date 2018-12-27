@@ -6,6 +6,22 @@
     { ViewBag.BookList = new List<Book>(); }
     Layout = "~/Views/Shared/ManagerPage.cshtml";
 }
+<script>
+    function deletebook(id) {
+        var i = id.substring(0, id.indexOf('B'));
+        var con = confirm("确定要删除书籍吗qaq");
+        if (con == true) {
+            $.ajax({
+                type: 'post',
+                url: '/Home/DeleteBook?Id=' + i,
+                success: function () {
+                },
+                error: function () {
+                }
+            });
+        }
+    }
+</script>
 <style type="text/css">
     table, table tr th, table tr td {
         text-align: center;
@@ -139,6 +155,9 @@
                             {
                                 foreach (var book in ViewBag.BookList)
                                 {
+                                    var BookId = @book.BookId;
+                                    var delbtn = BookId + "Button2";
+
                     <tr>
                         <td><a href="#">@book.BookId</a></td>
                         <td>@book.BookName</td>
@@ -150,7 +169,7 @@
                         <td>@book.Coupon</td>
                         <td>
                             <input id="Button1" type="button" value="修改" />&nbsp;&nbsp;
-                            <input id="Button2" type="button" value="删除" />
+                            <input id="Button2" type="button" value="删除" onclick="deletebook(this.id)" />
                         </td>
                     </tr>
                                 }

@@ -88,6 +88,11 @@ namespace duangduangwang.Controllers
             bookMapper.AddBook(book);
             return View();
         }
+        public ActionResult ManageDeleteBook(int BookId)
+        {
+
+            return View();
+        }
         public ActionResult ManageAddBookInit()
         {
 
