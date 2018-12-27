@@ -57,9 +57,12 @@ namespace duangduangwang.Controllers
             return View("BookDetail");
         }
         //books of tag
-        public ActionResult GetBooksOfTag(string tag)
+        public ActionResult GetBooksOfTag(string tag,int? page)
         {
-            IList<Book> books = mapper.GetBooksOfTag(tag);
+            var books = mapper.GetBooksOfTag(tag);
+            int pageNumber = page ?? 1;
+            int pageSize = 6;
+            IPagedList<Book> pagedList = books.ToPagedList(pageNumber, pageSize);
             HashSet<string> tags = new HashSet<string>();
             foreach (Book bk in books)
             {
@@ -71,7 +74,7 @@ namespace duangduangwang.Controllers
             }
             ViewBag.books = books;
             ViewBag.tags = tags;
-            return View("SearchResult");
+            return View("SearchResult",pagedList);
         }
 
         // GET: Book
