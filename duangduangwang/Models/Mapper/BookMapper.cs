@@ -212,6 +212,22 @@ namespace duangduangwang.Models.Mapper
             }
             return 0;
         }
+        public int DeleteBook(int Id)
+        {
+            var result = from r in _db.Book
+                         where r.BookId == Id
+                         select r;
+            _db.Book.DeleteAllOnSubmit(result);
+            _db.SubmitChanges();
+            var results = from r in _db.Book
+                          where r.BookId ==Id
+                          select r;
+            if (results == null)
+            {
+                return 1;
+            }
+            return 0;
+        }
 
     }
 }

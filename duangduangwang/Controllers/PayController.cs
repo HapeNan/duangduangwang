@@ -29,6 +29,7 @@ namespace duangduangwang.Controllers
         // coupon orderId(流水账号?)
         public void SubmitOrder()
         {
+            int num = 0;
             string finalTotalPrice= (string)Request.Form["finalTotalPrice"];
             BookOrder bookOrder = new BookOrder();
             bookOrder.UserId = (int)Session["UserId"];
@@ -56,9 +57,11 @@ namespace duangduangwang.Controllers
                     }
                     else
                     {
+                        num += 1;
                         newBookList.Add(item);
                     }
                 }
+                Session["num"] = num;
                 Session["cartItemList"] = cartItemList;
                 Session["Cart"] = newBookList;
             }
