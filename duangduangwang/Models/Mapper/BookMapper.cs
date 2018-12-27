@@ -49,6 +49,15 @@ namespace duangduangwang.Models.Mapper
             return books.ToList<Book>();
         }
 
+        //search book by coupon
+        public IList<Book> SearchByCoupon(int Coupon)
+        {
+            var books = from b in _db.Book
+                        where b.Coupon == Coupon
+                        select b;
+            return books.ToList<Book>();
+        }
+
         //book detail
         public IList<Book> Details(int id)
         {
