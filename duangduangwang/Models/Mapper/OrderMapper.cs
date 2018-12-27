@@ -29,6 +29,13 @@ namespace duangduangwang.Models.Mapper
             }
             return true;                                        //是，就返回True
         }
+        public IList<BookOrder> SearchOrdersByUserId(string userId)
+        {
+            var orders = from order in db.BookOrder
+                         select order;
+            orders = orders.Where(s => s.UserId.ToString().Contains(userId));
+            return orders.ToList<BookOrder>();
+        }
 
         public IList<BookOrder> SearchOrders(string []query)
         {

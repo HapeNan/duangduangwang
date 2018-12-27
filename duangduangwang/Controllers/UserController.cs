@@ -11,14 +11,26 @@ namespace duangduangwang.Controllers
     public class UserController : Controller
     {
         UserMapper userMapper = new UserMapper();
+        OrderMapper orderMapper = new OrderMapper();
         // GET: User
         //public ActionResult Index()
         //{
         //    return View();
         //}
+
+        public ActionResult UserPage()
+        {
+            string userId = Session["userId"].ToString();
+            ViewBag.OrderList = orderMapper.SearchOrdersByUserId(userId);
+            return View();
+        }
         public ActionResult LoginPage()
         {
-            return View();
+            if (Session["username"] == null)
+            {
+                return View();
+            }
+            return Redirect("/Home/Index");
         }
         public ActionResult RegisterPage(FormCollection collection)
         {
@@ -66,7 +78,8 @@ namespace duangduangwang.Controllers
             {
                 if (username == templist.ElementAt(i).UserName && password == templist.ElementAt(i).Password)
                 {   //验证通过
-                    Session["username"] = username;
+                    Session["userName"] = username;
+                    Session["userId"] = templist.ElementAt(i).UserId;
                     return Redirect("/Home/Index");
                 }
             }

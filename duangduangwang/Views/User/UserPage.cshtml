@@ -1,0 +1,193 @@
+﻿@using duangduangwang.Models;
+@{
+
+    ViewBag.Title = "个人订单";
+    //查询结果列表
+    if (ViewBag.OrderList == null)
+    { ViewBag.OrderList = new List<BookOrder>(); }
+    //订单项列表
+    if (ViewBag.OrderItemList == null)
+    { ViewBag.OrderItemList = new List<OrderItem>(); }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //订单详情
+    BookOrder orderDetail;
+    if (ViewBag.Order != null && ViewBag.Order.Count > 0)
+    { orderDetail = (BookOrder)ViewBag.Order.ElementAt(0); }
+    else
+    {
+        orderDetail = null;
+    }
+}
+<style type="text/css">
+    table, table tr th, table tr td {
+        text-align: center;
+        border: 1px solid #000000;
+    }
+</style>
+<section>
+    <div class="full_page" style="margin-top:20px; ">
+        <!--CHECKOUT STEPS STARTS-->
+        <div class="checkout_steps" style="width:990px;">
+            <ol id="checkoutSteps">
+                
+                <li class="section allow active" id="opc-login">
+
+                    <div class="step-title" style="width:950px">
+                        <h2>订单列表</h2>
+                    </div>
+                    <div id="checkout-step-login">
+                        <table style="margin-left:110px;" border="1" cellspacing="0" cellpadding="0">
+
+                            <tr>
+                                <td width="100px"> 订单号</td>
+                                <td width="100px"> 用户ID</td>
+                                <td width="100px">订单总价</td>
+                                <td width="100px"> 付款状态</td>
+                                <td width="100px">下单日期</td>
+                                <td width="100px">下单日期</td>
+
+                            </tr>
+
+                            @if (ViewBag.OrderList.Count == 0)
+                            {
+                                <tr>
+                                    <td colspan="6">查询结果为空</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var order in ViewBag.OrderList)
+                                {
+                                    <tr>
+                                        <td><a href="/Home/OrderDetail?OrderId=@order.OrderId">@order.OrderId</a></td>
+                                        <td>@order.UserId</td>
+                                        <td>@order.TotalPrice</td>
+                                        <td>@order.Status</td>
+                                        <td>@order.createDate</td>
+
+                                    </tr>
+                                }
+                            }
+
+                        </table>
+                    </div>
+                </li>
+
+
+                <li class="section allow active" id="opc-login">
+                    <div class="step-title" style="width:950px">
+                        <h2>订单详情</h2>
+                    </div>
+                    <div id="checkout-step-login">
+                        <form method="post" id="login-form" action="">
+                            <div class="col2-set">
+                                <div class="col-2" style="float:left;margin-left:120px; margin-right:40px;">
+                                    <fieldset>
+                                        <ul class="form-list">
+                                            <li>
+                                                <label class="required" for="login-email">订单号</label>
+                                                <div class="input-box">
+                                                    <input type="text" value="@(orderDetail==null?"":orderDetail.OrderId.ToString())" class="input-text" readonly="readonly" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-password">用户ID</label>
+                                                <div class="input-box">
+                                                    <input type="text" value="@(orderDetail==null?"":orderDetail.UserId.ToString())" class="input-text" readonly="readonly" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-password">订单状态</label>
+
+                                                <div class="input-box">
+                                                    <input type="text" value="@(orderDetail==null?"":orderDetail.Status.ToString())" class="input-text" readonly="readonly" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-password">付款金额</label>
+                                                <div class="input-box">
+                                                    <input type="text" value="@(orderDetail==null?"":orderDetail.TotalPrice.ToString())" class="input-text" readonly="readonly" />
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <label class="required" for="login-password">下单日期</label>
+                                                <div class="input-box">
+                                                    <input type="date" value="@(orderDetail==null?"":orderDetail.createDate.ToString())" class="input-text" readonly="readonly" />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <br>
+                                    </fieldset>
+                                </div>
+                                <div class="col-2" style="float:left; margin-left:150px;">
+
+                                    <fieldset>
+                                        <ul class="form-list">
+
+                                            <li>
+                                                <table style="margin-left:-70px; margin-top:8px" border="1" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="100px">订单项编号</td>
+                                                        <td width="100px">图书编号</td>
+                                                        <td width="100px">订单编号</td>
+                                                        <td width="100px">数量</td>
+                                                    </tr>
+                                                    @if (ViewBag.OrderItemList.Count == 0)
+                                                    {
+                                                        <tr>
+                                                            <td colspan="4">订单为空</td>
+                                                        </tr>
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (var orderItem in ViewBag.OrderItemList)
+                                                        {
+                                                            <tr>
+                                                                <td>@orderItem.ItemId</td>
+                                                                <td>@orderItem.BookId</td>
+                                                                <td>@orderItem.OrderId</td>
+                                                                <td>@orderItem.quantity</td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </table>
+                                            </li>
+
+
+                                        </ul>
+                                        <br>
+                                    </fieldset>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </li>
+
+
+            </ol>
+        </div>
+        <!--CHECKOUT STEPS ENDS-->
+
+    </div>
+    <!--Newsletter_subscribe Starts-->
+
+    <div class="subscribe_block">
+        <div class="find_us">
+            <h3>联系我们</h3>
+            <a class="twitter" href="#"></a> <a class="facebook" href="#"></a> <a class="rss" href="#"></a>
+        </div>
+        <div class="subscribe_nl">
+            <h3>发送至我们的邮箱</h3>
+            <small>如果您在使用中有任何问题或者建议，请邮箱联系我们</small>
+            <form id="newsletter" method="post" action="#">
+                <input type="text" class="input-text" value="Enter your email" title="Enter your email" id="newsletter" name="email" />
+                <button class="button" title="" type="submit"></button>
+            </form>
+        </div>
+    </div>
+    <!--Newsletter_subscribe Ends-->
+</section>
+
