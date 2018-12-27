@@ -82,6 +82,7 @@ namespace duangduangwang.Controllers
         //跳转到图书管理界面/显示所有图书
         public ActionResult ManageBook()
         {
+            ViewBag.BookList=bookMapper.ListAllBooks();
             return View();
         }
         //管理员添加书籍
@@ -94,9 +95,9 @@ namespace duangduangwang.Controllers
             book.BookPublisher = Request["BookPublisher"];
             book.PublishTime = Convert.ToDateTime(Request["PublishTime"]);
             book.BookPrice = Convert.ToDouble(Request["BookPrice"]);
-            book.Picture1 = Request["Picture1"];
-            book.Picture2 = Request["Picture2"];
-            book.Picture3 = Request["Picture3"];
+            book.Picture1 = "/Images/" + Request["Picture1"];
+            book.Picture2 = "/Images/" + Request["Picture2"];
+            book.Picture3 = "/Images/" + Request["Picture3"];
             book.BookType = Request["BookType"];
             book.Tag = Request["Tag"];
             book.Coupon = Convert.ToInt32(Request["Coupon"]);

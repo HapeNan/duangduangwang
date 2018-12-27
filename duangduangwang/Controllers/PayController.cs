@@ -18,7 +18,10 @@ namespace duangduangwang.Controllers
         OrderMapper orderMapper = new OrderMapper();
         public ActionResult ConfirmOrder()
         {
-            
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("/User/LoginPage");
+            }
             Session["UserId"]=1;
             ////
             ViewBag.totalPrice = 100;
@@ -29,6 +32,7 @@ namespace duangduangwang.Controllers
         // coupon orderId(流水账号?)
         public void SubmitOrder()
         {
+           
             int num = 0;
             string finalTotalPrice= (string)Request.Form["finalTotalPrice"];
             BookOrder bookOrder = new BookOrder();

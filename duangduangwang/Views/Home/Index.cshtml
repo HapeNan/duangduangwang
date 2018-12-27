@@ -65,6 +65,7 @@
                 <div class="price_info">
                     <form action="@Url.Action("Details", "Book" ,new { id=item.BookId})">
                         <a href="#">+ 添加至愿望单</a>
+                        
                         <button class="price_add" title="" type="submit"><span class="pr_price">￥ @item.BookPrice</span><span class="pr_add">添加到购物车</span></button>
                     </form>
                 </div>

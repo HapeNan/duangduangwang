@@ -167,7 +167,7 @@
 
 
 
-        <div class="message success"  style="text-align:center;">欢迎来到购物车界面</div>
+        <div class="message success"  style="text-align:center; margin-top:20px;">欢迎来到购物车界面</div>
         @*<div class="action_buttonbar">
             <button type="button" title="" class="continue" onclick="window.location='/Home/Index'">继续购物</button>
             <button type="button" onclick="parent.location='ConfirmOrder'" title="" class="checkout">结算</button>
@@ -175,13 +175,13 @@
         <div class="cart_table" onload="uptotal()">
             <table class="data-table cart-table" id="shopping-cart-table" cellpadding="0" cellspacing="0">
                 <tr>
-                    <th colspan="2">图书</th>
-                    <th class="align_center" width="6%"></th>
-                    <th class="align_center" width="6%"></th>
-                    <th class="align_center" width="12%">图书单价</th>
-                    <th class="align_center" width="12%">图书数量</th>
-                    <th class="align_center" width="12%">单项总价</th>
-                    <th class="align_center" width="6%"></th>
+                    <th width="50px"></th>
+                    <th width="100px"></th>
+                    <th width="200px" style="text-align:center;">图书</th>
+                    <th width="150px" style="text-align:center;">图书单价</th>
+                    <th width="200px" style="text-align:center;">图书数量</th>
+                    <th class="align_center" style="text-align:center;" >单项总价</th>
+                    <th class="align_center"  ></th>
                 </tr>
                 @{
                     if (Model != null)
@@ -198,23 +198,23 @@
                             var subtot = num + "subtot";
                             var select = num + "select";
                         <tr id="@trnum.ToString()">
-                            <td>
+                            <td style="vertical-align:middle; text-align:center;">
                                 <input type="checkbox" name="select" id="@select.ToString()" value="1" checked onclick="checkboxclick(this.id)" />
                             </td>
-                            <td width="10%">
-                                <img src="@Html.DisplayFor(modelItem => item.Picture1)" />
+                            <td style="vertical-align:middle; text-align:center;">
+                                <img width="70px" height="70px" src="@Html.DisplayFor(modelItem => item.Picture1)" /> 
                                 <input type="hidden" name="hiddenbook" id="@txtnum.ToString()" value="1">
                             </td>
-                            <td class="align_left" width="44%"><a class="pr_name" href="#">@Html.DisplayFor(modelItem => item.BookName)</a><span class="pr_info">@Html.DisplayFor(modelItem => item.BookAbstract)</span></td>
-                            <td class="align_center"><a href="#" class="edit"></a></td>
-                            <td class="align_center vline"><span class="price" id="@pricenum.ToString()">@Html.DisplayFor(modelItem => item.BookPrice)</span></td>
-                            <td class="align_center vline">
+                            <td style="vertical-align:middle; text-align:center;"><a class="pr_name" href="#">@Html.DisplayFor(modelItem => item.BookName)</a></td>
+                            
+                            <td style="vertical-align:middle; text-align:center;"><span class="price" id="@pricenum.ToString()">@Html.DisplayFor(modelItem => item.BookPrice)</span></td>
+                            <td style="vertical-align:middle; text-align:center;">
                                 <input type="button" id="@subnum.ToString()" value="-" onclick="sub(this.id)" />
                                 <input id="@qtynum.ToString()" class="qty_box" type="text" value="@Session[num.ToString()]" onchange="qtychange(this.id)" />
                                 <input type="button" id="@plusnum.ToString()" value="+" onclick="plus(this.id)" />
                             </td>
-                            <td class="align_center vline"><span class="price" id="@subtot.ToString()"></span></td>
-                            <td class="align_center vline"><a href="javascript:void(0);" class="remove" onclick="delRow(this)"></a></td>
+                            <td style="vertical-align:middle; text-align:center;"><span class="price" id="@subtot.ToString()"></span></td>
+                            <td style="vertical-align:middle; text-align:center;"><a href="javascript:void(0);" class="remove" onclick="delRow(this)"></a></td>
                         </tr>
                             }
                         }
