@@ -18,20 +18,23 @@ namespace duangduangwang.Controllers
         OrderMapper orderMapper = new OrderMapper();
         public ActionResult ConfirmOrder()
         {
-            
-            Session["UserId"]=1;
-            ////
-            ViewBag.totalPrice = 100;
-            ViewBag.discountPrice = 20;
-            ViewBag.finalTotalPrice = "80.0";
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("/User/LoginPage");
+            }
+          
+            //Session["userId"]=1;
+            ViewBag.discountPrice = 0;
             return View();
         }
         // coupon orderId(流水账号?)
         public void SubmitOrder()
         {
+           
+            int num = 0;
             string finalTotalPrice= (string)Request.Form["finalTotalPrice"];
             BookOrder bookOrder = new BookOrder();
-            bookOrder.UserId = (int)Session["UserId"];
+            bookOrder.UserId = (int)Session["userId"];
             bookOrder.TotalPrice = Double.Parse(finalTotalPrice);
             bookOrder.Status = 0;
             bookOrder.createDate =System.DateTime.Now;
@@ -56,9 +59,11 @@ namespace duangduangwang.Controllers
                     }
                     else
                     {
+                        num += 1;
                         newBookList.Add(item);
                     }
                 }
+                Session["num"] = num;
                 Session["cartItemList"] = cartItemList;
                 Session["Cart"] = newBookList;
             }
@@ -69,7 +74,7 @@ namespace duangduangwang.Controllers
             DefaultAopClient client = new DefaultAopClient(config.gatewayUrl, config.app_id, config.private_key, "json", "1.0", config.sign_type, config.alipay_public_key, config.charset, false);
         
             // 外部订单号，商户网站订单系统中唯一的订单号!!!!不能重复
-            string out_trade_no = orderId.ToString();
+            string out_trade_no = orderId.ToString()+"-"+DateTime.Now.ToString("yyyyMMddHHmmss");
             // 订单名称
             string subject = "DuangDuangBook";
             // 付款金额

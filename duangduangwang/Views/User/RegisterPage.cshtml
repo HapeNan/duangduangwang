@@ -23,18 +23,18 @@
 <!--Mid Section Start-->
 <section>
     <div class="full_page">
-        <h1>注册成为会员</h1>
+       
         <!--CHECKOUT STEPS STARTS-->
-        <div class="checkout_steps">
+        <div class="checkout_steps" style="width:990px;">
             <ol id="checkoutSteps">
                 <li class="section allow active" id="opc-login">
-                    <div class="step-title">
+                    <div class="step-title" style="width:950px;">
                         <h2>注册</h2>
                     </div>
                     <div id="checkout-step-login">
                         <form method="post" id="register-form" action="~/User/Register" onsubmit="return checkForm()">
                             <div class="col2-set">
-                                <div class="col-1">
+                                <div class="col-2"  style="float:left;margin-left:130px; margin-right:40px;">
                                     <h3>@TempData["wrongMessage"]</h3>
                                     <h3>请填写信息</h3>
                                     <fieldset>
@@ -42,25 +42,35 @@
                                             <li>
                                                 <label class="required" for="login-email"><em>*</em>用户名</label>
                                                 <div class="input-box">
-                                                    <input name="username" type="text" class="input-text" required/>
+                                                    <input name="username" type="text" class="input-text" required />
                                                 </div>
                                             </li>
                                             <li>
                                                 <label class="required" for="login-password"><em>*</em>密码</label>
                                                 <div class="input-box">
-                                                    <input id="password" name="password" type="password" class="input-text" required/>
+                                                    <input id="password" name="password" type="password" class="input-text" required />
                                                 </div>
                                             </li>
                                             <li>
                                                 <label class="required" for="login-password"><em>*</em>确认密码</label>
                                                 <div class="input-box">
-                                                    <input id="confirm" name="confirm" type="password" class="input-text" required/>
+                                                    <input id="confirm" name="confirm" type="password" class="input-text" required />
                                                 </div>
                                             </li>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+
+
+                                <div class="col-2" style="float:left; margin-left:150px; margin-top:60px;">
+
+                                    <fieldset>
+                                        <ul class="form-list">
+
                                             <li>
                                                 <label class="required" for="login-password"><em>*</em>电话号码</label>
                                                 <div class="input-box">
-                                                    <input id="phonenumber" name="phonenumber" type="text" class="input-text" required/>
+                                                    <input id="phonenumber" name="phonenumber" type="text" class="input-text" required />
                                                 </div>
                                             </li>
                                             <li>
@@ -76,47 +86,42 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                        <br />
-                                        <br />
                                     </fieldset>
-                                    <div class="buttons-set" style="text-align: center">
-                                        <input value="注册" class="button brown_btn" type="submit">
-                                    </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </li>
-            </ol>
-        </div>
+                            <br />
+                            <br />
+                            <div class="col2-set">
+                                <div class="col-1" style="margin-left:430px; margin-top:50px;">
+                                    <div class="buttons-set">
+                                        <input class="button brown_btn" type="submit" value="   注册  " />
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+
+                           
+                            </form>
+</div>
+                    </ol>
+</div>
+                     
         <!--CHECKOUT STEPS ENDS-->
-        <div class="col_right">
-            <div class="block-progress">
-                <div class="block-title">Your Checkout Progress</div>
-                <ul>
-                    <li>Billing Address</li>
-                    <li>Shipping Address</li>
-                    <li>Shipping Method</li>
-                    <li>Payment Method</li>
-                </ul>
-            </div>
-            <div class="right_promo">
-                <img src="images/side_promo_banner.jpg" />
-            </div>
-        </div>
+       
     </div>
     <!--Newsletter_subscribe Starts-->
     <div class="subscribe_block">
         <div class="find_us">
-            <h3>Find us on</h3>
+            <h3>联系我们</h3>
             <a class="twitter" href="#"></a> <a class="facebook" href="#"></a> <a class="rss" href="#"></a>
         </div>
         <div class="subscribe_nl">
-            <h3>Subscribe to our Newsletter</h3>
-            <small>Instant wardrobe updates, new arrivals, fashion news, don’t miss a beat – sign up to our newsletter now.</small>
-            <form id="newsletter" method="post" action="#" />
-            <input type="text" class="input-text" value="Enter your email" title="Enter your email" id="newsletter" name="email" />
-            <button class="button" title="" type="submit"></button>
+            <h3>发送至我们的邮箱</h3>
+            <small>如果您在使用中有任何问题或者建议，请邮箱联系我们</small>
+            <form id="newsletter" method="post" action="#">
+                <input type="text" class="input-text" value="Enter your email" title="Enter your email" id="newsletter" name="email" />
+                <button class="button" title="" type="submit"></button>
             </form>
         </div>
     </div>

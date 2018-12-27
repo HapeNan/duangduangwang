@@ -29,6 +29,13 @@ namespace duangduangwang.Models.Mapper
             }
             return true;                                        //是，就返回True
         }
+        public IList<BookOrder> SearchOrdersByUserId(string userId)
+        {
+            var orders = from order in db.BookOrder
+                         select order;
+            orders = orders.Where(s => s.UserId.ToString().Contains(userId));
+            return orders.ToList<BookOrder>();
+        }
 
         public IList<BookOrder> SearchOrders(string []query)
         {
@@ -42,12 +49,12 @@ namespace duangduangwang.Models.Mapper
             var orders = from order in db.BookOrder
                         select order;
 
-            if (orderId!="" && IsNumeric(orderId))
+            if (orderId!="")
             {
                 orders = orders.Where(s => s.OrderId.ToString().Contains(orderId));
             }
 
-            if (userId != "" && IsNumeric(userId))
+            if (userId != "")
             {
                 orders = orders.Where(s => s.UserId.ToString().Contains(userId));
             }
@@ -55,17 +62,16 @@ namespace duangduangwang.Models.Mapper
             {
                 orders = orders.Where(s => s.Status.ToString().Contains(status));
             }
-            if (createDate != "")
-            {
-                orders = orders.Where(s => s.createDate.ToString().Contains(createDate));
-            }
+            //if (createDate != "")
+            //{
+            //    orders = orders.Where(s => s.createDate.ToString().Contains(createDate));
+            //}
 
             return orders.ToList<BookOrder>();
         }
 
         public int addBookOrder(BookOrder bookOrder)
         {
-            
             db.BookOrder.InsertOnSubmit(bookOrder);
             db.SubmitChanges();
             var results =from r in db.BookOrder

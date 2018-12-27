@@ -140,15 +140,25 @@
                     <!--Language Switcher Ends-->
                     <!--Top Links Starts-->
                     <ul class="top_links">
-                        <li><a href="#">我的账户</a></li>
-                        <li><a href="#">愿望单</a></li>
-                        <li><a href="/User/LoginPage">登录</a></li>
-                        <li class="highlight"><a href="/User/RegisterPage">注册</a></li>
+                        <li><a href="/User/UserPage">我的订单</a></li>
+                        <li><a href="/Cart/ToCart">购物车</a></li>
+                        @if (Session["userName"] == null)
+    {
+                    <li><a href="/User/LoginPage">登录</a></li>
+                    <li class="highlight"><a href="/User/RegisterPage">注册</a></li>
+}
+else
+{
+                    <li><a href="/User/UserPage">@Session["userName"]</a></li>
+                    <li class="highlight"><a href="/User/Logout">注销</a></li>
+
+}
+
                     </ul>
                     <!--Top Links Ends-->
                 </div>
                 <!--Logo Starts-->
-                <h1 class="logo"> <a href="#"><img src="/Images/logo.png" /></a> </h1>
+                <h1 class="logo"> <a href="/Home/Index"><img src="/Images/logo.png" /></a> </h1>
                 <!--Logo Ends-->
                 <!--Responsive NAV-->            <div class="responsive-nav" style="display:none;">
                     <select onchange="if(this.options[this.selectedIndex].value != ''){window.top.location.href=this.options[this.selectedIndex].value}">
@@ -533,9 +543,17 @@
         <a href="#" class="page_open">导航</a>
         <ul>
             <li> <a href="/Home/Index">主页</a></li>
-            <li> <a href="leisure_listing.html">书品列表</a></li>
+            <li> <a href="/Book/Search">书品列表</a></li>
             <li> <a href="@Url.Action("ToCart","Cart")">购物车</a></li>
-            <li> <a href="/User/LoginPage">登录/注册</a></li>
+            @if (Session["userName"] == null)
+    {
+        <li> <a href="/User/LoginPage">登录/注册</a></li>
+}
+else
+{
+        <li> <a href="/User/UserPage">我的订单</a></li>
+}
+
             <li> <a href="#">联系我们</a></li>
         </ul>
     </div>
