@@ -142,13 +142,13 @@
                     <ul class="top_links">
                         <li><a href="#">我的账户</a></li>
                         <li><a href="#">愿望单</a></li>
-                        <li><a href="/User/LoginPage">登录</a></li>
-                        <li class="highlight"><a href="/User/RegisterPage">注册</a></li>
+                        <li><a href="#">@(Session["username"]==null?"登录":Session["username"])</a></li>
+                        <li class="highlight"><a href="#">注册</a></li>
                     </ul>
                     <!--Top Links Ends-->
                 </div>
                 <!--Logo Starts-->
-                <h1 class="logo"> <a href="#"><img src="/Images/logo.png" /></a> </h1>
+                <h1 class="logo"> <a href="/Home/Index"><img src="/Images/logo.png" /></a> </h1>
                 <!--Logo Ends-->
                 <!--Responsive NAV-->            <div class="responsive-nav" style="display:none;">
                     <select onchange="if(this.options[this.selectedIndex].value != ''){window.top.location.href=this.options[this.selectedIndex].value}">
