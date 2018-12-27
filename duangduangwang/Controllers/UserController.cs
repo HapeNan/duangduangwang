@@ -24,10 +24,9 @@ namespace duangduangwang.Controllers
             ViewBag.OrderList = orderMapper.SearchOrdersByUserId(userId);
             return View();
         }
-
         public ActionResult LoginPage()
         {
-            if (Session["userName"] == null || Session["userName"].ToString()=="" )
+            if (Session["userName"] == null || Session["userName"].ToString() == "")
             {
                 return View();
             }
@@ -58,26 +57,27 @@ namespace duangduangwang.Controllers
             }
         }
 
-        public ActionResult Register(string username,string password, string phonenumber, string address="",string receiver="")  //注册
+        public ActionResult Register()  //注册
         {
             List<Customer> templist = userMapper.Alllist();
             for (int i = 0; i < templist.Count; i++)
             {
-                if (username == templist.ElementAt(i).UserName)
+                if (Request["username"] == templist.ElementAt(i).UserName)
                 {   //用户名已被使用
                     TempData["wrongMessage"] = "用户名已被使用";
                     return Redirect("/User/RegisterPage");
                 }
             }
             Customer customer = new Customer();
-            customer.UserName = username;
-            customer.Password = password;
-            customer.Address = address;
-            customer.PhoneNumber = phonenumber;
-            customer.Receiver = receiver;
+            customer.UserName = Request["username"];
+            customer.Password = Request["password"];
+            customer.Address = Request["address"];
+            customer.PhoneNumber = Request["phonenumber"];
+            customer.Receiver = Request["receiver"];
             customer.Member = "false";
             userMapper.Insert(customer);
             TempData["message"] = "注册成功,请登录";
+            //return Content(Request["username"] + " " + Request["password"] +" "+ Request["address"] + " "+Request["phonenumber"] +" "+ Request["receiver"] );
             return View("LoginPage");
         }
         public ActionResult Login(string username,string password)
@@ -96,5 +96,6 @@ namespace duangduangwang.Controllers
             TempData["message"] = "用户不存在或密码错误";
             return View("LoginPage");
         }
+
     }
 }
