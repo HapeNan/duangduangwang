@@ -32,7 +32,7 @@
                 {
                     sArray.Add(requestItem[i], Request.QueryString[requestItem[i]]);
                 }
-                string orderId = "";
+                string out_trade_no = "";
                 string finalTotalPrice = "";
                 if (sArray.Count != 0)
                 {
@@ -40,7 +40,7 @@
                     if (flag)
                     {
                         //Response.Write("同步验证通过");
-                        sArray.TryGetValue("out_trade_no", out orderId);
+                        sArray.TryGetValue("out_trade_no", out out_trade_no);
                         sArray.TryGetValue("total_amount", out finalTotalPrice);
                     }
                     else
@@ -48,8 +48,10 @@
                         Response.Write("同步验证失败");
                     }
                 }
+                string[]cs = out_trade_no.Split('-');
+                int orderId = int.Parse(cs[0]);
                 OrderMapper orderMapper = new OrderMapper();
-                orderMapper.setOrderStatus(int.Parse(orderId));
+                orderMapper.setOrderStatus(orderId);
 
 
             <table>
