@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using duangduangwang.Models;
 using duangduangwang.Models.Mapper;
+using PagedList;
 
 namespace duangduangwang.Controllers
 {
@@ -15,28 +16,37 @@ namespace duangduangwang.Controllers
         private BookMapper mapper= new BookMapper();
 
         //book search
-        public ActionResult Search(string book_name,int page=1)
+        public ActionResult Search(string book_name , int? page)
         {
+            var books = mapper.Search(book_name);
 
-            IList<Book> books = mapper.Search(book_name);
+            //page list
+            int pageNumber = page ?? 1;
+            int pageSize = 6;
+            //books = books.OrderBy(x => x.BookId);
+            IPagedList<Book> pagedList = books.ToPagedList(pageNumber, pageSize);
 
-            //HashSet<string> tags = new HashSet<string>();
-            //foreach(Book bk in books)
-            //{
-            //    string[] tagOfBook = bk.Tag.Split(',');
-            //    foreach (var t in tagOfBook)
-            //    {
-            //        tags.Add(t);
-            //    }
-            //}
             HashSet<string> tags = mapper.GetTagsOfBook(books);
-            ViewBag.books = books;
+            ViewBag.books = pagedList;
+            ViewBag.tags = tags;
+
+            return View("SearchResult",pagedList);
+        }
+
+        //search book by Coupon
+        public ActionResult SearchByCoupon(int Coupon, int? page)
+        {
+            var books = mapper.SearchByCoupon(Coupon);
+            int pageNumber = page ?? 1;
+            int pageSize = 6;
+            IPagedList<Book> pagedList = books.ToPagedList(pageNumber, pageSize);
+            HashSet<string> tags = mapper.GetTagsOfBook(books);
+            ViewBag.books = pagedList;
             ViewBag.tags = tags;
             return View("SearchResult");
         }
-
-        // book details
-        public ActionResult Details(int id)
+            // book details
+            public ActionResult Details(int id)
         {
 
             IList<Book> books = mapper.Details(id);

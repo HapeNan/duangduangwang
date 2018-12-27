@@ -2,7 +2,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "搜索结果";
 }
-@*@model PagedList.IPagedList<duangduangwang.Models.Book>*@
+@model PagedList.IPagedList<duangduangwang.Models.Book>
+@using PagedList.Mvc;
+
 <div class="section_container">
     <!--Mid Section Starts-->
     <section>
@@ -14,10 +16,10 @@
                     <li class="header">书籍分类标签</li>
 
                     @foreach (var t in ViewBag.tags)
-                {
+                    {
 
-                    <li><a href="@Url.Action("GetBooksOfTag", "Book", new {tag=t})">@t</a></li>
-            }
+                        <li><a href="@Url.Action("GetBooksOfTag", "Book", new {tag=t})">@t</a></li>
+                    }
                 </ul>
 
                 <ul class="category price">
@@ -58,35 +60,51 @@
                     </select>
                 </div>
             </div>
+
             <!--Toolbar-->
             <!--Product List Starts-->
             <div class="products_list products_slider">
                 <ul>
                     @foreach (var book in ViewBag.books)
-                {
-                    <li>
-                        <a class="product_image" href="@Url.Action("Details", "Book",new { id=book.BookId})"><img src="@(book.Picture1)" width="224px" height="246px" /></a>
-                        <div class="product_info">
-                            <h3><a href="@Url.Action("Details", "Book",new { id=book.BookId})"> @book.BookName</a></h3>
-                            @*<small>@book.BookAbstract</small>*@
-                            <div style="height:40px;">
-                                <small title="@book.BookAbstract" style="overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;">@book.BookAbstract</small>
+                    {
+                        <li>
+                            <a class="product_image" href="@Url.Action("Details", "Book",new { id=book.BookId})"><img src="@(book.Picture1)" width="224px" height="246px" /></a>
+                            <div class="product_info">
+                                <h3><a href="@Url.Action("Details", "Book",new { id=book.BookId})"> @book.BookName</a></h3>
+                                @*<small>@book.BookAbstract</small>*@
+                                <div style="height:60px;">
+                                    <small title="@book.BookAbstract" style="overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:3;line-height:26px; -webkit-box-orient: vertical;">@book.BookAbstract</small>
+                                </div>
                             </div>
-                        </div>
-                        <div class="price_info">
-                            <form action="@Url.Action("Details", "Book",new { id=book.BookId})">
-                                <a href="#">+ 添加至愿望单</a>
-                                <button class="price_add" title="" type="submit"><span class="pr_price">￥ @book.BookPrice</span><span class="pr_add">添加到购物车</span></button>
-                            </form>
-                        </div>
-                    </li>
-            }
+                            <div class="price_info">
+                                <form action="@Url.Action("Details", "Book",new { id=book.BookId})">
+                                    <a href="#">+ 添加至愿望单</a>
+                                    <button class="price_add" title="" type="submit"><span class="pr_price">￥ @book.BookPrice</span><span class="pr_add">添加到购物车</span></button>
+                                </form>
+                            </div>
+                        </li>
+
+                    }
+
                 </ul>
-                @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { LinkToFirstPageFormat = "首页", LinkToNextPageFormat = "下一页", LinkToPreviousPageFormat = "上一页", LinkToLastPageFormat = "末页", DisplayItemSliceAndTotal = false, MaximumPageNumbersToDisplay = 3 })*@
+
             </div>
+            <style>
+                .pagination li {
+                    float: left;
+                    padding: 0px 10px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: #544f4b;
+                    font-size:16px
+                }
+                </style>@Html.PagedListPager(Model, page => Url.Action("Search", new { page }), new PagedListRenderOptions { LinkToFirstPageFormat = "首页", LinkToNextPageFormat = "下一页", LinkToPreviousPageFormat = "上一页", LinkToLastPageFormat = "末页", DisplayLinkToIndividualPages = true, DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = true
+                 })
             <!--Product List Ends-->
-         
+
         </div>
+
         <!--MAIN CONTENT ENDS-->
         <!--Newsletter_subscribe Starts-->
         <div class="subscribe_block">
@@ -105,7 +123,9 @@
         </div>
         <!--Newsletter_subscribe Ends-->
     </section>
+   
     <!--Mid Section Ends-->
 </div>
+
 
 
