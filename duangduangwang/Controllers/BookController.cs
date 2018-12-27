@@ -43,7 +43,8 @@ namespace duangduangwang.Controllers
             HashSet<string> tags = mapper.GetTagsOfBook(books);
             ViewBag.books = pagedList;
             ViewBag.tags = tags;
-            return View("SearchResult");
+          
+            return View("SearchResult",pagedList);
         }
             // book details
             public ActionResult Details(int id)

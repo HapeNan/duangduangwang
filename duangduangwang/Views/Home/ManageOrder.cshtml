@@ -11,8 +11,8 @@
     Layout = "~/Views/Shared/ManagerPage.cshtml";
     //订单详情
     BookOrder orderDetail;
-    if (ViewBag.Order != null && ViewBag.Order.Count>0)
-    { orderDetail = (BookOrder) ViewBag.Order.ElementAt(0); }
+    if (ViewBag.Order != null)
+    { orderDetail = ViewBag.Order; }
     else
     {
         orderDetail = null;
@@ -189,7 +189,7 @@
                                         <li>
                                             <label class="required" for="login-password">下单日期</label>
                                             <div class="input-box">
-                                                <input type="date" value="@(orderDetail==null?"":orderDetail.createDate.ToString())" class="input-text" readonly="readonly"/>
+                                                <input type="date" value="@(orderDetail==null?"":orderDetail.createDate.Value.Year+"-"+orderDetail.createDate.Value.Month.ToString().PadLeft(2,'0')+"-"+orderDetail.createDate.Value.Day.ToString().PadLeft(2,'0'))" class="input-text" readonly="readonly"/>
                                             </div>
                                         </li>
                                     </ul>

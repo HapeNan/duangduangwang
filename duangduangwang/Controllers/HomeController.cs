@@ -74,8 +74,7 @@ namespace duangduangwang.Controllers
         public ActionResult OrderDetail(int OrderId)
         {
             ViewBag.OrderItemList = orderMapper.ListAllOrderItems(OrderId);
-            ViewBag.Order = orderMapper.getOrderDetail(OrderId);
-           
+            ViewBag.Order = orderMapper.getOrderDetail(OrderId).ElementAt<BookOrder>(0);
             return View("ManageOrder");
         }
 

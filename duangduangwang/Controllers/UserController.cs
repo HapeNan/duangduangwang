@@ -20,6 +20,8 @@ namespace duangduangwang.Controllers
 
         public ActionResult UserPage()
         {
+            if (Session["userId"] == null)
+                Response.Redirect("/User/LoginPage");
             string userId = Session["userId"].ToString();
             ViewBag.OrderList = orderMapper.SearchOrdersByUserId(userId);
             return View();
@@ -95,6 +97,13 @@ namespace duangduangwang.Controllers
             //登录失败，重新登录，提示信息
             TempData["message"] = "用户不存在或密码错误";
             return View("LoginPage");
+        }
+        public ActionResult UserOrderDetail(string OrderId)
+        {
+            ViewBag.OrderDetail = orderMapper.getOrderDetail(int.Parse(OrderId)).ElementAt<BookOrder>(0);
+            ViewBag.OrderItemList = orderMapper.ListAllOrderItems(int.Parse(OrderId));
+            ViewBag.OrderList = orderMapper.SearchOrdersByUserId(Session["userId"].ToString());
+            return View("UserPage");
         }
 
     }

@@ -37,7 +37,7 @@ namespace duangduangwang.Controllers
                     int number = (int)Session[item.BookId.ToString()];
                     if (fg == "true")
                     {
-                        totalprice +=(double) item.BookPrice;
+                        totalprice +=(double) item.BookPrice * number;
                         if (item.Coupon == 1)
                         {
                             discountPrice += (double)item.BookPrice * number * int.Parse(item.CouponDetail) / 10;
@@ -58,6 +58,7 @@ namespace duangduangwang.Controllers
 
                     total +=(double) item.BookPrice*number;
                 }
+                if(Coupon2List.Count!=0)
                 if (total > int.Parse(i[0]))
                 {
                     total -= int.Parse(i[1]);
