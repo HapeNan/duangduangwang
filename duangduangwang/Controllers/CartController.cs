@@ -36,7 +36,7 @@ namespace duangduangwang.Controllers
                 {
                     if (item.BookId == Id)
                     {
-                        Session[BookId] = (int)Session[BookId] + 1;
+                        Session[BookId] = (int)Session[BookId] + qty;
                         return View(BookList);
                     }
                 }

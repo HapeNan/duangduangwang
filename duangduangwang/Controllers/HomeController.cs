@@ -52,7 +52,6 @@ namespace duangduangwang.Controllers
             string orderItemBookName = Request["orderItemBookName"];
             string[] query = new string[] { orderId, userId, status, createDate, orderItemBookId, orderItemBookName }; 
             ViewBag.OrderList = orderMapper.SearchOrders(query);
-
             return View("ManageOrder");
 
         }
@@ -83,10 +82,32 @@ namespace duangduangwang.Controllers
         {
             return View();
         }
+        //管理员添加书籍
         public ActionResult ManageAddBook()
         {
+            Book book=new Book();
+            book.BookName = Request["BookName"];
+            book.BookAbstract = Request["BookAbstract"];
+            book.BookWriter = Request["BookWriter"];
+            book.BookPublisher = Request["BookPublisher"];
+            book.PublishTime = Convert.ToDateTime(Request["PublishTime"]);
+            book.BookPrice = Convert.ToDouble(Request["BookPrice"]);
+            book.Picture1 = Request["Picture1"];
+            book.Picture2 = Request["Picture2"];
+            book.Picture3 = Request["Picture3"];
+            book.BookType = Request["BookType"];
+            book.Tag = Request["Tag"];
+            book.Coupon = Convert.ToInt32(Request["Coupon"]);
+            book.CouponDetail = Request["CouponDetail"];
+            bookMapper.AddBook(book);
             return View();
         }
+        public ActionResult ManageAddBookInit()
+        {
+
+            return View();
+        }
+
         public ActionResult ManageBulkEditing()
         {
             return View();
