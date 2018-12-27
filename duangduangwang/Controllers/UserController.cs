@@ -24,14 +24,23 @@ namespace duangduangwang.Controllers
             ViewBag.OrderList = orderMapper.SearchOrdersByUserId(userId);
             return View();
         }
+
         public ActionResult LoginPage()
         {
-            if (Session["username"] == null)
+            if (Session["userName"] == null || Session["userName"].ToString()=="" )
             {
                 return View();
             }
             return Redirect("/Home/Index");
         }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("userName");
+            Session.Remove("userId");
+            return Redirect("/Home/Index");
+        }
+
         public ActionResult RegisterPage(FormCollection collection)
         {
             string isRegister = Request["checkout_register"];
