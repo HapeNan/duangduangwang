@@ -142,8 +142,8 @@
                     <ul class="top_links">
                         <li><a href="#">我的账户</a></li>
                         <li><a href="#">愿望单</a></li>
-                        <li><a href="#">@(Session["username"]==null?"登录":Session["username"])</a></li>
-                        <li class="highlight"><a href="#">注册</a></li>
+                        <li><a href="/User/LoginPage">@(Session["username"]==null?"登录":Session["username"])</a></li>
+                        <li class="highlight"><a href="/User/RegisterPage">注册</a></li>
                     </ul>
                     <!--Top Links Ends-->
                 </div>

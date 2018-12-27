@@ -167,11 +167,6 @@ namespace duangduangwang.Controllers
             return View("ManageBook");
 
         }
-        public ActionResult ManageAddBook()
-        {
-
-            return View();
-        }
 
         public ActionResult ManageBulkEditing()
         {
