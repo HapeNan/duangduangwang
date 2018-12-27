@@ -22,7 +22,7 @@
                         <h2>输入查询条件</h2>
                     </div>
                     <div id="checkout-step-login">
-                        <form method="post" id="login-form" action="" >
+                        <form method="post" id="login-form" action="/Home/SearchUsers" >
                         <div class="col2-set">
                             <div class="col-2" style="float:left;margin-left:130px; margin-right:40px;">
                                 <fieldset>
@@ -30,17 +30,17 @@
                                         <li>
                                             <label class="required" for="login-email">用户ID</label>
                                             <div class="input-box">
-                                                <input type="text" value="" class="input-text" />
+                                                <input type="text" value="" name="userId" class="input-text" />
                                             </div>
                                         </li>
                                         
                                         <li>
                                             <label class="required" for="login-password">会员</label>
                                             <div class="input-box">
-                                                <select id="Order_State">
-                                                    <option>全部</option>
-                                                    <option>是</option>
-                                                    <option>否</option>
+                                                <select id="member" name="member">
+                                                    <option value="全部">全部</option>
+                                                    <option value="true">是</option>
+                                                    <option value="false">否</option>
                                                 </select>
                                             </div>
                                         </li>
@@ -56,13 +56,13 @@
                                         <li>
                                             <label class="required" for="login-password">用户名</label>
                                             <div class="input-box">
-                                                <input type="text" class="input-text" />
+                                                <input type="text" name="userName" class="input-text" />
                                             </div>
                                         </li>
                                         <li>
                                             <label class="required" for="login-password">手机号</label>
                                             <div class="input-box">
-                                                <input type="text" class="input-text" />
+                                                <input type="text" name="phoneNumber" class="input-text" />
                                             </div>
                                         </li>
                                        
