@@ -140,7 +140,7 @@
                     <!--Language Switcher Ends-->
                     <!--Top Links Starts-->
                     <ul class="top_links">
-                        <li><a href="#">我的账户</a></li>
+                        <li><a href="/User/UserPage">我的订单</a></li>
                         <li><a href="#">愿望单</a></li>
                         @if (Session["userName"] == null)
     {
@@ -150,7 +150,7 @@
 else
 {
                     <li><a href="/User/UserPage">@Session["userName"]</a></li>
-                    <li class="highlight"><a href="#">注销</a></li>
+                    <li class="highlight"><a href="/User/Logout">注销</a></li>
 
 }
 
@@ -551,7 +551,7 @@ else
 }
 else
 {
-        <li> <a href="/User/UserPage">我的账户</a></li>
+        <li> <a href="/User/UserPage">我的订单</a></li>
 }
 
             <li> <a href="#">联系我们</a></li>

@@ -26,12 +26,20 @@ namespace duangduangwang.Controllers
         }
         public ActionResult LoginPage()
         {
-            if (Session["username"] == null)
+            if (Session["userName"] == null || Session["userName"].ToString() == "")
             {
                 return View();
             }
             return Redirect("/Home/Index");
         }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("userName");
+            Session.Remove("userId");
+            return Redirect("/Home/Index");
+        }
+
         public ActionResult RegisterPage(FormCollection collection)
         {
             string isRegister = Request["checkout_register"];
@@ -88,5 +96,6 @@ namespace duangduangwang.Controllers
             TempData["message"] = "用户不存在或密码错误";
             return View("LoginPage");
         }
+
     }
 }
