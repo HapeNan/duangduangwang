@@ -47,17 +47,20 @@ namespace duangduangwang.Models.Mapper
                 orders = orders.Where(s => s.OrderId.ToString().Contains(orderId));
             }
 
-            if (userId != "" && IsNumeric(orderId))
+            if (userId != "" && IsNumeric(userId))
             {
-                orders = orders.Where(s => s.OrderId.ToString().Contains(orderId));
+                orders = orders.Where(s => s.UserId.ToString().Contains(userId));
+            }
+            if (status != "全部" )
+            {
+                orders = orders.Where(s => s.Status.ToString().Contains(status));
+            }
+            if (createDate != "")
+            {
+                orders = orders.Where(s => s.createDate.ToString().Contains(createDate));
             }
 
-
-            if (status == "全部") status = "";
-            var results = from r in db.BookOrder
-                          //where SqlMethods.Like(r.OrderId,"%o%")
-                          select r;
-            return results.ToList<BookOrder>();
+            return orders.ToList<BookOrder>();
         }
 
         public int addBookOrder(BookOrder bookOrder)
