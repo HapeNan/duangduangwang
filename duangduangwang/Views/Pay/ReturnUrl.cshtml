@@ -48,8 +48,8 @@
                         Response.Write("同步验证失败");
                     }
                 }
-                //OrderMapper orderMapper = new OrderMapper();
-                //orderMapper.setOrderStatus(int.Parse(orderId));
+                OrderMapper orderMapper = new OrderMapper();
+                orderMapper.setOrderStatus(int.Parse(orderId));
 
 
             <table>
@@ -67,20 +67,16 @@
 
                     foreach (var item in BookList)
                     {
-                        bool fg = bool.Parse(Session[item.BookId.ToString() + "select"].ToString());
-                        if (fg == true)
-                        {
-                            var name = item.BookName;//@Html.DisplayFor(modelItem => item.BookName);
-                            var price = item.BookPrice;// @Html.DisplayFor(modelItem => item.BookPrice);
-                            var num = (int)Session[item.BookId.ToString()];// @Html.DisplayFor(modelItem => item.BookId);
-                            var itemPrice = Convert.ToDouble(price) * Convert.ToDouble(num);
-                            <tr>
-                                <td>@name</td>
-                                <td>@num</td>
-                                <td>￥@price</td>
-                                <td>￥@itemPrice</td>
-                            </tr>
-                        }
+                        var name = item.BookName;//@Html.DisplayFor(modelItem => item.BookName);
+                        var price = item.BookPrice;// @Html.DisplayFor(modelItem => item.BookPrice);
+                        var num = (int)Session[item.BookId.ToString()];// @Html.DisplayFor(modelItem => item.BookId);
+                        var itemPrice = Convert.ToDouble(price) * Convert.ToDouble(num);
+                        <tr>
+                            <td>@name</td>
+                            <td>@num</td>
+                            <td>￥@price</td>
+                            <td>￥@itemPrice</td>
+                        </tr>
                     }
 
                 }
