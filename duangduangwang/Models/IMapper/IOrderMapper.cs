@@ -14,6 +14,6 @@ namespace duangduangwang.Models.IMapper
         IList<BookOrder> ListAllOrders();
         IList<OrderItem> ListAllOrderItems(int OrderId);
         IList<BookOrder> getOrderDetail(int OrderId);
-        IList<BookOrder> SearchOrders();
+        IList<BookOrder> SearchOrders(string []query);
     }
 }

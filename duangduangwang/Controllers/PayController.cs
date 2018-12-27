@@ -43,17 +43,18 @@ namespace duangduangwang.Controllers
                 Session["cartItemList"] = BookList;
                 foreach (Book item in BookList)
                 {
-                    bool fg = bool.Parse(Session[item.BookId.ToString() + "select"].ToString());
-                    if (fg == true)
+                    string fg = Session[item.BookId.ToString() + "select"].ToString();
+                    if (fg == "true")
                     {
                         Models.OrderItem orderItem = new Models.OrderItem();
                         orderItem.OrderId = orderId;
-                        orderItem.Book = item;
+                        orderItem.BookId = item.BookId;
                         orderItem.quantity = (int)Session[orderItem.BookId.ToString()];
                         orderMapper.addOrderItem(orderItem);
                         //deleteFromCart 
-                        BookList.Remove(item);
+
                         Session[item.BookId.ToString() + "select"] = null;
+                        BookList.Remove(item);
                     }
                 }
                 Session["Cart"] = BookList;

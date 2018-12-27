@@ -36,9 +36,17 @@ namespace duangduangwang.Controllers
         //查询订单
         public ActionResult SearchOrders()
         {
-            ViewBag.OrderList = orderMapper.SearchOrders();
-      
+            string orderId = Request["orderId"];  //如果为空则id为""
+            string userId = Request["userId"]; 
+            string status = Request["status"];
+            string createDate = Request["createDate"];
+            string orderItemBookId = Request["orderItemBookId"];
+            string orderItemBookName = Request["orderItemBookName"];
+            string[] query = new string[] { orderId, userId, status, createDate, orderItemBookId, orderItemBookName }; 
+            ViewBag.OrderList = orderMapper.SearchOrders(query);
+
             return View("ManageOrder");
+
         }
 
         //查看某个订单详情
