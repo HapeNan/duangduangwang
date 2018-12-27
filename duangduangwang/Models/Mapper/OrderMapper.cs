@@ -65,7 +65,6 @@ namespace duangduangwang.Models.Mapper
 
         public int addBookOrder(BookOrder bookOrder)
         {
-            
             db.BookOrder.InsertOnSubmit(bookOrder);
             db.SubmitChanges();
             var results =from r in db.BookOrder

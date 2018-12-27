@@ -196,5 +196,22 @@ namespace duangduangwang.Models.Mapper
                 _db.SubmitChanges();
             }
         }
+        public int AddBook(Book book)
+        {
+            _db.Book.InsertOnSubmit(book);
+            _db.SubmitChanges();
+            var results = from r in _db.Book
+                          where r == book
+                          select r;
+            if (results != null)
+            {
+                foreach (Book r in results)
+                {
+                    return r.BookId;
+                }
+            }
+            return 0;
+        }
+
     }
 }

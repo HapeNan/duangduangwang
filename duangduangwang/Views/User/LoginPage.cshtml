@@ -1,0 +1,149 @@
+﻿<script type="text/javascript">
+    function radioCheck() {
+        var tempr = document.getElementById("login:register").checked;
+        if (tempr) {
+            document.getElementById("checkout_register").value="register";
+        }
+        else {
+            document.getElementById("checkout_register").value="guest";
+        } 
+    }
+</script>
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.isRegister</h2>
+<section>
+    <div class="full_page">
+        <h1>身份选择</h1>
+        <!--CHECKOUT STEPS STARTS-->
+        <div class="checkout_steps">
+            <ol id="checkoutSteps">
+                <li class="section allow active" id="opc-login">
+                    <div class="step-title">
+                        <span class="number">1</span>
+                        <h2>选择进入方式</h2>
+                    </div>
+                    <div id="checkout-step-login">
+                        <div class="col2-set">
+                            <form method="post" id="register-form" action="~/User/RegisterPage" onsubmit="radioCheck();">
+                                <div class="col-1">
+                                    <h3>以 游客/注册 进入</h3>
+                                    <p>注册后更加方便：</p>
+                                    <ul class="form-list">
+                                        <li class="control">
+                                            <input type="radio" class="radio" value="guest" id="login:guest" name="checkout" />
+                                            <label>以游客身份进入</label>
+                                        </li>
+                                        <li class="control">
+                                            <input type="radio" class="radio" value="true" id="login:register" name="checkout" checked="checked" />
+                                            <label>注册</label>
+                                            <input type="hidden" value="none" id="checkout_register" name="checkout_register" />
+                                        </li>
+                                    </ul>
+                                    <h4>注册以获取更快捷的服务：</h4>
+                                    <p>
+                                        <ul class="ul">
+                                            <li>快捷的验证方式</li>
+                                            <li>快速查询订单历史和状态</li>
+                                        </ul>
+                                    </p>
+                                    <div class="buttons-set">
+                                        <input class="button brown_btn" type="submit" value="下一步">
+                                    </div>
+                                </div> 
+                            </form>
+                            <form method="post" id="login-form" action="~/User/Login">
+                                <div class="col-1">
+                                    <h3 >@TempData["message"]</h3>
+                                    <h3>登录</h3>
+                                    <fieldset>
+                                        <h4>已经注册？</h4>请在下方登录：
+                                        <ul class="form-list">
+                                            <li>
+                                                <label class="required" for="login-email"><em>*</em>用户名</label>
+                                                <div class="input-box">
+                                                    <input name="username" type="text" class="input-text" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-password"><em>*</em>密码</label>
+                                                <div class="input-box">
+                                                    <input name="password" type="password" class="input-text" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#">忘记密码？</a>
+                                            </li>
+                                        </ul>
+                                        <br />
+                                    </fieldset>
+                                    <div class="buttons-set">
+                                        <input class="button brown_btn" type="submit" value="登录" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-title">
+                        <span class="number">2</span>
+                        <h2>Billing Information</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-title">
+                        <span class="number">3</span>
+                        <h2>Shipping Information</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-title">
+                        <span class="number">4</span>
+                        <h2>Shipping Method</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="step-title">
+                        <span class="number">5</span>
+                        <h2>Order Preview</h2>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <!--CHECKOUT STEPS ENDS-->
+        <div class="col_right">
+            <div class="block-progress">
+                <div class="block-title">Your Checkout Progress</div>
+                <ul>
+                    <li>Billing Address</li>
+                    <li>Shipping Address</li>
+                    <li>Shipping Method</li>
+                    <li>Payment Method</li>
+                </ul>
+            </div>
+            <div class="right_promo">
+                <img src="images/side_promo_banner.jpg" />
+            </div>
+        </div>
+    </div>
+    <!--Newsletter_subscribe Starts-->
+    <div class="subscribe_block">
+        <div class="find_us">
+            <h3>Find us on</h3>
+            <a class="twitter" href="#"></a> <a class="facebook" href="#"></a> <a class="rss" href="#"></a>
+        </div>
+        <div class="subscribe_nl">
+            <h3>Subscribe to our Newsletter</h3>
+            <small>Instant wardrobe updates, new arrivals, fashion news, don’t miss a beat – sign up to our newsletter now.</small>
+            <form id="newsletter" method="post" action="#" />
+            <input type="text" class="input-text" value="Enter your email" title="Enter your email" id="newsletter" name="email" />
+            <button class="button" title="" type="submit"></button>
+            </form>
+        </div>
+    </div>
+    <!--Newsletter_subscribe Ends-->
+</section>
+<!--Mid Section Ends-->

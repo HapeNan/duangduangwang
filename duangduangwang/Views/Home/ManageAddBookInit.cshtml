@@ -1,0 +1,180 @@
+﻿@using duangduangwang.Models;
+@{
+
+    ViewBag.Title = "新增图书";
+    Layout = "~/Views/Shared/ManagerPage.cshtml";
+}
+<style type="text/css">
+    table, table tr th, table tr td {
+        text-align: center;
+        border: 1px solid #000000;
+    }
+
+</style>
+<script>
+    function respon() {
+        alert("已成功添加书籍");
+    }
+    </script>
+<section>
+    <div class="full_page" style="margin-top:20px; ">
+        <!--CHECKOUT STEPS STARTS-->
+        <div class="checkout_steps" style="width:990px;">
+            <ol id="checkoutSteps">
+
+
+
+
+                <li class="section allow active" id="opc-login">
+                    <div class="step-title" style="width:950px">
+                        <h2>图书详情</h2>
+                    </div>
+                    <div id="checkout-step-login" style="height:500px;">
+                        <form method="post" id="login-form" action="/Home/ManageAddBook">
+                            <div class="col2-set" style="height:470px;">
+                                <div class="col-2" style="float:left;margin-left:120px; margin-right:40px;">
+                                    <fieldset>
+                                        <ul class="form-list">
+
+                                            <li>
+                                                <label class="required" for="login-password">图书名称</label>
+                                                <div class="input-box">
+                                                    <input type="text" class="input-text" name="BookName" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-password">图书简介</label>
+
+                                                <div class="input-box">
+                                                    <textarea class="input-text" rows="11" cols="34" name="BookAbstract"></textarea>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-password">作者</label>
+                                                <div class="input-box">
+                                                    <input type="text" class="input-text" name="BookWriter" />
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <label class="required" for="login-password">出版社</label>
+                                                <div class="input-box">
+                                                    <input type="text" class="input-text" name="BookPublisher" />
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <label class="required" for="login-password">出版时间</label>
+                                                <div class="input-box">
+                                                    <input type="date" class="input-text" name="PublishTime" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-email">价格</label>
+                                                <div class="input-box">
+                                                    <input type="text" value="" class="input-text" name="BookPrice" />
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                        <br>
+                                    </fieldset>
+                                </div>
+                                <div class="col-2" style="float:left; margin-left:150px;">
+
+                                    <fieldset>
+                                        <ul class="form-list">
+                                            <li>
+                                                <label class="required" for="login-email">图片1</label>
+                                                <div class="input-box">
+                                                    <input type="file" value="" class="input-text" name="Picture1" />
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <label class="required" for="login-email">图片2</label>
+                                                <div class="input-box">
+                                                    <input type="file" value="" class="input-text" name="Picture2" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-email">图片3</label>
+                                                <div class="input-box">
+                                                    <input type="file" value="" class="input-text" name="Picture3" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-email">图书类型</label>
+                                                <div class="input-box">
+                                                    <input type="text" value="" class="input-text" name="BookType" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-email">Tags</label>
+                                                <div class="input-box">
+                                                    <input type="text" value="" class="input-text" name="Tag" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-email">优惠详情</label>
+                                                <div class="input-box">
+                                                    <input type="text" value="" class="input-text" name="CouponDetail" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="required" for="login-password">优惠状态</label>
+                                                <div class="input-box">
+                                                    <select id="Order_State" name="Coupon">
+                                                        <option>0</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                        <br>
+                                    </fieldset>
+
+                                </div>
+                            </div>
+                            <div class="col2-set">
+                                <div class="col-1" style="margin-left:190px;">
+                                    <div class="buttons-set">
+                                        <input value="   添加   " class="button brown_btn" type="submit" onclick="respon()"/>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="buttons-set">
+                                        <button class="button brown_btn" type="button">&nbsp;&nbsp;&nbsp;清空&nbsp;&nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+            </ol>
+        </div>
+        <!--CHECKOUT STEPS ENDS-->
+
+    </div>
+    <!--Newsletter_subscribe Starts-->
+
+    <div class="subscribe_block">
+        <div class="find_us">
+            <h3>联系我们</h3>
+            <a class="twitter" href="#"></a> <a class="facebook" href="#"></a> <a class="rss" href="#"></a>
+        </div>
+        <div class="subscribe_nl">
+            <h3>发送至我们的邮箱</h3>
+            <small>如果您在使用中有任何问题或者建议，请邮箱联系我们</small>
+            <form id="newsletter" method="post" action="#">
+                <input type="text" class="input-text" value="Enter your email" title="Enter your email" id="newsletter" name="email" />
+                <button class="button" title="" type="submit"></button>
+            </form>
+        </div>
+    </div>
+    <!--Newsletter_subscribe Ends-->
+</section>
+

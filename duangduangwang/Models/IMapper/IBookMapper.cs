@@ -16,5 +16,6 @@ namespace duangduangwang.Models.IMapper
         List<Book> GetBookById(int Id);
         List<Book> ListAllBooks();
         List<Book> SearchBooks(string []query);
+        int AddBook(Book book);
     }
 }
