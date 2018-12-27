@@ -22,9 +22,52 @@ namespace duangduangwang.Controllers
             {
                 Response.Redirect("/User/LoginPage");
             }
-          
+            double discountPrice = 0;
+            double discountPrice2 = 0;
+            double totalprice = 0;
+            double total = 0;
+            if (Session["Cart"] != null)
+            {
+                List<Book> BookList = (List<Book>)Session["Cart"];
+                List<Book> Coupon2List = new List<Book>();
+                foreach (Book item in BookList)
+                {
+                   
+                    string fg = Session[item.BookId.ToString() + "select"].ToString();
+                    int number = (int)Session[item.BookId.ToString()];
+                    if (fg == "true")
+                    {
+                        totalprice +=(double) item.BookPrice;
+                        if (item.Coupon == 1)
+                        {
+                            discountPrice += (double)item.BookPrice * number * int.Parse(item.CouponDetail) / 10;
+                        }
+                        else if (item.Coupon == 2)
+                        {
+                            Coupon2List.Add(item);
+                        }
+                    }
+
+                }
+              
+                string[] i= {""};
+                foreach (Book item in Coupon2List)
+                {
+                    int number = (int)Session[item.BookId.ToString()];
+                    i = item.CouponDetail.Split(',');
+
+                    total +=(double) item.BookPrice*number;
+                }
+                if (total > int.Parse(i[0]))
+                {
+                    total -= int.Parse(i[1]);
+                    discountPrice2= int.Parse(i[1]);
+                }
+            }
+
             //Session["userId"]=1;
-            ViewBag.discountPrice = 0;
+            ViewBag.finalTotalPrice = discountPrice + total;
+            ViewBag.discountPrice = totalprice - discountPrice - total;
             return View();
         }
         // coupon orderId(流水账号?)
