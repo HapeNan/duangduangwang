@@ -49,12 +49,12 @@ namespace duangduangwang.Models.Mapper
             var orders = from order in db.BookOrder
                         select order;
 
-            if (orderId!="" && IsNumeric(orderId))
+            if (orderId!="")
             {
                 orders = orders.Where(s => s.OrderId.ToString().Contains(orderId));
             }
 
-            if (userId != "" && IsNumeric(userId))
+            if (userId != "")
             {
                 orders = orders.Where(s => s.UserId.ToString().Contains(userId));
             }
@@ -62,10 +62,10 @@ namespace duangduangwang.Models.Mapper
             {
                 orders = orders.Where(s => s.Status.ToString().Contains(status));
             }
-            if (createDate != "")
-            {
-                orders = orders.Where(s => s.createDate.ToString().Contains(createDate));
-            }
+            //if (createDate != "")
+            //{
+            //    orders = orders.Where(s => s.createDate.ToString().Contains(createDate));
+            //}
 
             return orders.ToList<BookOrder>();
         }

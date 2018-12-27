@@ -5,6 +5,7 @@ using System.Web;
 using duangduangwang.Models.IMapper;
 using duangduangwang.Models;
 using System.Text;
+using System.Globalization;
 
 namespace duangduangwang.Models.Mapper
 {
@@ -110,35 +111,90 @@ namespace duangduangwang.Models.Mapper
         }
        public List<Book> SearchBooks(string[] query)
         {
-            string orderId = query[0];  //如果为空则id为""
-            string userId = query[1];
-            string status = query[2];
-            string createDate = query[3];
-            string orderItemBookId = query[4];
-            string orderItemBookName = query[5];
+           
+            string bookId = query[0];  //如果为空则id为""
+            string bookName = query[1];
+            string bookPublisher = query[2];
+            string bookType = query[3];
+            string bookWriter = query[4];
+            string publishTime = query[5];
+            string coupon = query[6];
+            string Tag = query[7];
 
             var books = from book in _db.Book
                          select book;
 
-            if (orderId != "" && IsNumeric(orderId))
+            //if (publishTime != "")
+            //{
+            //    books = books.Where(s => s.PublishTime.ToString().Contains(publishTime));
+            //}
+            if (coupon != "" )
             {
-                books = books.Where(s => s.BookId.ToString().Contains(orderId));
+                books = books.Where(s => s.Coupon.ToString().Contains(coupon));
+            }
+            if (Tag != "")
+            {
+                books = books.Where(s => s.Tag.ToString().Contains(Tag));
             }
 
-            //if (userId != "" && IsNumeric(userId))
-            //{
-            //    books = books.Where(s => s.UserId.ToString().Contains(userId));
-            //}
-            //if (status != "全部")
-            //{
-            //   books = books.Where(s => s.Status.ToString().Contains(status));
-            //}
-            //if (createDate != "")
-            //{
-            //    books = books.Where(s => s.createDate.ToString().Contains(createDate));
-            //}
+            if (bookId != "")
+            {
+                books = books.Where(s => s.BookId.ToString().Contains(bookId));
+            }
+
+            if (bookName != "" )
+            {
+                books = books.Where(s => s.BookName.ToString().Contains(bookName));
+            }
+            if (bookPublisher != "")
+            {
+                books = books.Where(s => s.BookPublisher.ToString().Contains(bookPublisher));
+            }
+            if (bookType != "")
+            {
+                books = books.Where(s => s.BookType.ToString().Contains(bookType));
+            }
+            if (bookWriter != "")
+            {
+                books = books.Where(s => s.BookWriter.ToString().Contains(bookWriter));
+            }
+
 
             return books.ToList<Book>();
+        }
+       public void UpdateBook(string[] query)
+        {
+            var book = from b in _db.Book
+                       where b.BookId == int.Parse(query[0])
+                       select b;
+            //string[] query = new string[] { bookId, bookName,bookAbstract,bookWriter,
+            //    bookPublisher,publishTime,Picture1,Picture2,
+            //    Picture3,bookType,coupon,price,
+            //    CouponDetail,Tag};
+            DateTime dt;
+            DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
+            dtFormat.ShortDatePattern = "yyyy/MM/dd";
+            dt = Convert.ToDateTime(query[5], dtFormat);
+            if (book != null)
+            {
+                foreach (Book b in book)
+                {
+                    b.BookName = query[1];
+                    b.BookAbstract = query[2];
+                    b.BookWriter = query[3];
+                    b.BookPublisher = query[4];
+                    b.PublishTime = dt;
+                    b.Picture1 = query[6];
+                    b.Picture2 = query[7];
+                    b.Picture3 = query[8];
+                    b.BookType = query[9];
+                    b.Coupon = int.Parse(query[10]);
+                    b.BookPrice = double.Parse(query[11]);
+                    b.CouponDetail = query[12];
+                    b.Tag = query[13];
+                }
+                _db.SubmitChanges();
+            }
         }
         public int AddBook(Book book)
         {
@@ -153,6 +209,22 @@ namespace duangduangwang.Models.Mapper
                 {
                     return r.BookId;
                 }
+            }
+            return 0;
+        }
+        public int DeleteBook(int Id)
+        {
+            var result = from r in _db.Book
+                         where r.BookId == Id
+                         select r;
+            _db.Book.DeleteAllOnSubmit(result);
+            _db.SubmitChanges();
+            var results = from r in _db.Book
+                          where r.BookId ==Id
+                          select r;
+            if (results == null)
+            {
+                return 1;
             }
             return 0;
         }
