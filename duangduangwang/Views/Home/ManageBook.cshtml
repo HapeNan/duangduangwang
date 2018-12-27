@@ -9,13 +9,16 @@
 }
 <script>
     function deletebook(id) {
+        
         var i = id.substring(0, id.indexOf('B'));
         var con = confirm("确定要删除书籍吗qaq");
         if (con == true) {
             $.ajax({
                 type: 'post',
-                url: '/Home/DeleteBook?Id=' + i,
+                url: '/Home/ManageDeleteBook?Id=' + i,
                 success: function () {
+                alert("删除书籍成功!")
+                window.location.reload(true); 
                 },
                 error: function () {
                 }
@@ -170,7 +173,7 @@
                         <td>@book.Coupon</td>
                         <td><div style="margin-left:5px;">
                         <a href="/Home/BookDetail?BookId=@book.BookId"> <input id="Button1" type="button" value="修改" /></a>&nbsp;&nbsp;
-                        <a href="#"><input id="Button2" type="button" value="删除" onclick="deletebook(this.id)"/></a>
+                        <a href="#"><input id="@delbtn" type="button" value="删除" onclick="deletebook(this.id)"/></a>
                          </div>
                         </td>
                     </tr>

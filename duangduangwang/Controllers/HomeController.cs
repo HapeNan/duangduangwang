@@ -160,22 +160,18 @@ namespace duangduangwang.Controllers
             string CouponDetail = Request["CouponDetail"];
             string Tag = Request["Tag"];
             string[] query = new string[] { bookId, bookName,bookAbstract,bookWriter,
-                bookPublisher,publishTime,Picture1,Picture2,Picture3,bookType,coupon,price,CouponDetail,Tag};
-
+            bookPublisher,publishTime,Picture1,Picture2,Picture3,bookType,coupon,price,CouponDetail,Tag};
             bookMapper.UpdateBook(query);
-
             return View("ManageBook");
-
         }
-        public ActionResult ManageAddBook()
-        public ActionResult ManageDeleteBook(int BookId)
+        public ActionResult ManageDeleteBook(int Id)
         {
-
-            return View();
+            bookMapper.DeleteBook(Id);
+            return View("ManageBook");
         }
         public ActionResult ManageAddBookInit()
         {
-
+           
             return View();
         }
 
