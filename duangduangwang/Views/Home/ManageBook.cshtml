@@ -227,12 +227,18 @@
                                             </div>
                                         </li>
                                         <li>
+                                            <label class="required" for="login-password">出版商</label>
+                                            <div class="input-box">
+                                                <input type="text" name="BookPublisher" value="@(bookDetail==null?"":bookDetail.BookPublisher)" class="input-text" />
+                                            </div>
+                                        </li>
+                                        <li>
                                             <label class="required" for="login-email">价格</label>
                                             <div class="input-box">
                                                 <input type="text" name="BookPrice" value="@(bookDetail==null?"":bookDetail.BookPrice.ToString())" class="input-text" />
                                             </div>
                                         </li>
-                                      
+
                                     </ul>
                                     <br>
                                 </fieldset>

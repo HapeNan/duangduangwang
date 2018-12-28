@@ -105,12 +105,26 @@
                             var num = (int)Session[item.BookId.ToString()];// @Html.DisplayFor(modelItem => item.BookId);
                             var itemPrice = Convert.ToDouble(price) * Convert.ToDouble(num);
                             sum += Convert.ToDouble(itemPrice);
-                            <tr>
-                                <td>@name</td>
-                                <td>@num</td>
-                                <td>￥@price</td>
-                                <td>￥@itemPrice</td>
-                            </tr>
+                <tr>
+                    <td>@name</td>
+                    <td>@num</td>
+                    @if (item.Coupon == 1)
+                    {
+                        var disprice = Convert.ToDouble(price) * int.Parse(item.CouponDetail) / 10;
+                   <td>￥@disprice    &nbsp;&nbsp;<s>@price</s></td>
+                        var tolprice = Convert.ToDouble(itemPrice) * int.Parse(item.CouponDetail) / 10;
+                   <td>￥@tolprice</td>
+                    }
+
+
+                    else
+                    {
+                <td>￥@price</td>
+                <td>￥@itemPrice</td>
+
+                    }
+              
+                </tr>
                         }
                     }
 
@@ -118,10 +132,11 @@
             </table>
 
                 <div class="Sum_infor">
-                    <p class="p1">配送费用：￥0.00+商品费用：￥@ViewBag.totalPrice-优惠：￥<label id="discountPrice">@ViewBag.discountPrice</label></p>
-                    <p class="p2">合计：<span>￥<label id="finalTotalPrice2">@sum</label></span></p>
+                    <p class="p1">配送费用：￥0.00+商品费用：￥@sum-优惠：￥<label id="discountPrice">@ViewBag.discountPrice</label></p>
+                   
+                    <p class="p2">合计：<span>￥<label id="finalTotalPrice2">@ViewBag.finalTotalPrice</label></span></p>
                     @*<input type="hidden" name="totalPrice" id="totalPrice" value="@ViewBag.totalPrice">*@
-                    <input type="hidden" name="finalTotalPrice" id="finalTotalPrice" value="@sum">
+                    <input type="hidden" name="finalTotalPrice" id="finalTotalPrice" value="@ViewBag.finalTotalPrice">
                     <input type="submit" value="提交订单" class="p3button">
                 </div>
             }

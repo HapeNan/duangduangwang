@@ -141,7 +141,7 @@
                     <!--Top Links Starts-->
                     <ul class="top_links">
                         <li><a href="/User/UserPage">我的订单</a></li>
-                        <li><a href="#">愿望单</a></li>
+                        <li><a href="/Cart/ToCart">购物车</a></li>
                         @if (Session["userName"] == null)
     {
                     <li><a href="/User/LoginPage">登录</a></li>
@@ -173,7 +173,7 @@ else
                 </div>
                 <!--Responsive NAV-->
                 <!--Search Starts-->
-                <form class="header_search" action="~/Book/Search">
+                <form class="header_search" action="~/Book/Search/1">
                     <div class="form-search">
                         <input id="search" type="text" name="book_name" value="" class="input-text" autocomplete="off" placeholder="Search" />
                         <button type="submit" title="Search"></button>
@@ -448,7 +448,7 @@ else
                                     }
                                     <div class="cart_bottom">
                                         <div class="subtotal_menu"><small>商品价格:</small><span id="scart"><big>¥ @sumpri</big></span></div>
-                                        <a href="leisure_cart.html">结算</a>
+                                        <a href="/Cart/ToCart">结算</a>
                                     </div>
                                 }
                             }

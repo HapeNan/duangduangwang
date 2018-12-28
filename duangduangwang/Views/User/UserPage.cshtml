@@ -11,8 +11,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     //订单详情
     BookOrder orderDetail;
-    if (ViewBag.Order != null && ViewBag.Order.Count > 0)
-    { orderDetail = (BookOrder)ViewBag.Order.ElementAt(0); }
+    if (ViewBag.OrderDetail != null)
+    { orderDetail = ViewBag.OrderDetail; }
     else
     {
         orderDetail = null;
@@ -44,7 +44,7 @@
                                 <td width="100px">订单总价</td>
                                 <td width="100px"> 付款状态</td>
                                 <td width="100px">下单日期</td>
-                                <td width="100px">下单日期</td>
+                              
 
                             </tr>
 
@@ -58,14 +58,22 @@
                             {
                                 foreach (var order in ViewBag.OrderList)
                                 {
-                                    <tr>
-                                        <td><a href="/Home/OrderDetail?OrderId=@order.OrderId">@order.OrderId</a></td>
-                                        <td>@order.UserId</td>
-                                        <td>@order.TotalPrice</td>
-                                        <td>@order.Status</td>
-                                        <td>@order.createDate</td>
+                                <tr>
+                                    <td><a href="/User/UserOrderDetail?OrderId=@order.OrderId">@order.OrderId</a></td>
+                                    <td>@order.UserId</td>
+                                    <td>@order.TotalPrice</td>
+                                    @if (order.Status == 0)
+    {
+                                <td>未付款</td>
+}
+else
+{
+                                <td>已付款</td>
+}
+                                   
+                                    <td>@order.createDate</td>
 
-                                    </tr>
+                                </tr>
                                 }
                             }
 
@@ -115,7 +123,7 @@
                                                 <li>
                                                     <label class="required" for="login-password">下单日期</label>
                                                     <div class="input-box">
-                                                        <input type="date" value="@(orderDetail==null?"":orderDetail.createDate.ToString())" class="input-text" readonly="readonly" />
+                                                        <input type="date" value="@(orderDetail==null?"":orderDetail.createDate.Value.Year+"-"+orderDetail.createDate.Value.Month.ToString().PadLeft(2,'0')+"-"+orderDetail.createDate.Value.Day.ToString().PadLeft(2,'0'))" class="input-text" readonly="readonly" />
                                                     </div>
                                                 </li>
                                             </ul>

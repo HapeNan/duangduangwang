@@ -74,14 +74,14 @@ namespace duangduangwang.Controllers
         public ActionResult OrderDetail(int OrderId)
         {
             ViewBag.OrderItemList = orderMapper.ListAllOrderItems(OrderId);
-            ViewBag.Order = orderMapper.getOrderDetail(OrderId);
-           
+            ViewBag.Order = orderMapper.getOrderDetail(OrderId).ElementAt<BookOrder>(0);
             return View("ManageOrder");
         }
 
         //跳转到图书管理界面/显示所有图书
         public ActionResult ManageBook()
         {
+            ViewBag.BookList=bookMapper.ListAllBooks();
             return View();
         }
         //管理员添加书籍
@@ -94,9 +94,9 @@ namespace duangduangwang.Controllers
             book.BookPublisher = Request["BookPublisher"];
             book.PublishTime = Convert.ToDateTime(Request["PublishTime"]);
             book.BookPrice = Convert.ToDouble(Request["BookPrice"]);
-            book.Picture1 = Request["Picture1"];
-            book.Picture2 = Request["Picture2"];
-            book.Picture3 = Request["Picture3"];
+            book.Picture1 = "/Images/" + Request["Picture1"];
+            book.Picture2 = "/Images/" + Request["Picture2"];
+            book.Picture3 = "/Images/" + Request["Picture3"];
             book.BookType = Request["BookType"];
             book.Tag = Request["Tag"];
             book.Coupon = Convert.ToInt32(Request["Coupon"]);
@@ -138,9 +138,9 @@ namespace duangduangwang.Controllers
   
         }
         //修改图书信息
-        public ActionResult UpdateBook()
+        public ActionResult UpdateBook()//控制器捕获UpdateBook动作
         {
-            string bookId = Request["BookId"];  //如果为空则id为""
+            string bookId = Request["BookId"];  
             string bookName = Request["BookName"];
             string bookAbstract = Request["BookAbstract"];
             string bookWriter = Request["BookWriter"];
@@ -159,6 +159,7 @@ namespace duangduangwang.Controllers
             string price = Request["BookPrice"];
             string CouponDetail = Request["CouponDetail"];
             string Tag = Request["Tag"];
+
             string[] query = new string[] { bookId, bookName,bookAbstract,bookWriter,
             bookPublisher,publishTime,Picture1,Picture2,Picture3,bookType,coupon,price,CouponDetail,Tag};
             bookMapper.UpdateBook(query);

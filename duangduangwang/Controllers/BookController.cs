@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using duangduangwang.Models;
 using duangduangwang.Models.Mapper;
+using PagedList;
 
 namespace duangduangwang.Controllers
 {
@@ -15,28 +16,38 @@ namespace duangduangwang.Controllers
         private BookMapper mapper= new BookMapper();
 
         //book search
-        public ActionResult Search(string book_name,int page=1)
+        public ActionResult Search(string book_name , int? page)
         {
+            var books = mapper.Search(book_name);
 
-            IList<Book> books = mapper.Search(book_name);
+            //page list
+            int pageNumber = page ?? 1;
+            int pageSize = 6;
+            //books = books.OrderBy(x => x.BookId);
+            IPagedList<Book> pagedList = books.ToPagedList(pageNumber, pageSize);
 
-            //HashSet<string> tags = new HashSet<string>();
-            //foreach(Book bk in books)
-            //{
-            //    string[] tagOfBook = bk.Tag.Split(',');
-            //    foreach (var t in tagOfBook)
-            //    {
-            //        tags.Add(t);
-            //    }
-            //}
             HashSet<string> tags = mapper.GetTagsOfBook(books);
-            ViewBag.books = books;
+            ViewBag.books = pagedList;
             ViewBag.tags = tags;
-            return View("SearchResult");
+
+            return View("SearchResult",pagedList);
         }
 
-        // book details
-        public ActionResult Details(int id)
+        //search book by Coupon
+        public ActionResult SearchByCoupon(int Coupon, int? page)
+        {
+            var books = mapper.SearchByCoupon(Coupon);
+            int pageNumber = page ?? 1;
+            int pageSize = 6;
+            IPagedList<Book> pagedList = books.ToPagedList(pageNumber, pageSize);
+            HashSet<string> tags = mapper.GetTagsOfBook(books);
+            ViewBag.books = pagedList;
+            ViewBag.tags = tags;
+          
+            return View("SearchResult",pagedList);
+        }
+            // book details
+            public ActionResult Details(int id)
         {
 
             IList<Book> books = mapper.Details(id);
@@ -46,9 +57,12 @@ namespace duangduangwang.Controllers
             return View("BookDetail");
         }
         //books of tag
-        public ActionResult GetBooksOfTag(string tag)
+        public ActionResult GetBooksOfTag(string tag,int? page)
         {
-            IList<Book> books = mapper.GetBooksOfTag(tag);
+            var books = mapper.GetBooksOfTag(tag);
+            int pageNumber = page ?? 1;
+            int pageSize = 6;
+            IPagedList<Book> pagedList = books.ToPagedList(pageNumber, pageSize);
             HashSet<string> tags = new HashSet<string>();
             foreach (Book bk in books)
             {
@@ -60,7 +74,7 @@ namespace duangduangwang.Controllers
             }
             ViewBag.books = books;
             ViewBag.tags = tags;
-            return View("SearchResult");
+            return View("SearchResult",pagedList);
         }
 
         // GET: Book
