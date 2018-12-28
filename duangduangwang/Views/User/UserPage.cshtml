@@ -58,14 +58,22 @@
                             {
                                 foreach (var order in ViewBag.OrderList)
                                 {
-                                    <tr>
-                                        <td><a href="/User/UserOrderDetail?OrderId=@order.OrderId">@order.OrderId</a></td>
-                                        <td>@order.UserId</td>
-                                        <td>@order.TotalPrice</td>
-                                        <td>@order.Status</td>
-                                        <td>@order.createDate</td>
+                                <tr>
+                                    <td><a href="/User/UserOrderDetail?OrderId=@order.OrderId">@order.OrderId</a></td>
+                                    <td>@order.UserId</td>
+                                    <td>@order.TotalPrice</td>
+                                    @if (order.Status == 0)
+    {
+                                <td>未付款</td>
+                                    }
+                                    else
+                                    {
 
-                                    </tr>
+                                    }
+                                    <td>已付款</td>
+                                    <td>@order.createDate</td>
+
+                                </tr>
                                 }
                             }
 

@@ -138,9 +138,9 @@ namespace duangduangwang.Controllers
   
         }
         //修改图书信息
-        public ActionResult UpdateBook()
+        public ActionResult UpdateBook()//控制器捕获UpdateBook动作
         {
-            string bookId = Request["BookId"];  //如果为空则id为""
+            string bookId = Request["BookId"];  
             string bookName = Request["BookName"];
             string bookAbstract = Request["BookAbstract"];
             string bookWriter = Request["BookWriter"];
@@ -159,6 +159,7 @@ namespace duangduangwang.Controllers
             string price = Request["BookPrice"];
             string CouponDetail = Request["CouponDetail"];
             string Tag = Request["Tag"];
+
             string[] query = new string[] { bookId, bookName,bookAbstract,bookWriter,
             bookPublisher,publishTime,Picture1,Picture2,Picture3,bookType,coupon,price,CouponDetail,Tag};
             bookMapper.UpdateBook(query);
