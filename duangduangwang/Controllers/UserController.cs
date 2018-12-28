@@ -18,22 +18,22 @@ namespace duangduangwang.Controllers
         //    return View();
         //}
 
-        public ActionResult UserPage()
+        public ActionResult UserPage()  //用户中心页面
         {
             string userId = Session["userId"].ToString();
             ViewBag.OrderList = orderMapper.SearchOrdersByUserId(userId);
             return View();
         }
-        public ActionResult LoginPage()
+        public ActionResult LoginPage() //登录前和登录后共用的跳转方法
         {
-            if (Session["userName"] == null || Session["userName"].ToString() == "")
+            if (Session["userName"] == null || Session["userName"].ToString() == "")    
             {
                 return View();
             }
             return Redirect("/Home/Index");
         }
 
-        public ActionResult Logout()
+        public ActionResult Logout()    //登出方法
         {
             Session.Remove("userName");
             Session.Remove("userId");
@@ -44,7 +44,7 @@ namespace duangduangwang.Controllers
         {
             string isRegister = Request["checkout_register"];
             isRegister = collection["checkout_register"];
-            if (isRegister == null)
+            if (isRegister == null) //获取前端选择的进入方法
             {
                 return View();
             }
